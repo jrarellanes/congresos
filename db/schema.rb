@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711195249) do
+ActiveRecord::Schema.define(:version => 20110711202748) do
+
+  create_table "congresos", :force => true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "estados", :force => true do |t|
     t.integer  "pais_id"
@@ -35,6 +42,14 @@ ActiveRecord::Schema.define(:version => 20110711195249) do
     t.datetime "updated_at"
   end
 
+  create_table "personas", :force => true do |t|
+    t.string   "nombre",           :limit => 100
+    t.string   "apellido_paterno", :limit => 100
+    t.string   "apellido_materno", :limit => 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "talleres", :force => true do |t|
     t.string   "nombre",            :limit => 100
     t.text     "descripcion"
@@ -42,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20110711195249) do
     t.integer  "max_participantes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "concepto_id"
   end
 
 end

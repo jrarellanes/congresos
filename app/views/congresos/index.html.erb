@@ -1,0 +1,24 @@
+<h1>Lista de Congresos</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Descripcion</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @congresos.each do |congreso| %>
+  <tr>
+    <td><%= congreso.nombre %></td>
+    <td><%= link_to 'Ver Detalles', congreso %></td>
+    <td><%= link_to 'Editar', edit_congreso_path(congreso) %></td>
+    <td><%= link_to 'Eliminar', congreso, confirm: '¿Está seguro?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Registrar Congreso', new_congreso_path %>

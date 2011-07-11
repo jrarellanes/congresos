@@ -1,0 +1,15 @@
+<p id="notice" class="success"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @congreso.nombre %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @congreso.descripcion %>
+</p>
+
+
+<%= link_to 'Edit', edit_congreso_path(@congreso) %> |
+<%= link_to 'Back', congresos_path %>
