@@ -10,4 +10,5 @@
 # end
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular "pais","paises"
+  inflect.irregular "taller","talleres"
 end
