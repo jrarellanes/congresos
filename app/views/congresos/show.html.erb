@@ -8,6 +8,24 @@
   <%= @congreso.descripcion %>
 </p>
 
+<p>
+  <b>Precio:</b>
+    <%= number_to_currency(@congreso.precio,:unit => "$") %>
+</p>
+
+<h3>Talleres</h3>
+<ul>
+<% @congreso.talleres.each do |taller| %>
+    <li><%= link_to taller.nombre, taller_path(taller) %></li>
+<% end %>
+</ul>
+
+<h3>Participantes</h3>
+<ul>
+<% @congreso.personas.each do |persona| %>
+    <li><%= persona.nombre_completo %></li>
+<% end %>
+</ul>
 
 <%= link_to 'Editar', edit_congreso_path(@congreso) %> |
 <%= link_to 'Lista de Congresos', congresos_path %>

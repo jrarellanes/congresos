@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Nombre</th>
-    <th>Descripcion</th>
+    <th>Congreso</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,6 +12,7 @@
 <% @talleres.each do |taller| %>
   <tr>
     <td><%= taller.nombre %></td>
+    <td><%= taller.congreso.nombre %></td>
     <td><%= link_to 'Ver Detalles', taller %></td>
     <td><%= link_to 'Editar', edit_taller_path(taller) %></td>
     <td><%= link_to 'Eliminar', taller, confirm: '¿Está seguro?', method: :delete %></td>
