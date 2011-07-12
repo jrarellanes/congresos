@@ -98,4 +98,8 @@ class CongresosController < ApplicationController
     end
 
   end
+
+  def talleres
+    @congreso = Congreso.find(params[:id])
+  end
 end

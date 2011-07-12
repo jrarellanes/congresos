@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110712055221) do
+ActiveRecord::Schema.define(:version => 20110712202003) do
 
   create_table "congresos", :force => true do |t|
     t.string   "nombre"
@@ -50,6 +50,10 @@ ActiveRecord::Schema.define(:version => 20110712055221) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "congreso_id"
+    t.string   "email",            :limit => 100
+    t.integer  "pais_id"
+    t.integer  "estado_id"
+    t.integer  "municipio_id"
   end
 
   create_table "personas_talleres", :id => false, :force => true do |t|

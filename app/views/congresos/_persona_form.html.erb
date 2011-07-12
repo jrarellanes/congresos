@@ -1,4 +1,4 @@
-<%= form_for(@persona, :url => congresos_registrar_path(@congreso), :method => "post") do |f| %>
+<%= form_for(@persona, :url => congreso_registrar_path(@congreso), :method => "post") do |f| %>
   <% if @persona.errors.any? %>
     <div id="error_explanation" class="error">
       <h2>Imposible registrar participante</h2>
@@ -22,6 +22,10 @@
   <div class="field">
     <%= f.label :apellido_materno %><br />
     <%= f.text_field :apellido_materno %>
+  </div>
+    <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
   </div>
 
   <br/>

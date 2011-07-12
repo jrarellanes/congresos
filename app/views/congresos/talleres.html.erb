@@ -1,0 +1,25 @@
+<h1>Lista de Talleres: <%= @congreso.nombre %></h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Congreso</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @congreso.talleres.each do |taller| %>
+  <tr>
+    <td><%= taller.nombre %></td>
+    <td><%= taller.congreso.nombre %></td>
+    <td><%= link_to 'Ver Detalles', taller %></td>
+    <td><%= link_to 'Editar', edit_taller_path(taller) %></td>
+    <td><%= link_to 'Eliminar', taller, confirm: '¿Está seguro?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Registrar Taller', new_taller_path %>
