@@ -27,5 +27,8 @@
 <% end %>
 </ul>
 
+<fieldset class="inputs">
 <%= link_to 'Editar', edit_congreso_path(@congreso) %> |
-<%= link_to 'Lista de Congresos', congresos_path %>
+<%= link_to 'Lista de Congresos', congresos_path %> |
+<%= link_to 'Registro de Participantes', congreso_registro_path(@congreso.id) %>
+</fieldset>

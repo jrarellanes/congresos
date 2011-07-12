@@ -80,4 +80,22 @@ class CongresosController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def registro
+    @persona = Persona.new
+    @congreso = Congreso.find(params[:id])
+  end
+
+  def registrar
+    @congreso = Congreso.find(params[:id])
+    @persona = Persona.new(params[:persona])
+    @persona.congreso = @congreso
+
+    if @persona.save
+      redirect_to @congreso, :notice => "Participante registrado Correctamente"
+    else
+      render :action => "registro"
+    end
+
+  end
 end

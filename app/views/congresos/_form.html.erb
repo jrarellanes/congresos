@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+<fieldset class="inputs">
   <div class="field">
     <%= f.label :nombre %><br />
     <%= f.text_field :nombre %>
@@ -23,7 +23,9 @@
     <%= f.label :precio %><br />
     <%= f.text_field :precio %>
   </div>
+  <br/>
   <div class="actions">
     <%= f.submit %>
   </div>
+</fieldset>
 <% end %>

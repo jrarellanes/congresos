@@ -4,6 +4,10 @@ Congresos::Application.routes.draw do
 
   resources :congresos
 
+  get "congresos/:id/registro" => "congresos#registro", :as => :congreso_registro
+
+  post "congresos/:id/registro" => "congresos#registrar", :as => :congresos_registrar
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -14,8 +14,13 @@
 </p>
 
 <p>
-  <b>Número de Participantes:</b>
+  <b>Número Máximo de Participantes:</b>
   <%= @taller.max_participantes %>
+</p>
+
+<p>
+  <b>Número de Participantes Inscritos:</b>
+  <%= @taller.personas.count %>
 </p>
 
 <p>
@@ -23,5 +28,14 @@
   <%= link_to @taller.congreso.nombre, congreso_path(@taller.congreso) %>
 </p>
 
+<h3>Participantes Inscritos</h3>
+<ul>
+    <% @taller.personas.each do |persona| %>
+        <li><%= persona.nombre_completo %></li>
+    <% end %>
+</ul>
+
+<fieldset class="inputs">
 <%= link_to 'Editar', edit_taller_path(@taller) %> |
 <%= link_to 'Lista de Talleres', talleres_path %>
+</fieldset>
