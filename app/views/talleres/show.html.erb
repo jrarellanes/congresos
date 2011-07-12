@@ -1,0 +1,25 @@
+<p id="notice" class="success"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @taller.nombre %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @taller.descripcion %>
+</p>
+
+<p>
+  <b>Precio:</b>
+  <%= number_to_currency(@taller.precio,:unit => "$") %>
+</p>
+
+<p>
+  <b>Número de Participantes:</b>
+  <%= @taller.max_participantes %>
+</p>
+
+
+<%= link_to 'Editar', edit_taller_path(@taller) %> |
+<%= link_to 'Lista de Talleres', talleres_path %>
