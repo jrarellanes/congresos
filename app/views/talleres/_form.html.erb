@@ -1,0 +1,38 @@
+<%= form_for(@taller) do |f| %>
+  <% if @taller.errors.any? %>
+    <div id="error_explanation" class="error">
+      <h2>Imposible registrar taller</h2>
+
+      <ul>
+      <% @taller.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :descripcion %><br />
+    <%= f.text_area :descripcion %>
+  </div>
+  <div class="field">
+    <%= f.label :precio %><br />
+    <%= f.text_field :precio %>
+  </div>
+  <div class="field">
+    <%= f.label :max_participantes,"Cantidad máxima de participantes" %><br />
+    <%= f.text_field :max_participantes %>
+  </div>
+  <div class="field">
+    <%= f.label :congreso_id,"Congreso" %><br />
+    <%= f.collection_select :congreso_id, Congreso.all(:order =>"nombre"),:id, :nombre, :prompt => false %>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

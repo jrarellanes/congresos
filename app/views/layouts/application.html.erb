@@ -19,6 +19,9 @@
     </style>
 </head>
 <body>
+<% if notice  %>
+<div id="notice" class="success"><%= notice %></div>
+<% end %>
  <div class="content">
 <%= yield %>
  </div>

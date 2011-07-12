@@ -40,7 +40,7 @@ class TalleresController < ApplicationController
   # POST /talleres
   # POST /talleres.json
   def create
-    @taller = Taller.new(params[:congreso])
+    @taller = Taller.new(params[:taller])
 
     respond_to do |format|
       if @taller.save
@@ -59,7 +59,7 @@ class TalleresController < ApplicationController
     @taller = Taller.find(params[:id])
 
     respond_to do |format|
-      if @taller.update_attributes(params[:congreso])
+      if @taller.update_attributes(params[:taller])
         format.html { redirect_to @taller, notice: 'Taller actualizado correctamente.' }
         format.json { head :ok }
       else

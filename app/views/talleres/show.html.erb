@@ -1,5 +1,3 @@
-<p id="notice" class="success"><%= notice %></p>
-
 <p>
   <b>Nombre:</b>
   <%= @taller.nombre %>
@@ -20,6 +18,10 @@
   <%= @taller.max_participantes %>
 </p>
 
+<p>
+  <b>Congreso: </b>
+  <%= link_to @taller.congreso.nombre, congreso_path(@taller.congreso) %>
+</p>
 
 <%= link_to 'Editar', edit_taller_path(@taller) %> |
 <%= link_to 'Lista de Talleres', talleres_path %>
