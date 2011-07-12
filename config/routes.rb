@@ -1,4 +1,7 @@
 Congresos::Application.routes.draw do
+
+  resources :talleres
+
   resources :congresos
 
   # The priority is based upon order of creation:

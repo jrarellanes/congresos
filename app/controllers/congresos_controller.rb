@@ -44,7 +44,7 @@ class CongresosController < ApplicationController
 
     respond_to do |format|
       if @congreso.save
-        format.html { redirect_to @congreso, notice: 'Congreso was successfully created.' }
+        format.html { redirect_to @congreso, notice: 'Congreso registrado correctamente.' }
         format.json { render json: @congreso, status: :created, location: @congreso }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class CongresosController < ApplicationController
 
     respond_to do |format|
       if @congreso.update_attributes(params[:congreso])
-        format.html { redirect_to @congreso, notice: 'Congreso was successfully updated.' }
+        format.html { redirect_to @congreso, notice: 'Congreso actualizado correctamente.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
