@@ -12,6 +12,10 @@ Congresos::Application.routes.draw do
 
   get "congresos/:id/participantes(.:format)" => "congresos#participantes", :as => :congreso_participantes
 
+  resource :user_session
+
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

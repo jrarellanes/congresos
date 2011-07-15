@@ -12,6 +12,9 @@ gem 'sass-rails', "~> 3.1.0.rc"
 gem 'coffee-script'
 gem 'uglifier'
 
+#Autenticación
+gem 'authlogic'
+
 #Soporte para Excel 2007 en adelante
 gem 'simple_xlsx_writer'
 gem 'uuid'
