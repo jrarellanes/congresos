@@ -1,4 +1,5 @@
 class CongresosController < ApplicationController
+  include XlsxHelper
   # GET /congresos
   # GET /congresos.json
   def index
@@ -101,5 +102,17 @@ class CongresosController < ApplicationController
 
   def talleres
     @congreso = Congreso.find(params[:id])
+  end
+
+
+  def participantes
+    @congreso = Congreso.find(params[:id])
+
+    respond_to do |format|
+      format.xlsx do
+        data  = create_xlsx_participantes(@congreso)
+        send_data data, :filename => 'participantes.xlsx', :type => :xlsx
+      end
+    end
   end
 end

@@ -12,6 +12,11 @@ gem 'sass-rails', "~> 3.1.0.rc"
 gem 'coffee-script'
 gem 'uglifier'
 
+#Soporte para Excel 2007 en adelante
+gem 'simple_xlsx_writer'
+gem 'uuid'
+
+#Jquery y CSS default
 gem 'jquery-rails'
 
 gem 'flutie'

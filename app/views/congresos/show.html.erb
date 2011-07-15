@@ -30,5 +30,6 @@
 <fieldset class="inputs">
 <%= link_to 'Editar', edit_congreso_path(@congreso) %> |
 <%= link_to 'Lista de Congresos', congresos_path %> |
-<%= link_to 'Registro de Participantes', congreso_registro_path(@congreso.id) %>
+<%= link_to 'Registro de Participantes', congreso_registro_path(@congreso.id) %>  |
+<%= link_to 'Exportar participantes a Excel', congreso_participantes_path(@congreso,:xlsx) %>
 </fieldset>

@@ -6,4 +6,8 @@ class Taller < ActiveRecord::Base
   belongs_to :congreso
 
   has_and_belongs_to_many :personas, :order => "apellido_paterno"
+
+  def to_s
+    nombre
+  end
 end
