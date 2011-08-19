@@ -1,8 +1,14 @@
 Congresos::Application.routes.draw do
 
+  get "participantes/index"
+
   resources :talleres
 
   resources :congresos
+
+  get 'participantes/:id/edit/:id_congreso' => "participantes#edit", :as => :edit_participante
+
+  resources :participantes, :only => [ :update, :show]
 
   get "congresos/:id/registro" => "congresos#registro", :as => :congreso_registro
 

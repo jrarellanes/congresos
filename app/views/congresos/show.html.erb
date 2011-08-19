@@ -23,7 +23,7 @@
 <h3>Participantes</h3>
 <ul>
 <% @congreso.personas.each do |persona| %>
-    <li><%= persona.nombre_completo %></li>
+    <li><%= link_to persona.nombre_completo, edit_participante_url(persona, @congreso) %></li>
 <% end %>
 </ul>
 

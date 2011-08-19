@@ -38,6 +38,8 @@
       <li>
         <%= raw("<span for='persona_taller_ids_' class='opt'>#{taller.nombre}</span>") -%>
         <%= check_box_tag "persona[taller_ids][]", taller.id, persona_inscrita_en_taller?(taller) -%>
+        <%= f.label :precio %>
+        <%= number_to_currency(taller.precio,:unit => "$") %>
       </li>
       <% end %>
     </ol>

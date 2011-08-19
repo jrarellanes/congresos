@@ -37,3 +37,8 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+#ejecutar javascript
+
+gem "therubyracer", :require => 'v8'
+
