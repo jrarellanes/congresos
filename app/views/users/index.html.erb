@@ -1,0 +1,8 @@
+<%  @users.each do |user| %>
+  <div>
+    <%= user.login %><br/>
+    <%= user.email %>
+  </div>
+<% end %>
+
+<%= link_to 'Registrar nuevo usuario', new_user_url %>
