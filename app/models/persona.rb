@@ -9,6 +9,8 @@ class Persona < ActiveRecord::Base
 
   has_and_belongs_to_many :talleres, :class_name => "Taller", :order => "nombre"
   belongs_to :congreso
+  belongs_to :estado
+  has_one :factura
 
   def nombre_completo
     "#{nombre} #{apellido_paterno} #{apellido_materno}"

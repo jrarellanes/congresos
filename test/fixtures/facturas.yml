@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nombre: MyString
+  direccion: MyString
+  cp: 1
+  rfc: MyString
+  ciudad: MyString
+  estado: MyString
+  pais: MyString
+
+two:
+  nombre: MyString
+  direccion: MyString
+  cp: 1
+  rfc: MyString
+  ciudad: MyString
+  estado: MyString
+  pais: MyString

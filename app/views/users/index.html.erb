@@ -2,6 +2,9 @@
   <div>
     <%= user.login %><br/>
     <%= user.email %>
+    <% if current_user_session and current_user.is_admin? %>
+      <%= button_to 'Eliminar', user, :confirm => "Estas seguro?", :method => :delete%>
+    <% end %>
   </div>
 <% end %>
 

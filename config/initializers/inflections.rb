@@ -11,4 +11,6 @@
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular "pais","paises"
   inflect.irregular "taller","talleres"
+  inflect.irregular "rol", "roles"
+  inflect.irregular "ciudad", "ciudades"
 end

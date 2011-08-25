@@ -1,5 +1,6 @@
 class CongresosController < ApplicationController
   include XlsxHelper
+# before_filter {|edit|  edit.congreso_propio?(Congreso.find(params[:id]))}
   # GET /congresos
   # GET /congresos.json
   def index
@@ -42,6 +43,7 @@ class CongresosController < ApplicationController
   # POST /congresos.json
   def create
     @congreso = Congreso.new(params[:congreso])
+    @congreso.user_id = current_user.id
 
     respond_to do |format|
       if @congreso.save
@@ -74,17 +76,24 @@ class CongresosController < ApplicationController
   # DELETE /congresos/1.json
   def destroy
     @congreso = Congreso.find(params[:id])
-    @congreso.destroy
-
-    respond_to do |format|
-      format.html { redirect_to congresos_url }
-      format.json { head :ok }
+    if congreso_propio?(@congreso) or current_user.is_admin?
+      @congreso.destroy
+      respond_to do |format|
+          format.html { redirect_to congresos_url }
+          format.json { head :ok }
     end
+    else
+      flash[:notice] = "Solo puedes eliminar tus propios congresos"
+      redirect_to congresos_url
+    end
+
+    
   end
 
   def registro
     @persona = Persona.new
     @congreso = Congreso.find(params[:id])
+    @estados = Estado.all
   end
 
   def registrar
@@ -93,7 +102,11 @@ class CongresosController < ApplicationController
     @persona.congreso = @congreso
 
     if @persona.save
-      redirect_to @congreso, :notice => "Participante registrado Correctamente"
+      if params[:factura] == "1"
+        redirect_to new_facturas_url(@persona), :notice => "Por favor introdusca los datos de facturacion"
+      else
+        redirect_to @persona, :notice => "Participante registrado exitosamente"
+      end
     else
       render :action => "registro"
     end

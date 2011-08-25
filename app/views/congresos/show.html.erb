@@ -13,6 +13,20 @@
     <%= number_to_currency(@congreso.precio,:unit => "$") %>
 </p>
 
+<p>
+  <b>Fecha de inicio:</b>
+  <%= @congreso.fecha_inicio %>
+</p>
+
+<p>
+  <b>Fecha clausura:</b>
+  <%= @congreso.fecha_fin %>
+</p>
+
+<p>
+  <b>Lugar:</b>
+  <%= @congreso.lugar %>
+</p>
 <h3>Talleres</h3>
 <ul>
 <% @congreso.talleres.each do |taller| %>
@@ -23,7 +37,7 @@
 <h3>Participantes</h3>
 <ul>
 <% @congreso.personas.each do |persona| %>
-    <li><%= link_to persona.nombre_completo, edit_participante_url(persona, @congreso) %></li>
+  <li style="margin-right: 10px; width: 350px;"><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona, @congreso), :style => 'float: right;'  %></li>
 <% end %>
 </ul>
 
@@ -33,3 +47,5 @@
 <%= link_to 'Registro de Participantes', congreso_registro_path(@congreso.id) %>  |
 <%= link_to 'Exportar participantes a Excel', congreso_participantes_path(@congreso,:xlsx) %>
 </fieldset>
+
+<%= link_to 'Registrar taller', new_taller_url %>

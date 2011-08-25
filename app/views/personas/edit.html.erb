@@ -1,0 +1,38 @@
+<%= form_for(@participante, :url => persona_url) do |f| %>
+<% if @participante.errors.any? %>
+    <div id="error_explanation" class="error">
+      <h2>Imposible registrar participante</h2>
+
+      <ul>
+      <% @participante.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+<% end %>
+<div>
+  <%= f.label :nombre %>
+  <%= f.text_field :nombre %>
+</div>
+
+<div>
+  <%= f.label :apellido_paterno %>
+  <%= f.text_field :apellido_paterno %>
+</div>
+
+<div>
+  <%= f.label :apellido_materno %>
+  <%= f.text_field  :apellido_materno %>
+</div>
+
+<div>
+  <%= f.label :email %>
+  <%= f.text_field  :email %>
+</div>
+
+<div>
+  <%= f.submit "Guardar" %>
+</div>
+<%end %>
+
+<%= link_to "Regresar", congreso_url(params[:id_congreso]) %>

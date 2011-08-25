@@ -1,0 +1,38 @@
+<%= form_for(@factura) do |f| %>
+<div class="field">
+  <%= f.label :nombre %>
+  <%= f.text_field :nombre %>
+</div>
+<div class="field">
+  <%= f.label :calle %>
+  <%= f.text_field :calle %>
+</div>
+<div class="field">
+  <%= f.label :numero %>
+  <%= f.text_field :numero %>
+</div>
+<div class="field">
+  <%= f.label :rfc %>
+  <%= f.text_field :rfc %>
+</div>
+<div class="field">
+  <%= f.label :cp, 'Codigo Postal' %>
+  <%= f.text_field :cp %>
+</div>
+<div class="field">
+  <%=  f.label :ciudad %>
+  <%= f.text_field :ciudad %>
+</div>
+<div class="field">
+  <%= f.label :estado %>
+  <%= f.collection_select :estado_id, @estados,:id, :nombre, :prompt => false %>
+</div>
+<div class="field">
+  <%= f.hidden_field :persona_id, :value => @persona.id %>
+</div>
+
+<div class="submit">
+  <%= f.submit 'Guardar' %>
+</div>
+
+<% end %>

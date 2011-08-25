@@ -10,16 +10,21 @@
   </tr>
 
 <% @talleres.each do |taller| %>
-  <tr>
-    <td><%= taller.nombre %></td>
-    <td><%= taller.congreso.nombre %></td>
-    <td><%= link_to 'Ver Detalles', taller %></td>
-    <td><%= link_to 'Editar', edit_taller_path(taller) %></td>
-    <td><%= link_to 'Eliminar', taller, confirm: '¿Está seguro?', method: :delete %></td>
-  </tr>
+  <% if taller_propio?(taller) %>
+    <tr>
+      <td><%= taller.nombre %></td>
+      <td><%= taller.congreso.nombre %></td>
+      <td><%= link_to 'Ver Detalles', taller %></td>
+      <% if current_user_session %>
+        <td><%= link_to 'Editar', edit_taller_path(taller) %></td>
+        <td><%= button_to 'Eliminar', taller, confirm: '¿Está seguro?', method: :delete %></td>
+      <% end %>
+    </tr>
+  <% end %>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'Registrar Taller', new_taller_path %>
+<% if current_user_session %>
+  <%= link_to 'Registrar Taller', new_taller_path %>
+<% end %>

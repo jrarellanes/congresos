@@ -14,6 +14,26 @@
 </p>
 
 <p>
+  <b>Fecha de inicio:</b>
+  <%= @taller.fecha_inicio %>
+</p>
+
+<p>
+  <b>Fecha conclusion taller:</b>
+  <%= @taller.fecha_fin %>
+</p>
+
+<p>
+  <b>Lugar:</b>
+  <%= @taller.lugar %>
+</p>
+
+<p>
+  <b>Hora:</b>
+  <%= @taller.hora %>
+</p>
+
+<p>
   <b>Número Máximo de Participantes:</b>
   <%= @taller.max_participantes %>
 </p>
@@ -36,6 +56,8 @@
 </ul>
 
 <fieldset class="inputs">
-<%= link_to 'Editar', edit_taller_path(@taller) %> |
-<%= link_to 'Lista de Talleres', congreso_talleres_path(@taller.congreso) %>
+  <% if current_user_session %>
+    <%= link_to 'Editar', edit_taller_path(@taller) %> |
+  <% end %>
+  <%= link_to 'Lista de Talleres', congreso_talleres_path(@taller.congreso) %>
 </fieldset>

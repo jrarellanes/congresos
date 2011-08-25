@@ -1,0 +1,29 @@
+<h1>Lista de Participantes</h1>
+<br/><br/>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido paterno</th>
+    <th>Apellido materno</th>
+    <th>email</th>
+    <% if current_user_session and current_user.is_admin? %>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    <% end %>
+  </tr>
+
+<% @participantes.each do |participante| %>
+
+    <tr>
+      <td><%= participante.nombre %></td>
+      <td><%= participante.apellido_paterno %></td>
+      <td><%= participante.apellido_materno %></td>
+      <td><%= participante.email %></td>
+      <% if current_user_session and current_user.is_admin? %>
+        <td><%= link_to 'Editar', edit_persona_path(participante.id) %></td>
+        <td><%= button_to 'Eliminar', participante, :confirm =>'¿Esta seguro?', :method => :delete  %></td>
+      <% end %>
+    </tr>
+  
+<% end %>
+</table>

@@ -1,14 +1,21 @@
 Congresos::Application.routes.draw do
+  get 'facturas/new/:id/participante' => "facturas#new", :as => :new_facturas
+
+  resources :facturas, :except => :new
+
+  get "inicio/home", :as => :home
 
   get "participantes/index"
 
   resources :talleres
+  
+ 
 
   resources :congresos
 
   get 'participantes/:id/edit/:id_congreso' => "participantes#edit", :as => :edit_participante
 
-  resources :participantes, :only => [ :update, :show]
+  resources :personas
 
   get "congresos/:id/registro" => "congresos#registro", :as => :congreso_registro
 
@@ -18,9 +25,13 @@ Congresos::Application.routes.draw do
 
   get "congresos/:id/participantes(.:format)" => "congresos#participantes", :as => :congreso_participantes
 
-  resource :user_session
+  get "logout" => "user_sessions#destroy", :as => :logout
+  
+  resource :user_session, :excep => :destroy
 
   resources :users
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -71,7 +82,7 @@ Congresos::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'congresos#index'
+  root :to => 'inicio#home'
 
   # See how all your routes lay out with "rake routes"
 

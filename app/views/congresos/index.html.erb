@@ -10,15 +10,20 @@
   </tr>
 
 <% @congresos.each do |congreso| %>
-  <tr>
-    <td><%= congreso.nombre %></td>
-    <td><%= link_to 'Ver Detalles', congreso %></td>
-    <td><%= link_to 'Editar', edit_congreso_path(congreso) %></td>
-    <td><%= link_to 'Eliminar', congreso, confirm: '¿Está seguro?', method: :delete %></td>
-  </tr>
+  <% if congreso_propio?(congreso) %>
+      <tr>
+        <td><%= congreso.nombre %></td>
+        <td><%= link_to 'Ver Detalles', congreso %></td>
+        <% if current_user_session %>
+          <td><%= link_to 'Editar', edit_congreso_path(congreso) %></td>
+          <td><%= button_to 'Eliminar', congreso, :confirm => "Estas seguro?", :method => :delete%></td>
+        <% end %>
+      </tr>
+  <% end %>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'Registrar Congreso', new_congreso_path %>
+<% if current_user_session %>
+  <%= link_to 'Registrar Congreso', new_congreso_path %>
+<% end %>

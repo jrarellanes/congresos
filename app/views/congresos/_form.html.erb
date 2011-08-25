@@ -1,3 +1,5 @@
+
+
 <%= form_for(@congreso) do |f| %>
   <% if @congreso.errors.any? %>
     <div id="error_explanation" class="error">
@@ -22,6 +24,16 @@
     <div class="field">
     <%= f.label :precio %><br />
     <%= f.text_field :precio %>
+  </div>
+  <div class="field">
+    Fecha de inicio: <br /><%= date_select :congreso, :fecha_inicio %><br />
+  </div>
+   <div class="field">
+    Fecha fin curso: <br /><%= date_select :congreso, :fecha_fin %><br />
+  </div>
+   <div class="field">
+    <%= f.label :lugar %><br />
+    <%= f.text_field :lugar %>
   </div>
   <br/>
   <div class="actions">

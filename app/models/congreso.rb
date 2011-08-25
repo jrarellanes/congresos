@@ -1,13 +1,24 @@
 class Congreso < ActiveRecord::Base
   validates :nombre, :presence => true
+  validates :precio, :presence => true
   validate :precio_mayor_cero
+  validate :fecha_inicio_mayor_fecha_fin
 
-  has_many :talleres, :class_name => "Taller", :order => "nombre"
-  has_many :personas, :order => "apellido_paterno"
+  belongs_to :user
+  has_many :talleres, :class_name => "Taller", :order => "nombre", :dependent => :delete_all
+  has_many :personas, :order => "apellido_paterno", :dependent => :delete_all
 
  def precio_mayor_cero
-   if self.precio < 0
-     errors.add(:precio_negativo, "El precio no puede ser menor que cero")
+   if precio != nil
+     if precio < 0
+        errors.add(:precio_negativo, "El precio no puede ser menor que cero")
+     end
    end
  end
+
+ def fecha_inicio_mayor_fecha_fin
+    if fecha_fin < fecha_inicio
+      errors.add(:fecha_fin_menor, "La fecha final del curso debe ser mayor que la de inicio")
+    end
+  end
 end

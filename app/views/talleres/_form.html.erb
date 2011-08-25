@@ -24,12 +24,26 @@
     <%= f.text_field :precio %>
   </div>
   <div class="field">
+    Fecha de inicio: <br /><%= date_select :taller, :fecha_inicio %><br />
+  </div>
+   <div class="field">
+    Fecha fin curso: <br /><%= date_select :taller, :fecha_fin %><br />
+  </div>
+    <div class="field">
+    <%= f.label :lugar %><br />
+    <%= f.text_field :lugar %>
+  </div>
+    <div class="field">
+    <%= select_hour(00) %>
+    <%=  select_minute(00) %>
+  </div>
+  <div class="field">
     <%= f.label :max_participantes,"Cantidad máxima de participantes" %><br />
     <%= f.text_field :max_participantes %>
   </div>
   <div class="field">
     <%= f.label :congreso_id,"Congreso" %><br />
-    <%= f.collection_select :congreso_id, Congreso.all(:order =>"nombre"),:id, :nombre, :prompt => false %>
+    <%= f.collection_select :congreso_id, @congresos,:id, :nombre, :prompt => false %>
   </div>
   <br/>
   <div class="actions">

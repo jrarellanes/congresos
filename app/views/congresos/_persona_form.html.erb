@@ -23,11 +23,44 @@
     <%= f.label :apellido_materno %><br />
     <%= f.text_field :apellido_materno %>
   </div>
-    <div class="field">
+     <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-
+    <div class="field">
+    <%= f.label :rfc %><br />
+    <%= f.text_field :rfc %>
+  </div>
+    <div class="field">
+    <%= f.label :curp %><br />
+    <%= f.text_field :curp %>
+  </div>
+    <b>Direccion:</b>
+    <div class="field">
+    <%= f.label :calle %><br />
+    <%= f.text_field :calle %><br/>
+    <%= f.label :numero %><br />
+    <%= f.text_field :numero %>
+  </div>
+    <div class="field">
+    <%= f.label :cp, 'Codigo Postal' %><br />
+    <%= f.text_field :cp %>
+  </div>
+    <div class="field">
+    <%= f.label :institucion %><br />
+    <%= f.text_field :institucion %>
+  </div>
+    <div class="field">
+    <%= f.label :ciudad %><br />
+    <%= f.text_field :ciudad %>
+  </div>
+   <div class="field">
+  <%= f.label :estado %>
+  <%= f.collection_select :estado_id, @estados,:id, :nombre, :prompt => false %>
+</div>
+   <div class="field">
+     <h4>Factura</h4><%= check_box_tag(:factura) %>
+  </div>
   <br/>
 
   <fieldset>

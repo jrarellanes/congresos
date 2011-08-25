@@ -1,4 +1,5 @@
 class TalleresController < ApplicationController
+  
   # GET /talleres
   # GET /talleres.json
   def index
@@ -25,6 +26,12 @@ class TalleresController < ApplicationController
   # GET /talleres/new.json
   def new
     @taller = Taller.new
+    if current_user.is_admin?
+      @congresos = Congreso.all(:order => "nombre")
+    else
+      @congresos = current_user.congresos(:order => "nombre")
+    end
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,18 +42,29 @@ class TalleresController < ApplicationController
   # GET /talleres/1/edit
   def edit
     @taller = Taller.find(params[:id])
+    if current_user.is_admin?
+      @congresos = Congreso.all(:order => "nombre")
+    else
+      @congresos = current_user.congresos(:order => "nombre")
+    end
   end
 
   # POST /talleres
   # POST /talleres.json
   def create
     @taller = Taller.new(params[:taller])
+    @taller.hora = "#{params[:date][:hour]}:#{params[:date][:minute]}"
 
     respond_to do |format|
       if @taller.save
         format.html { redirect_to @taller, notice: 'Taller registrado correctamente.' }
         format.json { render json: @congreso, status: :created, location: @taller }
       else
+        if current_user.is_admin?
+          @congresos = Congreso.all(:order => "nombre")
+      else
+          @congresos = current_user.congresos(:order => "nombre")
+      end
         format.html { render action: "new" }
         format.json { render json: @taller.errors, status: :unprocessable_entity }
       end
@@ -73,11 +91,17 @@ class TalleresController < ApplicationController
   # DELETE /talleres/1.json
   def destroy
     @taller = Taller.find(params[:id])
-    @taller.destroy
-
-    respond_to do |format|
-      format.html { redirect_to talleres_url }
-      format.json { head :ok }
+    if taller_propio?(@taller) or current_user.is_admin?
+      @taller.destroy
+      respond_to do |format|
+          format.html { redirect_to talleres_url }
+          format.json { head :ok }
     end
+    else
+      flash[:notice] = "Solo puedes eliminar tus propios talleres"
+      redirect_to talleres_url
+    end
+
+    
   end
 end
