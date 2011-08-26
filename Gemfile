@@ -14,6 +14,7 @@ gem 'uglifier'
 
 #Autenticación
 gem 'authlogic'
+gem 'easy_roles'
 
 #Soporte para Excel 2007 en adelante
 gem 'simple_xlsx_writer'
@@ -42,3 +43,5 @@ end
 
 gem "therubyracer", :require => 'v8'
 
+gem 'uuid'
+gem 'guid'
