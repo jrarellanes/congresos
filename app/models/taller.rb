@@ -4,7 +4,7 @@ class Taller < ActiveRecord::Base
   validates :max_participantes, :presence => true
   validate :precio_mayor_cero
   validate :fecha_inicio_mayor_fecha_fin
-  validate :max_participantes_may_uno
+  validate :max_participantes_mayor_uno
 
   belongs_to :congreso
 
@@ -29,11 +29,19 @@ class Taller < ActiveRecord::Base
     end
   end
 
-  def max_participantes_may_uno
+  def max_participantes_mayor_uno
     if max_participantes != nil
         if self.max_participantes < 1
          errors.add(:max_participantes_negativo, "El maximo de participantes no puede ser menor que uno")
         end
+    end
+  end
+
+  def cupo?
+    if self.personas.count >= max_participantes
+      false
+    else
+      true
     end
   end
 end

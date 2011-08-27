@@ -28,8 +28,6 @@
 <% end %>
 <div id="structure">
 <header>
-        <% logo = image_tag("../logo.jpg", :alt => "logo uach") %>
-        <%= link_to logo, root_path %>
          
         <nav class="round">
           <ul>
@@ -53,6 +51,9 @@
             <% end %>
           </ul>
         </nav>
+
+        <% logo = image_tag("../header.png", :alt => "logo uach") %>
+        <%= link_to logo, root_path %>
  </header>
  <% if current_user_session %>
             <h3>Bienvenido: <%= current_user.login %></h3>
