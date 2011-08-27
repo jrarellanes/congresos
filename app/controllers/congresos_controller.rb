@@ -103,10 +103,22 @@ class CongresosController < ApplicationController
     @persona.congreso = @congreso
 
     if @persona.save
+      if params[:descuento] == "1"
+        precio = @congreso.precio_descuento
+      else
+        precio = @congreso.precio
+      end
+
+      @persona.talleres.each do |taller|
+        precio += taller.precio
+      end
+
+
+
       if params[:factura] == "1"
         redirect_to new_facturas_url(@persona), :notice => "Por favor introduzca los datos de facturación"
       else
-        redirect_to pagos_url
+        redirect_to pagos_url(@persona,"#{precio.to_s}0","n68")
         #redirect_to @persona, :notice => "Participante registrado exitosamente"
       end
     else

@@ -8,8 +8,6 @@ Congresos::Application.routes.draw do
   get "participantes/index"
 
   resources :talleres
-  
- 
 
   resources :congresos
 
@@ -31,7 +29,7 @@ Congresos::Application.routes.draw do
 
   resources :users
 
-  post "congresos/:id/confirmar" => "congresos#confirmar_pago", :as => :congreso_confirmar_pago
+  get "congresos/:id/confirmar/:id_cliente/:id_transaccion/:origen" => "congresos#confirmar_pago", :as => :congreso_confirmar_pago
   #IdCliente
   #IdTransaccion
   #Origen=PAGOS

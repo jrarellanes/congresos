@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110827183805) do
+ActiveRecord::Schema.define(:version => 20110827194024) do
 
   create_table "ciudades", :force => true do |t|
     t.string   "nombre"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(:version => 20110827183805) do
     t.integer  "cp"
     t.string   "rfc"
     t.string   "ciudad"
-    t.string   "estado"
     t.string   "pais"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -55,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20110827183805) do
     t.integer  "numero"
     t.integer  "ciudad_id"
     t.integer  "persona_id"
+    t.integer  "estado_id"
   end
 
   create_table "municipios", :force => true do |t|
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20110827183805) do
     t.string   "ciudad"
     t.string   "pago",                            :default => ""
     t.boolean  "descuento",                       :default => false
+    t.string   "informacion_pago"
   end
 
   create_table "personas_talleres", :id => false, :force => true do |t|
