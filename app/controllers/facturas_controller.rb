@@ -5,7 +5,6 @@ class FacturasController < ApplicationController
   def new
     @factura = Factura.new
     @estados = Estado.all
-    @ciudades = Ciudad.all
     @persona = Persona.find(params[:id])
   end
 
@@ -18,9 +17,16 @@ class FacturasController < ApplicationController
 
   def create
     @factura = Factura.new(params[:factura])
+    @persona = @factura.persona
+
     if @factura.save
-      flash[:notice] = "Datos factura guardada correctamente"
-      redirect_to @factura
+      precio = @persona.congreso.precio
+      @persona.talleres.each do |taller|
+        precio += taller.precio
+      end
+
+      redirect_to pagos_url(@persona,"#{precio.to_s}0","n68")
+
     else
       @estados = Estado.all
       @paises = Pais.all

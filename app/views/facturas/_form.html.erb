@@ -1,6 +1,15 @@
 <%= form_for(@factura) do |f| %>
+  <% if @factura.errors.any? %>
+    <div id="error_explanation" class="error">
+      <h2>Imposible registrar datos de facturación</h2>
+      <br/>
+      <ul style="padding-left: 20px;">
+        <li>Todos los campos son obligatorios</li>
+      </ul>
+    </div>
+  <% end %>
 <div class="field">
-  <%= f.label :nombre %>
+  <%= f.label :nombre, "Nombre o Razón Social" %>
   <%= f.text_field :nombre %>
 </div>
 <div class="field">
@@ -12,7 +21,7 @@
   <%= f.text_field :numero %>
 </div>
 <div class="field">
-  <%= f.label :rfc %>
+  <%= f.label :rfc, "RFC" %>
   <%= f.text_field :rfc %>
 </div>
 <div class="field">

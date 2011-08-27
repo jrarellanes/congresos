@@ -113,8 +113,6 @@ class CongresosController < ApplicationController
         precio += taller.precio
       end
 
-
-
       if params[:factura] == "1"
         redirect_to new_facturas_url(@persona), :notice => "Por favor introduzca los datos de facturación"
       else
