@@ -21,9 +21,13 @@
     <%= f.label :descripcion %><br />
     <%= f.text_area :descripcion %>
   </div>
-    <div class="field">
+  <div class="field">
     <%= f.label :precio %><br />
     <%= f.text_field :precio %>
+  </div>
+  <div class="field">
+    <%= f.label :precio_descuento,"Precio con Descuento" %><br />
+    <%= f.text_field :precio_descuento %>
   </div>
   <div class="field">
     Fecha de inicio: <br /><%= date_select :congreso, :fecha_inicio %><br />

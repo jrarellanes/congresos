@@ -69,10 +69,10 @@
     <ol>
       <% @congreso.talleres.each do |taller| %>
       <li>
-        <%= raw("<span for='persona_taller_ids_' class='opt'>#{taller.nombre}</span>") -%>
         <%= check_box_tag "persona[taller_ids][]", taller.id, persona_inscrita_en_taller?(taller) -%>
-        <%= f.label :precio %>
-        <%= number_to_currency(taller.precio,:unit => "$") %>
+        <%= raw("<span for='persona_taller_ids_' class='opt'>#{taller.nombre}</span>") -%>
+        <br/>
+        Precio: <%= number_to_currency(taller.precio,:unit => "$") %>
       </li>
       <% end %>
     </ol>
@@ -81,7 +81,7 @@
 
   <br/>
   <div class="actions">
-    <%= f.submit "Guardar Participante" %>
+    <%= f.submit "Registrarse al Congreso" %>
   </div>
   </fieldset>
 <% end %>

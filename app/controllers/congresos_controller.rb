@@ -129,4 +129,9 @@ class CongresosController < ApplicationController
       end
     end
   end
+
+  def confirmar_pago
+    @participante = Participante.find(params[IdCliente])
+
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110825185625) do
+ActiveRecord::Schema.define(:version => 20110827183805) do
 
   create_table "ciudades", :force => true do |t|
     t.string   "nombre"
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(:version => 20110825185625) do
     t.text     "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "precio",       :precision => 12, :scale => 2
+    t.decimal  "precio",           :precision => 12, :scale => 2
     t.datetime "fecha_inicio"
     t.datetime "fecha_fin"
     t.string   "lugar"
     t.integer  "user_id"
+    t.decimal  "precio_descuento", :precision => 12, :scale => 2
   end
 
   create_table "estados", :force => true do |t|
@@ -91,6 +92,8 @@ ActiveRecord::Schema.define(:version => 20110825185625) do
     t.integer  "cp"
     t.string   "institucion"
     t.string   "ciudad"
+    t.string   "pago",                            :default => ""
+    t.boolean  "descuento",                       :default => false
   end
 
   create_table "personas_talleres", :id => false, :force => true do |t|
