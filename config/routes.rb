@@ -12,6 +12,7 @@ Congresos::Application.routes.draw do
   resources :congresos
 
   get 'participantes/:id/edit/:id_congreso' => "participantes#edit", :as => :edit_participante
+  get 'participantes/:id' => "participantes#show", :as => :participante
 
   resources :personas
 

@@ -1,6 +1,7 @@
 #encoding: utf-8
 class CongresosController < ApplicationController
   include XlsxHelper
+  before_filter :verificar_origen, :only => :confirmar_pago
 # before_filter {|edit|  edit.congreso_propio?(Congreso.find(params[:id]))}
   # GET /congresos
   # GET /congresos.json
@@ -143,7 +144,22 @@ class CongresosController < ApplicationController
   end
 
   def confirmar_pago
-    @participante = Participante.find(params[IdCliente])
+    @congreso = Congreso.find(params[:id])
+    @persona = Persona.find(params[:id_cliente])
+    @persona.informacion_pago = params[:id_transaccion]
+    @persona.pago = true
+    @persona.save
 
+    flash[:notice] = "Su pago ha sido confirmado correctamente"
+    redirect_to participante_url(@persona.id)
+  end
+
+  private
+  def verificar_origen
+    unless params[:origen] == "PAGOS"
+      @congreso = Congreso.find(params[:id])
+      flash[:notice] = "No se realizó la confirmación de pago"
+      redirect_to congreso_registro_path(@congreso.id)
+    end
   end
 end

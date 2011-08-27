@@ -1,21 +1,22 @@
 <p>
   <b>Nombre:</b>
-  <%= @participante.nombre %>
-</p>
-
-<p>
-  <b>Apellido Paterno:</b>
-  <%= @participante.apellido_paterno %>
-</p>
-
-<p>
-  <b>Apellido Materno:</b>
-  <%= @participante.apellido_materno %>
+  <%= @participante.nombre %> <%= @participante.apellido_paterno %> <%= @participante.apellido_materno %>
 </p>
 
 <p>
   <b>Email:</b>
   <%= @participante.email %>
 </p>
+
+<% if @participante.pago? %>
+    <p>
+      <b>Folio en Caja Única:</b>
+      <%= @participante.informacion_pago %>
+    </p>
+<% else %>
+    <p>
+      <b>No se ha confirmado el pago de este participante</b>
+    </p>
+<% end %>
 
 <%= link_to "Congresos", congresos_url %>
