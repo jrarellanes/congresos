@@ -28,7 +28,7 @@
     <%= f.text_field :email %>
   </div>
     <div class="field">
-    <%= f.label :rfc %><br />
+    <%= f.label :rfc, "RFC" %><br />
     <%= f.text_field :rfc %>
   </div>
     <div class="field">
@@ -47,7 +47,7 @@
     <%= f.text_field :cp %>
   </div>
     <div class="field">
-    <%= f.label :institucion %><br />
+    <%= f.label :institucion,"Institución" %><br />
     <%= f.text_field :institucion %>
   </div>
     <div class="field">
@@ -59,7 +59,7 @@
   <%= f.collection_select :estado_id, @estados,:id, :nombre, :prompt => false %>
 </div>
    <div class="field">
-     <h4>Factura</h4><%= check_box_tag(:factura) %>
+     <h4>¿Necesitará Factura?</h4><%= check_box_tag(:factura) %>
   </div>
   <br/>
 

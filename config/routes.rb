@@ -31,6 +31,11 @@ Congresos::Application.routes.draw do
 
   resources :users
 
+  post "congresos/:id/confirmar" => "congresos#confirmar_pago", :as => :congreso_confirmar_pago
+  #IdCliente
+  #IdTransaccion
+  #Origen=PAGOS
+
 
 
   # The priority is based upon order of creation:
