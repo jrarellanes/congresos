@@ -39,11 +39,13 @@ es_MX:
     month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
     formats:
       short: "%d de %b"
+      medium: "%A de %B de %Y"
       default: "%d/%m/%Y"
       long: "%A, %d de %B de %Y"
   time:
     formats:
       short: "%d de %B, %Y"
+      medium: "%d de %B de %Y"
       default: "%a, %d de %b de %Y a las %H:%M:%S %Z"
       long: "%A, %d de %B de %Y a las %I:%M %p"
     am: "am"

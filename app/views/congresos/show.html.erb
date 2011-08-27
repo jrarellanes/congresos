@@ -20,12 +20,12 @@
 
 <p>
   <b>Fecha de inicio:</b>
-  <%= @congreso.fecha_inicio %>
+  <%= l @congreso.fecha_inicio, :format => :medium %>
 </p>
 
 <p>
   <b>Fecha clausura:</b>
-  <%= @congreso.fecha_fin %>
+  <%= l @congreso.fecha_fin, :format => :medium %>
 </p>
 
 <p>

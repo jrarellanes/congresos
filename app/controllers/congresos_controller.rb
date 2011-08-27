@@ -1,3 +1,4 @@
+#encoding: utf-8
 class CongresosController < ApplicationController
   include XlsxHelper
 # before_filter {|edit|  edit.congreso_propio?(Congreso.find(params[:id]))}
@@ -103,12 +104,13 @@ class CongresosController < ApplicationController
 
     if @persona.save
       if params[:factura] == "1"
-        redirect_to new_facturas_url(@persona), :notice => "Por favor introdusca los datos de facturacion"
+        redirect_to new_facturas_url(@persona), :notice => "Por favor introduzca los datos de facturación"
       else
-        redirect_to "http://148.229.13.124/pagos/index/?CuantasVariables=1&Facultad=4300&IdGrupoConcepto=3&ManejaProrroga=0&Origen=CON&ApellidoPaterno=#{@persona.apellido_paterno}&ApellidoMaterno=#{@persona.apellido_materno}&Nombre=#{@persona.nombre}&ImporteTotal=1.00&IdConcepto=n68&CorreoElectronico=#{@persona.email}&IdCliente=#{@persona.id}"
+        redirect_to pagos_url
         #redirect_to @persona, :notice => "Participante registrado exitosamente"
       end
     else
+      @estados = Estado.all
       render :action => "registro"
     end
 

@@ -2,8 +2,8 @@
   <% if @persona.errors.any? %>
     <div id="error_explanation" class="error">
       <h2>Imposible registrar participante</h2>
-
-      <ul>
+      <br/>
+      <ul style="padding-left: 20px;">
       <% @persona.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
@@ -55,12 +55,16 @@
     <%= f.text_field :ciudad %>
   </div>
    <div class="field">
-  <%= f.label :estado %>
-  <%= f.collection_select :estado_id, @estados,:id, :nombre, :prompt => false %>
-</div>
-   <div class="field">
-     <h4>¿Necesitará Factura?</h4><%= check_box_tag(:factura) %>
-  </div>
+        <%= f.label :estado %>
+        <%= f.collection_select :estado_id, @estados,:id, :nombre, :prompt => false %>
+    </div>
+    <div class="field">
+        <h4>¿Es estudiante?</h4><%= check_box_tag(:descuento) %>
+    </div>
+
+    <div class="field">
+        <h4>¿Necesita Factura?</h4><%= check_box_tag(:factura) %>
+    </div>
   <br/>
 
   <fieldset>
