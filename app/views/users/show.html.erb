@@ -7,3 +7,7 @@
   <b>Email:</b>
   <%= @user.email %>
 </div>
+
+<div class="shows">
+    <%= image_tag @user.avatar.url(:thumb) %>
+</div>

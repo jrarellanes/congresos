@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
     #Configuration Options
     config.crypto_provider = Authlogic::CryptoProviders::MD5
   end
+  
+has_attached_file :avatar, :styles => {:medium => "300x300>", :thumb => "100x100>"}
 
 has_many :congresos
 

@@ -28,6 +28,10 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+
+   <div class="field">
+    <%= f.file_field :avatar %>
+  </div>
    <div class="field">
     Administrador 
     <%= check_box_tag(:admin) %><br />
