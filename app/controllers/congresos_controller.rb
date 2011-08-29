@@ -1,7 +1,7 @@
 #encoding: utf-8
 class CongresosController < ApplicationController
   include XlsxHelper
-  before_filter :authenticate
+  before_filter :authenticate, :except => [:registro, :registrar, :confirmar_pago]
   before_filter :verificar_origen, :only => :confirmar_pago
 # before_filter {|edit|  edit.congreso_propio?(Congreso.find(params[:id]))}
   # GET /congresos
