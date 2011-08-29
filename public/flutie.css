@@ -587,8 +587,8 @@ header {
 }
 
 header img {
-    padding: 1em;
-    background: #fff;
+    padding: 0px;
+
 }
 
 section {
@@ -743,6 +743,13 @@ div.field, div.actions {
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
+  padding-top: 20px;
+  padding-left: 15px;
+}
+
+#error_explanation ul  {
+
+  padding-left: 15px;
 }
 
 ul.users{
@@ -766,3 +773,34 @@ ul.users{
   text-align: center;
   font-size: 13px;
   color: #657788; }
+
+.doc_form {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 0px 0 0 0;
+  border-bottom: 1px dashed #e3e3e3;
+  padding: 10px 0 10px 5px; }
+  .doc_form:hover {
+    background-color: #ccbbcd; color: #511653;}
+  .doc_form label {
+    width: 200px;
+    display: block;
+    float: left; }
+  .doc_form textarea, .doc_form select, .doc_form input {
+    display: block;
+    width: 480px;
+    float: left;
+    left: 200px;
+    margin: 0 10px 0 0;
+    padding: 0; }
+
+  .shows{
+      display: block;
+      position: relative;
+      overflow: hidden;
+      margin: 0px 0 0 0;
+      border-bottom: 1px dashed #e3e3e3;
+      padding: 10px 0 10px 5px;
+    }
+    .shows:hover{background-color: #ccbbcd; color: #511653;}

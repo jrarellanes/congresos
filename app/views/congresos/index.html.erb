@@ -10,7 +10,7 @@
   </tr>
 
 <% @congresos.each do |congreso| %>
-  <% if congreso_propio?(congreso) %>
+  <% if current_user_session and congreso_propio?(congreso) %>
       <tr>
         <td><%= congreso.nombre %></td>
         <td><%= link_to 'Ver Detalles', congreso %></td>

@@ -1,11 +1,21 @@
+<table>
+  <tr>
+    <th>Login</th>
+    <th>Email</th>
+    <th></th>
+
+  </tr>
+
 <%  @users.each do |user| %>
-  <div>
-    <%= user.login %><br/>
-    <%= user.email %>
+  <tr>
+    <td><%= user.login %><br/></td>
+    <td><%= user.email %></td>
     <% if current_user_session and current_user.is_admin? %>
-      <%= button_to 'Eliminar', user, :confirm => "Estas seguro?", :method => :delete%>
+      <td><%= button_to 'Eliminar', user, :confirm => "Estas seguro?", :method => :delete%></td>
     <% end %>
-  </div>
+  </tr>
 <% end %>
+
+</table>
 
 <%= link_to 'Registrar nuevo usuario', new_user_url %>
