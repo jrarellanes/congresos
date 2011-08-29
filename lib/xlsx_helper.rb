@@ -19,7 +19,7 @@ module XlsxHelper
       doc.add_sheet("Participantes: #{congreso.nombre}") do |sheet|
         sheet.add_row(['Nombre','Apellido Paterno','Apellido Materno','Correo Electrónico','Talleres','Pago Total','Folio en Caja Única'])
 
-        congreso.personas.each do |persona|
+        congreso.personas_confirmadas.each do |persona|
 
           talleres = persona.talleres
           pago = congreso.precio

@@ -41,7 +41,14 @@
 
 <h3>Participantes</h3>
 <ul>
-<% @congreso.personas.each do |persona| %>
+<% @congreso.personas_confirmadas.each do |persona| %>
+  <li style="margin-right: 10px; width: 350px;"><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona, @congreso), :style => 'float: right;'  %></li>
+<% end %>
+</ul>
+
+<h3>Participantes sin Confirmar Pago</h3>
+<ul>
+<% @congreso.personas_sin_confirmar.each do |persona| %>
   <li style="margin-right: 10px; width: 350px;"><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona, @congreso), :style => 'float: right;'  %></li>
 <% end %>
 </ul>

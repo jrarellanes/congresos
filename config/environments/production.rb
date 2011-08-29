@@ -1,4 +1,6 @@
 Congresos::Application.configure do
+
+  config.servidor_pagos_uach = "http://148.229.13.124"
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests

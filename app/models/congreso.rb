@@ -6,7 +6,7 @@ class Congreso < ActiveRecord::Base
 
   belongs_to :user
   has_many :talleres, :class_name => "Taller", :order => "nombre", :dependent => :delete_all
-  has_many :personas, :conditions => { :pago => true}, :order => "apellido_paterno", :dependent => :delete_all
+  has_many :personas, :order => "apellido_paterno", :dependent => :delete_all
 
   def precio_mayor_cero
    if precio != nil
@@ -14,6 +14,14 @@ class Congreso < ActiveRecord::Base
         errors.add(:precio_negativo, "El precio no puede ser menor que cero")
      end
    end
+  end
+
+  def personas_confirmadas
+    personas.where(:pago => true)
+  end
+
+  def personas_sin_confirmar
+    personas.where(:pago => false)
   end
 
   def fecha_inicio_mayor_fecha_fin

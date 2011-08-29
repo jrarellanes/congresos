@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(:version => 20110827194024) do
     t.integer  "cp"
     t.string   "institucion"
     t.string   "ciudad"
-    t.string   "pago",                            :default => ""
+    t.boolean  "pago",                            :default => false
     t.boolean  "descuento",                       :default => false
     t.string   "informacion_pago"
   end
