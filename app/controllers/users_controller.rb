@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :administrador?, :only => [:index, :create, :destroy, :new]
+  before_filter :authenticate
+  before_filter :administrador?, :only => [:index, :create, :destroy, :new, :edit]
   def index
     @users = User.all
   end
@@ -22,5 +23,9 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+    @user = User.find(params[:id])
   end
 end

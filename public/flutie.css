@@ -626,6 +626,7 @@ nav {
   background-color: white;
   padding: 0 0.7em;
   white-space: nowrap;
+  margin-bottom: 15px;
 }
 
 nav ul {
