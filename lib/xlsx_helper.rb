@@ -17,22 +17,17 @@ module XlsxHelper
     
     SimpleXlsx::Serializer.new(path_temporal) do |doc|
       doc.add_sheet("Participantes: #{congreso.nombre}") do |sheet|
-        sheet.add_row(['Nombre','Apellido Paterno','Apellido Materno','Correo Electrónico','Talleres','Pago Total','Folio en Caja Única'])
+        sheet.add_row(['Nombre','Apellido Paterno','Apellido Materno','Correo Electrónico','Talleres','Folio en Caja Única'])
 
         congreso.personas_confirmadas.each do |persona|
 
           talleres = persona.talleres
-          pago = congreso.precio
-          talleres.each do |taller|
-            pago += taller.precio
-          end
 
           sheet.add_row([persona.nombre,
                        persona.apellido_paterno,
                        persona.apellido_materno,
                        persona.email,
                        talleres.join(","),
-                       "#{pago.to_s}0",
                        persona.informacion_pago
                        ])
 
