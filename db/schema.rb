@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110829191147) do
+ActiveRecord::Schema.define(:version => 20110830142708) do
 
   create_table "ciudades", :force => true do |t|
     t.string   "nombre"
@@ -73,6 +73,12 @@ ActiveRecord::Schema.define(:version => 20110829191147) do
     t.integer  "factura_id"
   end
 
+  create_table "persona_tipos", :force => true do |t|
+    t.string  "nombre"
+    t.string  "siglas"
+    t.integer "congreso_id"
+  end
+
   create_table "personas", :force => true do |t|
     t.string   "nombre",           :limit => 100
     t.string   "apellido_paterno", :limit => 100
@@ -95,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20110829191147) do
     t.boolean  "pago",                            :default => false
     t.boolean  "descuento",                       :default => false
     t.string   "informacion_pago"
+    t.integer  "persona_tipo"
   end
 
   create_table "personas_talleres", :id => false, :force => true do |t|

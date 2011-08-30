@@ -3,6 +3,8 @@ Congresos::Application.routes.draw do
 
   resources :facturas, :except => :new
 
+  resources :persona_tipos
+
   get "inicio/home", :as => :home
 
   get "participantes/index"
