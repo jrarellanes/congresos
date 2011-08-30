@@ -49,9 +49,11 @@
 <h3>Tipos de Participantes</h3>
 <% @congreso.persona_tipos.each do |tipo|  %>
     <h4><%= tipo %></h4>
+    <ul>
     <% tipo.personas.each do |persona| %>
         <li style="margin-right: 10px; width: 350px;"><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona, @congreso), :style => 'float: right;'  %></li>
     <% end  %>
+    </ul>
 <% end %>
 
 <h3>Participantes sin Confirmar Pago</h3>
