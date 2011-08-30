@@ -1,5 +1,5 @@
 class PersonaTiposController < ApplicationController
-  before_filer :authenticate
+  before_filter :authenticate
 
   def index
     @persona_tipos = PersonaTipo.all

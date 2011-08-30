@@ -1,0 +1,22 @@
+<p>
+  <b>Nombre:</b>
+  <%= @persona_tipo.nombre %>
+</p>
+
+<p>
+  <b>Siglas:</b>
+  <%= @persona_tipo.siglas %>
+</p>
+
+<p>
+  <b>Congreso: </b>
+  <%= link_to @persona_tipo.congreso.nombre, congreso_path(@persona_tipo.congreso) %>
+</p>
+
+
+<fieldset class="inputs">
+  <% if current_user_session %>
+    <%= link_to 'Editar', edit_persona_tipo_path(@persona_tipo) %> |
+    <%= link_to 'Lista de Tipos de Participantes', persona_tipos_path %>
+  <% end %>
+</fieldset>

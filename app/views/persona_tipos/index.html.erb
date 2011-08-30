@@ -1,0 +1,28 @@
+<h1>Lista de Tipos de Participantes</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Congreso</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @persona_tipos.each do |persona_tipo| %>
+    <tr>
+      <td><%= persona_tipo.nombre %></td>
+      <td><%= persona_tipo.congreso.nombre %></td>
+      <td><%= link_to 'Ver Detalles', persona_tipo %></td>
+      <% if current_user_session %>
+        <td><%= link_to 'Editar', edit_persona_tipo_path(persona_tipo) %></td>
+        <td><%= button_to 'Eliminar', persona_tipo, confirm: '¿Está seguro?', method: :delete %></td>
+      <% end %>
+    </tr>
+<% end %>
+</table>
+
+<br />
+<% if current_user_session %>
+  <%= link_to 'Registrar Tipo de Participante', new_persona_tipo_path %>
+<% end %>
