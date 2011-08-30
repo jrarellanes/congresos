@@ -118,7 +118,7 @@ class CongresosController < ApplicationController
       if params[:factura] == "1"
         redirect_to new_facturas_url(@persona), :notice => "Por favor introduzca los datos de facturación"
       else
-        redirect_to pagos_url(@persona,"#{precio.to_s}0","n68")
+        redirect_to pagos_url(@persona,"#{precio.to_s}0","n208")
         #redirect_to @persona, :notice => "Participante registrado exitosamente"
       end
     else

@@ -19,8 +19,13 @@ test:
   pool: 5
   timeout: 5000
 
-production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+development:
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  database: congresos_produccion
+  host: labs.ti.uach.mx
+  port: 5432
   pool: 5
-  timeout: 5000
+  username: cien_web
+  password: cien
