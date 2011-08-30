@@ -105,7 +105,7 @@ class CongresosController < ApplicationController
     @persona.congreso = @congreso
 
     if @persona.save
-      if params[:descuento] == "1"
+      if @persona.persona_tipo.nombre == "Estudiante"
         precio = @congreso.precio_descuento
       else
         precio = @congreso.precio

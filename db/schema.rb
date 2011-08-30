@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(:version => 20110830142708) do
     t.boolean  "pago",                            :default => false
     t.boolean  "descuento",                       :default => false
     t.string   "informacion_pago"
-    t.integer  "persona_tipo"
+    t.integer  "persona_tipo_id"
   end
 
   create_table "personas_talleres", :id => false, :force => true do |t|

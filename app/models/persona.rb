@@ -15,6 +15,7 @@ class Persona < ActiveRecord::Base
   belongs_to :congreso
   belongs_to :estado
   has_one :factura
+  belongs_to :persona_tipo
 
   def nombre_completo
     "#{nombre} #{apellido_paterno} #{apellido_materno}"

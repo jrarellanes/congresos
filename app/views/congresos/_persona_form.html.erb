@@ -12,8 +12,8 @@
   <% end %>
   <fieldset class="inputs">
   <div class="field">
-    <%= f.label :persona_tipo %><br />
-    <%=  %>
+    <%= f.label :persona_tipo,"Tipo de participante" %><br />
+    <%=  f.collection_select :persona_tipo_id, @congreso.persona_tipos ,:id, :nombre, :prompt => false %>
   </div>
   <div class="field">
     <%= f.label :nombre %><br />
@@ -61,9 +61,6 @@
    <div class="field">
         <%= f.label :estado %>
         <%= f.collection_select :estado_id, @estados,:id, :nombre, :prompt => false %>
-    </div>
-    <div class="field">
-        <h4>¿Es estudiante?</h4><%= check_box_tag(:descuento) %>
     </div>
 
     <div class="field">
