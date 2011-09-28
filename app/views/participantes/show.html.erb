@@ -3,15 +3,14 @@
   <%= @participante.nombre %> <%= @participante.apellido_paterno %> <%= @participante.apellido_materno %>
 </p>
 
-<p>
-  <b>Email:</b>
-  <%= @participante.email %>
-</p>
-
 <% if @participante.pago? %>
     <p>
-      <b>Folio en Caja Única:</b>
-      <%= @participante.informacion_pago %>
+      <% unless (@participante.informacion_pago == "00000") %>
+        <b>Folio en Caja Única:</b>
+        <%= @participante.informacion_pago %>
+      <% else %>
+        <b> Participante Confirmado </b>
+      <% end %>
     </p>
 <% else %>
     <p>

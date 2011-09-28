@@ -155,7 +155,7 @@ class CongresosController < ApplicationController
     @persona.pago = true
     @persona.save
 
-    flash[:notice] = "Participante registrado exitosamente""
+    flash[:notice] = "Participante registrado exitosamente"
     redirect_to participante_url(@persona.id)
   end
 
