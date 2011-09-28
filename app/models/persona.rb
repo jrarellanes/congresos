@@ -5,9 +5,9 @@ class Persona < ActiveRecord::Base
   validates :email,
             :presence => true,
             :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
-  validates :calle, :presence => true
-  validates :numero, :presence => true
-  validates :cp, :presence => true
+  #validates :calle, :presence => true
+  #validates :numero, :presence => true
+  #validates :cp, :presence => true
   validates :institucion, :presence => true
   validates :ciudad, :presence => true
 

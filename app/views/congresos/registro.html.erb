@@ -5,7 +5,9 @@
 <%end%>
 
 <h1><%= @congreso.nombre %></h1>
+<!--
 <h4>Precio <%= number_to_currency(@congreso.precio, :unit => "$") %></h4>
 <h4>Precio para Estudiantes:  <%= number_to_currency(@congreso.precio_descuento, :unit =>"$") %></h4>
+-->
 <h3>Registro de Participantes</h3>
 <%= render 'persona_form' %>

@@ -118,8 +118,12 @@ class CongresosController < ApplicationController
       if params[:factura] == "1"
         redirect_to new_facturas_url(@persona), :notice => "Por favor introduzca los datos de facturación"
       else
-        redirect_to pagos_url(@persona,"#{precio.to_s}0","n208")
+        #redirect_to pagos_url(@persona,"#{precio.to_s}0","n208")
+        #Confirmamos el pago siempre...
+
         #redirect_to @persona, :notice => "Participante registrado exitosamente"
+
+        redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
       end
     else
       @estados = Estado.all
@@ -151,7 +155,7 @@ class CongresosController < ApplicationController
     @persona.pago = true
     @persona.save
 
-    flash[:notice] = "Su pago ha sido confirmado correctamente"
+    flash[:notice] = "Participante registrado exitosamente""
     redirect_to participante_url(@persona.id)
   end
 
