@@ -8,6 +8,8 @@ class Persona < ActiveRecord::Base
   #validates :calle, :presence => true
   #validates :numero, :presence => true
   #validates :cp, :presence => true
+  validates_uniqueness_of :email, :scope => [:congreso_id]
+
   validates :institucion, :presence => true
   validates :ciudad, :presence => true
 

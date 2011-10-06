@@ -9,6 +9,8 @@ class Congreso < ActiveRecord::Base
   has_many :personas, :order => "apellido_paterno", :dependent => :delete_all
   has_many :persona_tipos, :order => "nombre", :dependent => :delete_all
 
+  has_attached_file :imagen
+
   def precio_mayor_cero
    if precio != nil
      if precio < 0

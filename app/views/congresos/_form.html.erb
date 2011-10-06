@@ -1,6 +1,6 @@
 
 
-<%= form_for(@congreso) do |f| %>
+<%= form_for(@congreso, :multipart => true) do |f| %>
   <% if @congreso.errors.any? %>
     <div id="error_explanation" class="error">
       <h2>Imposible registrar congreso</h2>
@@ -38,6 +38,10 @@
    <div class="field">
     <%= f.label :lugar %><br />
     <%= f.text_field :lugar %>
+  </div>
+  <div class="field">
+    <%= f.label :imagen %>
+    <%= f.file_field :imagen %>
   </div>
   <br/>
   <div class="actions">

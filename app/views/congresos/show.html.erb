@@ -1,3 +1,9 @@
+<% if @congreso.imagen %>
+  <p>
+    <%= image_tag @congreso.imagen.url %>
+  </p>
+<% end %>
+
 <p>
   <b>Nombre:</b>
   <%= @congreso.nombre %>
