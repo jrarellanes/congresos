@@ -97,7 +97,7 @@ class CongresosController < ApplicationController
     @persona = Persona.new
     @congreso = Congreso.find(params[:id])
     @estados = Estado.all
-  end
+  end    
 
   def registrar
     @congreso = Congreso.find(params[:id])
@@ -129,7 +129,32 @@ class CongresosController < ApplicationController
       @estados = Estado.all
       render :action => "registro"
     end
-
+  end
+  
+  def buscar_constancia
+    @congreso = Congreso.find(params[:id])    
+  end
+  
+  def constancias
+    @congreso = Congreso.find(params[:id])
+    email = params[:correo]    
+    @personas = @congreso.personas_confirmadas.where(:email => email)
+  end
+  
+  def constancia
+    @congreso = Congreso.find(params[:id])
+    @persona = @congreso.personas_confirmadas.where(:id => params[:persona_id]).first
+    
+    respond_to do |format|
+      format.html do 
+        render  "constancia", :layout => "constancias"
+      end
+      format.pdf do 
+        render  :pdf => "Constancia #{@congreso.nombre}",
+                :template => "congresos/constancia",
+                :layout =>  "constancias.html"              
+      end
+    end
   end
 
   def talleres

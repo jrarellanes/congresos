@@ -1,0 +1,14 @@
+<h2>Constancias</h2>
+<%= form_tag(congreso_constancias_path(@congreso)) do %>
+  
+<fieldset class="inputs">
+  <div class="field">
+    <%= label_tag :correo %><br />
+    <%= text_field_tag :correo %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Buscar" %>
+  </div>
+</fieldset>
+<% end %>

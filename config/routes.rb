@@ -25,7 +25,13 @@ Congresos::Application.routes.draw do
   get "congresos/:id/talleres"  => "congresos#talleres", :as => :congreso_talleres
 
   get "congresos/:id/participantes(.:format)" => "congresos#participantes", :as => :congreso_participantes
-
+  
+  get "congresos/:id/buscar_constancia" => "congresos#buscar_constancia", :as => :congreso_buscar_constancia
+  
+  post "congresos/:id/constancias"  => "congresos#constancias", :as => :congreso_constancias
+  
+  get "congresos/:id/constancia/:persona_id(.:format)" => "congresos#constancia", :as => :congreso_constancia
+  
   get "logout" => "user_sessions#destroy", :as => :logout
   
   resource :user_session, :excep => :destroy

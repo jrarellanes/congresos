@@ -6,7 +6,7 @@ class Congreso < ActiveRecord::Base
 
   belongs_to :user
   has_many :talleres, :class_name => "Taller", :order => "nombre", :dependent => :delete_all
-  has_many :personas, :order => "apellido_paterno", :dependent => :delete_all
+  has_many :personas, :dependent => :delete_all
   has_many :persona_tipos, :order => "nombre", :dependent => :delete_all
 
   has_attached_file :imagen

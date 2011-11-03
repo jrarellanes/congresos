@@ -20,13 +20,15 @@ gem 'easy_roles'
 #Soporte para Excel 2007 en adelante
 gem 'simple_xlsx_writer'
 gem 'uuid'
-#Paperclip Attachment y Archivos
+#Paperclip Attachment y Archivos, PDF
 gem 'paperclip'
+gem 'wicked_pdf'
 
 #Jquery y CSS default
 gem 'jquery-rails'
 
 gem 'flutie'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
