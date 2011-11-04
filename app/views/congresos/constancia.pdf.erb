@@ -1,8 +1,7 @@
 <div id="cert">
 	<div id="texto">
-		La <strong>Universidad Aut&oacute;<D-r>noma de Chihuahua</strong> otorga la presente constancia a:
+		La Universidad Aut&oacute;noma de Chihuahua, a trav&eacute;z de la Coordinaci&oacute;n General<br> de Tecnolog&iacute;as de Informaci&oacute;n otorga la presente <span id="constancia">Constancia</span> a
 		<span id="nombre"><%= @persona.nombre_completo %></span>
-		Por su asistencia y participaci&oacute;n al evento "<%= @congreso.nombre %>"
-		El Dia <%= l @congreso.fecha_inicio, :format => :medium %>
+		Por su asistencia al evento <span class="morado"><%= @congreso.nombre %></span>, realizado el d&iacute;a <%= l @congreso.fecha_inicio, :format => :medium %>.
 	</div>
 </div>
