@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006164939) do
+ActiveRecord::Schema.define(:version => 20111104153251) do
 
   create_table "ciudades", :force => true do |t|
     t.string   "nombre"
@@ -26,16 +26,20 @@ ActiveRecord::Schema.define(:version => 20111006164939) do
     t.text     "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "precio",              :precision => 12, :scale => 2
+    t.decimal  "precio",                      :precision => 12, :scale => 2
     t.datetime "fecha_inicio"
     t.datetime "fecha_fin"
     t.string   "lugar"
     t.integer  "user_id"
-    t.decimal  "precio_descuento",    :precision => 12, :scale => 2
+    t.decimal  "precio_descuento",            :precision => 12, :scale => 2
     t.string   "imagen_file_name"
     t.string   "imagen_content_type"
     t.integer  "imagen_file_size"
     t.datetime "imagen_updated_at"
+    t.string   "constancias_bg_file_name"
+    t.string   "constancias_bg_content_type"
+    t.integer  "constancias_bg_file_size"
+    t.datetime "constancias_bg_updated_at"
   end
 
   create_table "estados", :force => true do |t|
