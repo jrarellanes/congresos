@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111104153251) do
+ActiveRecord::Schema.define(:version => 20120322004116) do
 
   create_table "ciudades", :force => true do |t|
     t.string   "nombre"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20111104153251) do
     t.string   "constancias_bg_content_type"
     t.integer  "constancias_bg_file_size"
     t.datetime "constancias_bg_updated_at"
+    t.boolean  "pago"
   end
 
   create_table "estados", :force => true do |t|
@@ -66,6 +67,12 @@ ActiveRecord::Schema.define(:version => 20111104153251) do
     t.integer  "estado_id"
   end
 
+  create_table "grado_estudios", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "nombre"
+  end
+
   create_table "municipios", :force => true do |t|
     t.integer  "estado_id"
     t.string   "siglas",     :limit => 20
@@ -89,13 +96,13 @@ ActiveRecord::Schema.define(:version => 20111104153251) do
   end
 
   create_table "personas", :force => true do |t|
-    t.string   "nombre",           :limit => 100
-    t.string   "apellido_paterno", :limit => 100
-    t.string   "apellido_materno", :limit => 100
+    t.string   "nombre",                        :limit => 100
+    t.string   "apellido_paterno",              :limit => 100
+    t.string   "apellido_materno",              :limit => 100
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "congreso_id"
-    t.string   "email",            :limit => 100
+    t.string   "email",                         :limit => 100
     t.integer  "pais_id"
     t.integer  "estado_id"
     t.integer  "municipio_id"
@@ -107,10 +114,17 @@ ActiveRecord::Schema.define(:version => 20111104153251) do
     t.integer  "cp"
     t.string   "institucion"
     t.string   "ciudad"
-    t.boolean  "pago",                            :default => false
-    t.boolean  "descuento",                       :default => false
+    t.boolean  "pago",                                         :default => false
+    t.boolean  "descuento",                                    :default => false
     t.string   "informacion_pago"
     t.integer  "persona_tipo_id"
+    t.string   "extra_uno",                     :limit => 4
+    t.string   "telefono"
+    t.integer  "grado_estudio_id"
+    t.string   "comprobante_pago_file_name"
+    t.string   "comprobante_pago_content_type"
+    t.integer  "comprobante_pago_file_size"
+    t.datetime "comprobante_pago_updated_at"
   end
 
   create_table "personas_talleres", :id => false, :force => true do |t|

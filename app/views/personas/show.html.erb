@@ -34,7 +34,7 @@
 </p>
 
 <p>
-  <b>Codigo Postak:</b>
+  <b>Codigo Postal:</b>
   <%= @participante.cp %>
 </p>
 
@@ -56,6 +56,11 @@
 <p>
   <b>Email:</b>
   <%= @participante.email %>
+</p>
+
+<p>
+  <b>Comprobante de pago:</b>
+  <%= image_tag @participante.comprobante_pago.url(:medium) %>
 </p>
 
 <%= link_to "Congresos", congresos_url %>

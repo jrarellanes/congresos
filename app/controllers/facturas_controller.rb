@@ -25,8 +25,11 @@ class FacturasController < ApplicationController
         precio += taller.precio
       end
 
-      redirect_to pagos_url(@persona,"#{precio.to_s}0","n68")
-
+      if @persona.congreso.pago
+        redirect_to pagos_url(@persona,"#{precio.to_s}0","n68")
+      else
+        redirect_to agradecimiento_registro_url
+      end
     else
       @estados = Estado.all
       @paises = Pais.all

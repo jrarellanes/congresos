@@ -1,3 +1,5 @@
+
+
 <%= form_for(@persona, :url => congreso_registrar_path(@congreso), :method => "post") do |f| %>
   <% if @persona.errors.any? %>
     <div id="error_explanation" class="error">
@@ -31,30 +33,18 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-    <!--
-    <div class="field">
-    <%= f.label :rfc, "RFC" %><br />
-    <%= f.text_field :rfc %>
-  </div>
-    <div class="field">
-    <%= f.label :curp,"CURP" %><br />
-    <%= f.text_field :curp %>
-  </div>
-    <b>Direccion:</b>
-    <div class="field">
-    <%= f.label :calle %><br />
-    <%= f.text_field :calle %><br/>
-    <%= f.label :numero %><br />
-    <%= f.text_field :numero %>
-  </div>
-    <div class="field">
-    <%= f.label :cp, 'Codigo Postal' %><br />
-    <%= f.text_field :cp %>
-  </div>
-  -->
+   
     <div class="field">
     <%= f.label :institucion,"Institución" %><br />
     <%= f.text_field :institucion %>
+  </div>
+  <div class="field">
+    <%= f.label :extra_uno,"Años de experiencia" %><br />
+    <%= f.select :extra_uno, Array(1..50)%>
+  </div>
+  <div class="field">
+    <%= f.label :grado_estudio,"Último grado de estudios" %><br />
+    <%= f.collection_select :grado_estudio_id, GradoEstudio.all, :id, :nombre %>
   </div>
     <div class="field">
     <%= f.label :ciudad %><br />
@@ -65,11 +55,29 @@
         <%= f.collection_select :estado_id, @estados,:id, :nombre, :prompt => false %>
     </div>
 
+  <div class="field">
+    <%= f.label :pais,"País" %><br />
+    <%= f.collection_select :pais_id, Pais.all, :id, :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono,"Teléfono (incluir clave lada)" %><br />
+    <%= f.text_field :telefono %>
+  </div>
+
+
+
+
+
+
+
+
 
     <div class="field">
       <%= hidden_field_tag(:factura, false) %>
     </div>
   <br/>
+
+
 
   <% unless @congreso.talleres_con_cupo.empty? %>
   <fieldset>
@@ -87,6 +95,42 @@
     </ol>
   </fieldset>
   <% end %>
+  <input type="radio" onchange="$('#factura').val(true);" name="group1">Si requiero factura</input>
+  <input type="radio" onchange="$('#factura').val(false);" name="group1" checked>No requiero factura</input></br>
+<!--
+  <div id="datos_factura">
+
+    
+    
+    <div id="facturacion">
+        <div class="field">
+        <%= f.label :rfc, "RFC" %><br />
+        <%= f.text_field :rfc %>
+      </div>
+        <div class="field">
+        <%= f.label :curp,"CURP" %><br />
+        <%= f.text_field :curp %>
+      </div>
+        <b>Direccion:</b>
+        <div class="field">
+        <%= f.label :calle %><br />
+        <%= f.text_field :calle %><br/>
+        <%= f.label :numero %><br />
+        <%= f.text_field :numero %>
+      </div>
+        <div class="field">
+        <%= f.label :cp, 'Codigo Postal' %><br />
+        <%= f.text_field :cp %>
+      </div>
+
+    </div>
+    
+  </div>
+  -->
+
+  <div id="field">
+    <%= f.file_field :comprobante_pago %>
+  </div>
 
 
   <br/>

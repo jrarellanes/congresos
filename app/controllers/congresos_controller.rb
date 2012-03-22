@@ -1,7 +1,7 @@
 #encoding: utf-8
 class CongresosController < ApplicationController
   include XlsxHelper
-  before_filter :authenticate, :except => [:registro, :registrar, :confirmar_pago]
+  before_filter :authenticate, :except => [:registro, :registrar, :confirmar_pago, :agradecimiento]
   before_filter :verificar_origen, :only => :confirmar_pago
 # before_filter {|edit|  edit.congreso_propio?(Congreso.find(params[:id]))}
   # GET /congresos
@@ -115,20 +115,28 @@ class CongresosController < ApplicationController
         precio += taller.precio
       end
 
-      if params[:factura] == "1"
+      if params[:factura] == "true"
         redirect_to new_facturas_url(@persona), :notice => "Por favor introduzca los datos de facturación"
       else
         #redirect_to pagos_url(@persona,"#{precio.to_s}0","n208")
         #Confirmamos el pago siempre...
 
         #redirect_to @persona, :notice => "Participante registrado exitosamente"
-
-        redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
+        if @congreso.pago
+          redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
+        else
+          puts "dkfbsdjgbdhgbsdg\ndsgfgj\ndsgfdg"
+          redirect_to agradecimiento_registro_url
+        end
       end
     else
       @estados = Estado.all
       render :action => "registro"
     end
+  end
+
+  def agradecimiento
+    
   end
   
   def buscar_constancia

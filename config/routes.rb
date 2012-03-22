@@ -1,4 +1,6 @@
 Congresos::Application.routes.draw do
+  resources :grado_estudios
+
   get 'facturas/new/:id/participante' => "facturas#new", :as => :new_facturas
 
   resources :facturas, :except => :new
@@ -17,6 +19,8 @@ Congresos::Application.routes.draw do
   get 'participantes/:id' => "participantes#show", :as => :participante
 
   resources :personas
+
+  get "agradecimiento_registro" => "congresos#agradecimiento", :as => :agradecimiento_registro
 
   get "congresos/:id/registro" => "congresos#registro", :as => :congreso_registro
 

@@ -18,6 +18,10 @@ class Persona < ActiveRecord::Base
   belongs_to :estado
   has_one :factura
   belongs_to :persona_tipo
+  belongs_to :grado_estudio
+  belongs_to :pais
+
+   has_attached_file :comprobante_pago, :styles => { :medium => "300x300>"}
 
   def nombre_completo
     "#{nombre} #{apellido_paterno} #{apellido_materno}"
