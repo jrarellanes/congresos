@@ -1,9 +1,5 @@
-<% if @congreso.imagen %>
-  <p>
-    <%= image_tag @congreso.imagen.url %>
-  </p>
-<% end %>
 
+<div style="float: left; margin-right: 100px;">
 <p>
   <b>Nombre:</b>
   <%= @congreso.nombre %>
@@ -38,14 +34,22 @@
   <b>Lugar:</b>
   <%= @congreso.lugar %>
 </p>
-<h3>Talleres</h3>
+<h3 >Talleres</h3>
 <ul>
 <% @congreso.talleres.each do |taller| %>
     <li><%= link_to taller.nombre, taller_path(taller) %></li>
 <% end %>
 </ul>
 
-<h3>Participantes</h3>
+</div>
+<% if @congreso.imagen != nil %>
+<div style="float: left;">
+
+    <%= image_tag @congreso.imagen.url(:presentacion) %>
+  </div>
+<% end %>
+
+<h2>Participantes</h2></br>
 <table>
   <tr>
     <th>Número</th>
@@ -72,7 +76,7 @@
 </table>
 
 
-<h3>Participantes sin Confirmar Pago</h3>
+<h2>Participantes sin Confirmar Pago</h2>
 <ul>
 <% @congreso.personas_sin_confirmar.each do |persona| %>
   <li style="margin-right: 10px; width: 350px;"><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona, @congreso), :style => 'float: right; margin-left:4px;'  %><%= link_to 'Ver detalles', persona_url(persona), :style => 'float: right; margin-right:5px; '  %></li>

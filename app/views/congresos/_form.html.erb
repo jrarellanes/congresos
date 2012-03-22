@@ -38,6 +38,10 @@
     <%= f.text_field :lugar %>
   </div>
   <div class="field">
+    <%= f.label :pago, "Requiere pago" %><br />
+    <%= f.check_box :pago %>
+  </div>
+  <div class="field">
     <%= f.label :imagen %>
     <%= f.file_field :imagen %>
   </div>

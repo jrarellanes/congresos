@@ -14,30 +14,36 @@
 </p>
 
 <p>
-  <b>Calle:</b>
-  <%= @participante.calle %>
+  <b>Email:</b>
+  <%= @participante.email %>
 </p>
 
-<p>
-  <b>numero:</b>
-  <%= @participante.numero %>
-</p>
+<% if @participante.factura != nil %>
+  <p>
+    <b>Calle:</b>
+    <%= @participante.calle %>
+  </p>
 
-<p>
-  <b>RFC:</b>
-  <%= @participante.rfc %>
-</p>
+  <p>
+    <b>numero:</b>
+    <%= @participante.numero %>
+  </p>
 
-<p>
-  <b>CURP:</b>
-  <%= @participante.curp %>
-</p>
+  <p>
+    <b>RFC:</b>
+    <%= @participante.rfc %>
+  </p>
 
-<p>
-  <b>Codigo Postal:</b>
-  <%= @participante.cp %>
-</p>
+  <p>
+    <b>CURP:</b>
+    <%= @participante.curp %>
+  </p>
 
+  <p>
+    <b>Codigo Postal:</b>
+    <%= @participante.cp %>
+  </p>
+<% end %>
 <p>
   <b>Institucion:</b>
   <%= @participante.institucion %>
@@ -53,14 +59,15 @@
   <%= @participante.estado.nombre %>
 </p>
 
-<p>
-  <b>Email:</b>
-  <%= @participante.email %>
-</p>
+<% unless @participante.comprobante_pago == nil %>
+  <div>
+    <b>Comprobante de pago:</b>
+    <div style="margin-top: 8px;">
+      <%= image_tag @participante.comprobante_pago.url(:medium) %>
 
-<p>
-  <b>Comprobante de pago:</b>
-  <%= image_tag @participante.comprobante_pago.url(:medium) %>
-</p>
+    </div>
+  </div>
+
+<% end %>
 
 <%= link_to "Congresos", congresos_url %>

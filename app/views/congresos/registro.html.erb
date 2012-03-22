@@ -9,9 +9,9 @@
  });
 </script>
 <h1><%= @congreso.nombre %></h1>
-<% if @congreso.imagen %>
+<% if @congreso.imagen != nil %>
   <p>
-    <%= image_tag @congreso.imagen.url %>
+    <%= image_tag @congreso.imagen.url(:presentacion) %>
   </p>
 <% end %>
 
