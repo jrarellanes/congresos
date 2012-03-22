@@ -126,7 +126,7 @@ class CongresosController < ApplicationController
           redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
         else
           puts "dkfbsdjgbdhgbsdg\ndsgfgj\ndsgfdg"
-          redirect_to agradecimiento_registro_url
+          redirect_to agradecimiento_registro_url @persona
         end
       end
     else
@@ -136,7 +136,7 @@ class CongresosController < ApplicationController
   end
 
   def agradecimiento
-    
+    @participante = Persona.find params[:usuario_id]
   end
   
   def buscar_constancia

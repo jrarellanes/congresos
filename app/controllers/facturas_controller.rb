@@ -28,7 +28,7 @@ class FacturasController < ApplicationController
       if @persona.congreso.pago
         redirect_to pagos_url(@persona,"#{precio.to_s}0","n68")
       else
-        redirect_to agradecimiento_registro_url
+        redirect_to agradecimiento_registro_url @persona
       end
     else
       @estados = Estado.all

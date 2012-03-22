@@ -128,8 +128,9 @@
   </div>
   -->
 
-  <div id="field">
-    <%= f.file_field :comprobante_pago %>
+  <div style="margin: 10px; margin-left: 0px;">
+    <%= f.label :comprobante_pago, "Comprobante de pago" %>
+    <%= f.file_field :comprobante_pago, :style => "margin: 8px;" %>
   </div>
 
 

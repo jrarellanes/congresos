@@ -20,7 +20,7 @@ Congresos::Application.routes.draw do
 
   resources :personas
 
-  get "agradecimiento_registro" => "congresos#agradecimiento", :as => :agradecimiento_registro
+  get "agradecimiento_registro/:usuario_id" => "congresos#agradecimiento", :as => :agradecimiento_registro
 
   get "congresos/:id/registro" => "congresos#registro", :as => :congreso_registro
 
