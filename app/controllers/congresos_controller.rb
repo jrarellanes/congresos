@@ -3,6 +3,7 @@ class CongresosController < ApplicationController
   include XlsxHelper
   before_filter :authenticate, :except => [:registro, :registrar, :confirmar_pago, :agradecimiento]
   before_filter :verificar_origen, :only => :confirmar_pago
+  before_filter :fecha_limite_registro, :only => :registro
 # before_filter {|edit|  edit.congreso_propio?(Congreso.find(params[:id]))}
   # GET /congresos
   # GET /congresos.json
@@ -136,7 +137,8 @@ class CongresosController < ApplicationController
   end
 
   def agradecimiento
-    @participante = Persona.find params[:usuario_id]
+    @participante = Perso
+    na.find params[:usuario_id]
   end
   
   def buscar_constancia
@@ -198,6 +200,14 @@ class CongresosController < ApplicationController
       @congreso = Congreso.find(params[:id])
       flash[:notice] = "No se realizó la confirmación de pago"
       redirect_to congreso_registro_path(@congreso.id)
+    end
+  end
+
+  def fecha_limite_registro
+    @congreso = Congreso.find params[:id]
+    if @congreso.fecha_fin < Time.now.to_date
+      flash[:error] = "Este congreso ha terminado"
+      redirect_to  root_path
     end
   end
 end
