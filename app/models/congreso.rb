@@ -9,7 +9,7 @@ class Congreso < ActiveRecord::Base
   has_many :personas, :dependent => :delete_all
   has_many :persona_tipos, :order => "nombre", :dependent => :delete_all
 
-  has_attached_file :imagen, :styles => { :presentacion => "700x380>"}
+  has_attached_file :imagen, :styles => { :presentacion => "400x300>"}
   
   has_attached_file :constancias_bg
 

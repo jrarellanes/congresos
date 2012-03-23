@@ -755,8 +755,7 @@ ul.users{
 
 #structure{
     width: 960px;
-    margin-left: 130px;
-    margin-right: 120px;
+    margin: auto;
     padding: 15px;
     background-color: #d3d3d3;
 }
