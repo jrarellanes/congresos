@@ -4,6 +4,7 @@
   <tr>
     <th>Nombre</th>
     <th>Congreso</th>
+    <th>Instructor</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,6 +15,7 @@
     <tr>
       <td><%= taller.nombre %></td>
       <td><%= taller.congreso.nombre %></td>
+      <td><%= taller.instructor %></td>
       <td><%= link_to 'Ver Detalles', taller %></td>
       <% if current_user_session %>
         <td><%= link_to 'Editar', edit_taller_path(taller) %></td>

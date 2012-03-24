@@ -85,19 +85,22 @@
     <h5 class="legend"><span class="label">Talleres</span></h5>
 
     <ol>
-      <% @congreso.talleres_con_cupo.each do |taller| %>
+      <% num_taller = 1 %>
+      <% @congreso.talleres_con_cupo.sort_by{|taller| taller.id}.each do |taller| %>
       <li>
         <%= check_box_tag "persona[taller_ids][]", taller.id, persona_inscrita_en_taller?(taller) -%>
         <%= raw("<span for='persona_taller_ids_' class='opt'>#{taller.nombre}</span>") -%>
         <br/>
+        Taller No.: <%= num_taller %><br/>
         Precio: <%= number_to_currency(taller.precio,:unit => "$") %>
+        <% num_taller += 1 %>
       </li>
       <% end %>
     </ol>
   </fieldset>
   <% end %>
   <input type="radio" onchange="$('#factura').val(true);" name="group1">Si requiero factura</input>
-  <input type="radio" onchange="$('#factura').val(false);" name="group1" checked>No requiero factura</input></br>
+  <input type="radio" onchange="$('#factura').val(false);" name="group1" checked>No requiero factura</input><br/>
 <!--
   <div id="datos_factura">
 
