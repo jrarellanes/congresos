@@ -7,4 +7,10 @@ module ApplicationHelper
       "http://localhost:3000#{attachment.url}"
     end
   end
+
+  def imagen?(nombre_archivo)
+    nombre_separado = nombre_archivo.split "."
+    extension = nombre_separado.last
+    extension == "png" or extension == "jpg" or extension == "jpg" or extension == "gif"
+  end
 end

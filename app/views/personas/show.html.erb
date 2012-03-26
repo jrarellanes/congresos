@@ -62,10 +62,15 @@
 <% unless @participante.comprobante_pago == nil %>
   <div>
     <b>Comprobante de pago:</b>
-    <div style="margin-top: 8px;">
-      <%= image_tag @participante.comprobante_pago.url(:medium) %>
+    <% if imagen? @participante.comprobante_pago_file_name %>
+      <div style="margin-top: 8px;">
+        <%= image_tag @participante.comprobante_pago.url(:medium) %>
+      </div>
+    <% else %>
+    
+      <%= link_to "Ver archivo", @participante.comprobante_pago.url %>
 
-    </div>
+    <% end %>
   </div>
 
 <% end %>
