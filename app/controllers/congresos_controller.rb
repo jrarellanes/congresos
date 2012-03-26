@@ -137,8 +137,7 @@ class CongresosController < ApplicationController
   end
 
   def agradecimiento
-    @participante = Perso
-    na.find params[:usuario_id]
+    @participante = Persona.find params[:usuario_id]
   end
   
   def buscar_constancia
