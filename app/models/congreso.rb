@@ -4,7 +4,7 @@ class Congreso < ActiveRecord::Base
   validate :precio_mayor_cero
   validate :fecha_inicio_mayor_fecha_fin
 
-  belongs_to :user
+  
   has_many :talleres, :class_name => "Taller", :order => "nombre", :dependent => :delete_all
   has_many :personas, :dependent => :delete_all
   has_many :persona_tipos, :order => "nombre", :dependent => :delete_all
@@ -13,6 +13,8 @@ class Congreso < ActiveRecord::Base
   
   has_attached_file :constancias_bg
 
+
+  has_and_belongs_to_many :users
   def precio_mayor_cero
    if precio != nil
      if precio < 0
