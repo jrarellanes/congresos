@@ -11,7 +11,7 @@ gem 'sass-rails', "3.1.2"
 gem 'coffee-script'
 gem 'uglifier'
 
-gem 'thin'
+gem 'unicorn'
 
 #Autenticación
 gem 'authlogic'
