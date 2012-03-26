@@ -41,7 +41,7 @@
               <li> <%= link_to "Usuarios", users_path %> </li>
             <% end %>
             <% if current_user_session %>
-              <li><%= link_to 'Participantes', personas_url %></li>
+              <li><%= link_to 'Participantes', personas_url if current_user.is_admin?%></li>
               <li><%= link_to "Perfil", current_user %></li>
               <li><%= link_to "Configuracion", edit_user_path(current_user) %></li>
             <% end %>

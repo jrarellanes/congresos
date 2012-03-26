@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   
 has_attached_file :avatar, :styles => {:medium => "300x300>", :thumb => "100x100>"}
 
-has_many :congresos
+  has_and_belongs_to_many :congresos
 
   easy_roles :roles
 

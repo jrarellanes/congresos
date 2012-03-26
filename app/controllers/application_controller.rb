@@ -29,11 +29,11 @@ class ApplicationController < ActionController::Base
   end
 
   def congreso_propio?(congreso)
-    congreso.user == current_user or current_user.is_admin?
+     current_user.congresos.include? congreso or current_user.is_admin?
   end
 
   def taller_propio?(taller)
-    taller.congreso.user == current_user or current_user.is_admin?
+    taller.congreso.users.include? current_user or current_user.is_admin?
   end
 
   def pagos_url(persona,importe,concepto)
