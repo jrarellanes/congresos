@@ -104,8 +104,13 @@ class CongresosController < ApplicationController
     @congreso = Congreso.find(params[:id])
     @persona = Persona.new(params[:persona])
     @persona.congreso = @congreso
+    estatus = true
+    if params[:persona][:taller_ids].size > 1
+      estatus = false
+      @persona.errors.add("talleres", "No puede seleccionar mas de un taller")
+    end
 
-    if @persona.save
+    if @persona.save and estatus
       if @persona.persona_tipo.nombre == "Estudiante"
         precio = @congreso.precio_descuento
       else
@@ -132,6 +137,7 @@ class CongresosController < ApplicationController
       end
     else
       @estados = Estado.all
+      flash[:notice] = "No puede seleccionar mas de un congreso" unless estatus
       render :action => "registro"
     end
   end

@@ -39,6 +39,7 @@
   <b>Lugar:</b>
   <%= @congreso.lugar %>
 </p>
+<% unless @congreso.talleres == nil or @congreso.talleres = [] %>
 <div id="talleres" style="margin: 12px;">
     <h3 >Talleres</h3>
     <ul>
@@ -48,7 +49,7 @@
     </ul>
   </div>
 </div>
-
+<% end %>
 
 <div id="participantes" >
 <h2>Participantes</h2>

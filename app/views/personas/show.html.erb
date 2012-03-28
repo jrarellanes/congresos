@@ -59,7 +59,7 @@
   <%= @participante.estado.nombre %>
 </p>
 
-<% unless @participante.comprobante_pago == nil %>
+<% unless @participante.comprobante_pago_file_name == nil %>
   <div>
     <b>Comprobante de pago:</b>
     <% if imagen? @participante.comprobante_pago_file_name %>
@@ -73,6 +73,17 @@
     <% end %>
   </div>
 
+<% end %>
+
+<% unless @participante.talleres == nil %>
+  <div id ="talleres">
+    <h3>Talleres</h3>
+    <% @participante.talleres.each do |taller| %>
+      <div>
+        <%= taller.nombre %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
 <%= link_to "Congresos", congresos_url %>
