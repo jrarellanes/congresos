@@ -39,10 +39,12 @@
     <%= f.label :institucion,"Institución" %><br />
     <%= f.text_field :institucion %>
   </div>
-  <div class="field">
-    <%= f.label :extra_uno,"Años de experiencia" %><br />
-    <%= f.select :extra_uno, Array(1..50)%>
-  </div>
+  <% if @congreso.id != 4 %>
+    <div class="field">
+      <%= f.label :extra_uno,"Años de experiencia" %><br />
+      <%= f.select :extra_uno, Array(1..50)%>
+    </div>
+  <% end %>
   <div class="field">
     <%= f.label :grado_estudio,"Último grado de estudios" %><br />
     <%= f.collection_select :grado_estudio_id, GradoEstudio.all, :id, :nombre %>
