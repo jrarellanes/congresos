@@ -105,7 +105,7 @@ class CongresosController < ApplicationController
     @persona = Persona.new(params[:persona])
     @persona.congreso = @congreso
     estatus = true
-    if params[:persona][:taller_ids].size > 1
+    if params[:persona][:taller_ids].size > 1 and @congreso.id == 3
       estatus = false
       @persona.errors.add("talleres", "No puede seleccionar mas de un taller")
     end
@@ -131,7 +131,6 @@ class CongresosController < ApplicationController
         if @congreso.pago
           redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
         else
-          puts "dkfbsdjgbdhgbsdg\ndsgfgj\ndsgfdg"
           redirect_to agradecimiento_registro_url @persona
         end
       end
