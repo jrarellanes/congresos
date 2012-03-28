@@ -105,9 +105,11 @@ class CongresosController < ApplicationController
     @persona = Persona.new(params[:persona])
     @persona.congreso = @congreso
     estatus = true
-    if params[:persona][:taller_ids].size > 1 and @congreso.id == 3
-      estatus = false
-      @persona.errors.add("talleres", "No puede seleccionar mas de un taller")
+    unless params[:persona][:taller_ids] == nil
+      if params[:persona][:taller_ids].size > 1 and @congreso.id == 3
+        estatus = false
+        @persona.errors.add("talleres", "No puede seleccionar mas de un taller")
+      end
     end
 
     if @persona.save and estatus

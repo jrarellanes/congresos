@@ -59,6 +59,11 @@
   <%= @participante.estado.nombre %>
 </p>
 
+<p>
+  <b>Tipo de asistente:</b>
+  <%= @participante.persona_tipo.nombre %>
+</p>
+
 <% unless @participante.comprobante_pago_file_name == nil %>
   <div>
     <b>Comprobante de pago:</b>
@@ -75,7 +80,7 @@
 
 <% end %>
 
-<% unless @participante.talleres == nil %>
+<% unless @participante.talleres == nil or @participante.talleres = [] %>
   <div id ="talleres">
     <h3>Talleres</h3>
     <% @participante.talleres.each do |taller| %>
