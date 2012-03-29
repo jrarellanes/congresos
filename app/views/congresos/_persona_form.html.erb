@@ -47,7 +47,7 @@
   <% end %>
   <div class="field">
     <%= f.label :grado_estudio,"Último grado de estudios" %><br />
-    <%= f.collection_select :grado_estudio_id, GradoEstudio.all, :id, :nombre %>
+    <%= f.collection_select :grado_estudio_id, @congreso.grado_estudios, :id, :nombre %>
   </div>
     <div class="field">
     <%= f.label :ciudad %><br />

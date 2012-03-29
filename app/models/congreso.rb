@@ -4,7 +4,7 @@ class Congreso < ActiveRecord::Base
   validate :precio_mayor_cero
   validate :fecha_inicio_mayor_fecha_fin
 
-  
+  has_many :grado_estudios
   has_many :talleres, :class_name => "Taller", :order => "nombre", :dependent => :delete_all
   has_many :personas, :dependent => :delete_all
   has_many :persona_tipos, :order => "nombre", :dependent => :delete_all
