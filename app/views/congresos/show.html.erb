@@ -39,7 +39,7 @@
   <b>Lugar:</b>
   <%= @congreso.lugar %>
 </p>
-<% unless @congreso.talleres == nil or @congreso.talleres = [] %>
+<% unless @congreso.talleres == nil or @congreso.talleres == [] %>
 <div id="talleres" style="margin: 12px;">
     <h3 >Talleres</h3>
     <ul>
@@ -82,16 +82,17 @@
 <h2>Participantes sin Confirmar Pago</h2>
 <ul>
 <% @congreso.personas_sin_confirmar.each do |persona| %>
-  <li style="margin-right: 10px; width: 350px;"><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona, @congreso), :style => 'float: right; margin-left:4px;'  %><%= link_to 'Ver detalles', persona_url(persona), :style => 'float: right; margin-right:5px; '  %></li>
+  <li style="margin-right: 10px; width: 600px;"><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona, @congreso), :style => 'float: right; margin-left:4px;'  %><%= link_to 'Ver detalles', persona_url(persona), :style => 'float: right; margin-right:5px; '  %></li>
 <% end %>
 </ul>
 
-<fieldset class="inputs">
-<%= link_to 'Editar', edit_congreso_path(@congreso) %> |
-<%= link_to 'Lista de Congresos', congresos_path %> |
-<%= link_to 'Registro de Participantes', congreso_registro_path(@congreso.id) %>  |
-<%= link_to 'Exportar participantes a Excel', congreso_participantes_path(@congreso,:xlsx) %>
-</fieldset>
+  <fieldset class="inputs">
+  <%= link_to 'Editar', edit_congreso_path(@congreso) %> |
+  <%= link_to 'Lista de Congresos', congresos_path %> |
+  <%= link_to 'Registro de Participantes', congreso_registro_path(@congreso.id) %>  |
+  <%= link_to 'Exportar participantes a Excel', congreso_participantes_path(@congreso,:xlsx) %>
+  </fieldset>
+
 </div>
 
 <%= link_to 'Registrar taller', new_taller_url %>

@@ -94,7 +94,9 @@
         <%= raw("<span for='persona_taller_ids_' class='opt'>#{taller.nombre}</span>") -%>
         <br/>
         Taller No.: <%= num_taller %><br/>
-        Precio: <%= number_to_currency(taller.precio,:unit => "$") %>
+          <% unless @congreso.id == 3 %>
+            Precio: <%= number_to_currency(taller.precio,:unit => "$") %>
+          <% end %>
         <% num_taller += 1 %>
       </li>
       <% end %>
