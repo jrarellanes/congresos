@@ -80,7 +80,7 @@
 
 <% end %>
 
-<% unless @participante.talleres == nil or @participante.talleres = [] %>
+<% unless @participante.talleres == nil or @participante.talleres == [] %>
   <div id ="talleres">
     <h3>Talleres</h3>
     <% @participante.talleres.each do |taller| %>
