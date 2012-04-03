@@ -63,6 +63,14 @@
   <b>Tipo de asistente:</b>
   <%= @participante.persona_tipo.nombre %>
 </p>
+<p>
+  <b>Telefono:</b>
+  <% if @participante.telefono != nil %>
+    <%= @participante.telefono %>
+  <% else %>
+    Sin telefono
+  <% end %>
+</p>
 
 <% unless @participante.comprobante_pago_file_name == nil %>
   <div>

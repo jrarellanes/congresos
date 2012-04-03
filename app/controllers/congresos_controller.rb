@@ -138,7 +138,7 @@ class CongresosController < ApplicationController
       end
     else
       @estados = Estado.all
-      flash[:notice] = "No puede seleccionar mas de un congreso" unless estatus
+      flash[:notice] = "No es posible seleccionar más de un taller" unless estatus
       render :action => "registro"
     end
   end
