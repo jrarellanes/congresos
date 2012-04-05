@@ -106,13 +106,13 @@ class CongresosController < ApplicationController
     @persona.congreso = @congreso
     estatus = true
     unless params[:persona][:taller_ids] == nil
-      if params[:persona][:taller_ids].size > 1 and @congreso.id == 3
+      if @congreso.id == 3 && params[:persona][:taller_ids].size > 1
         estatus = false
         @persona.errors.add("talleres", "No puede seleccionar mas de un taller")
       end
     end
 
-    if @persona.save and estatus
+    if estatus && @persona.save
       if @persona.persona_tipo.nombre == "Estudiante"
         precio = @congreso.precio_descuento
       else
