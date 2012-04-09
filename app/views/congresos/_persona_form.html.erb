@@ -87,17 +87,17 @@
     <h5 class="legend"><span class="label">Talleres</span></h5>
 
     <ol>
-      <% num_taller = 1 %>
-      <% @congreso.talleres_con_cupo.sort_by{|taller| taller.id}.each do |taller| %>
+   
+      <% @congreso.talleres_con_cupo.sort_by{|taller| taller.numero}.each do |taller| %>
       <li>
         <%= check_box_tag "persona[taller_ids][]", taller.id, persona_inscrita_en_taller?(taller) -%>
         <%= raw("<span for='persona_taller_ids_' class='opt'>#{taller.nombre}</span>") -%>
         <br/>
-        Taller No.: <%= num_taller %><br/>
+        Taller No.: <%= taller.numero %><br/>
           <% unless @congreso.id == 3 %>
             Precio: <%= number_to_currency(taller.precio,:unit => "$") %>
           <% end %>
-        <% num_taller += 1 %>
+       
       </li>
       <% end %>
     </ol>

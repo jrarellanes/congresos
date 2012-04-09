@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329223422) do
+ActiveRecord::Schema.define(:version => 20120409150334) do
 
   create_table "ciudades", :force => true do |t|
     t.string   "nombre"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20120329223422) do
     t.boolean  "descuento",                                    :default => false
     t.string   "informacion_pago"
     t.integer  "persona_tipo_id"
-    t.string   "extra_uno",                     :limit => 4
+    t.string   "extra_uno"
     t.string   "telefono"
     t.integer  "grado_estudio_id"
     t.string   "comprobante_pago_file_name"
@@ -143,9 +143,9 @@ ActiveRecord::Schema.define(:version => 20120329223422) do
   end
 
   create_table "talleres", :force => true do |t|
-    t.string   "nombre",            :limit => 100
+    t.string   "nombre"
     t.text     "descripcion"
-    t.decimal  "precio",                           :precision => 12, :scale => 2
+    t.decimal  "precio",            :precision => 12, :scale => 2
     t.integer  "max_participantes"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20120329223422) do
     t.string   "lugar"
     t.string   "hora"
     t.string   "instructor"
+    t.integer  "numero"
   end
 
   create_table "user_sessions", :force => true do |t|
