@@ -10,16 +10,30 @@ module XlsxHelper
   require 'simple_xlsx'
 
   def create_xlsx_participantes(congreso)
-    uuid = UUID.new
+    #uuid = UUID.new
     
-    path_temporal = File.join(Dir::tmpdir,"participantes.xlsx#{uuid.generate}")
+    path_temporal = File.join(Dir::tmpdir,"participantes.xlsx#{congreso.id}")
 
     
     SimpleXlsx::Serializer.new(path_temporal) do |doc|
       doc.add_sheet("Participantes: #{congreso.nombre}") do |sheet|
+
         sheet.add_row(['Nombre','Apellido Paterno','Apellido Materno','Correo Electrónico','Talleres','Folio en Caja Única'])
 
         congreso.personas_confirmadas.each do |persona|
+
+          talleres = persona.talleres
+
+          sheet.add_row([persona.nombre,
+                       persona.apellido_paterno,
+                       persona.apellido_materno,
+                       persona.email,
+                       talleres.join(","),
+                       persona.informacion_pago
+                       ])
+
+        end
+        congreso.personas_sin_confirmar.each do |persona|
 
           talleres = persona.talleres
 
