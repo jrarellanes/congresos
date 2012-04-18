@@ -18,7 +18,7 @@ module XlsxHelper
     SimpleXlsx::Serializer.new(path_temporal) do |doc|
       doc.add_sheet("Participantes: #{congreso.nombre}") do |sheet|
 
-        sheet.add_row(['Nombre','Apellido Paterno','Apellido Materno','Correo Electrónico','Talleres','Folio en Caja Única'])
+        sheet.add_row(['Nombre','Apellido Paterno','Apellido Materno','Correo Electrónico','Talleres','Ciudad', 'Telefono', 'Institución'])
 
         congreso.personas_confirmadas.each do |persona|
 
@@ -29,7 +29,9 @@ module XlsxHelper
                        persona.apellido_materno,
                        persona.email,
                        talleres.join(","),
-                       persona.informacion_pago
+                       persona.ciudad,
+                       persona.telefono,
+                       persona.institucion
                        ])
 
         end
@@ -42,7 +44,9 @@ module XlsxHelper
                        persona.apellido_materno,
                        persona.email,
                        talleres.join(","),
-                       persona.informacion_pago
+                       persona.ciudad,
+                       persona.telefono,
+                       persona.institucion
                        ])
 
         end
