@@ -93,7 +93,7 @@
         <%= check_box_tag "persona[taller_ids][]", taller.id, persona_inscrita_en_taller?(taller) -%>
         <%= raw("<span for='persona_taller_ids_' class='opt'>#{taller.nombre}</span>") -%>
         <br/>
-        Taller No.: <%= taller.numero %><br/>
+        
           <% unless @congreso.id == 3 %>
             Precio: <%= number_to_currency(taller.precio,:unit => "$") %>
           <% end %>

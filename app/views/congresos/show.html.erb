@@ -80,11 +80,11 @@
 
 
 <h2>Participantes sin Confirmar Pago</h2>
-<ul>
+<ol>
 <% @congreso.personas_sin_confirmar.each do |persona| %>
   <li style="margin-right: 10px; width: 600px;"><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona, @congreso), :style => 'float: right; margin-left:4px;'  %><%= link_to 'Ver detalles', persona_url(persona), :style => 'float: right; margin-right:5px; '  %></li>
 <% end %>
-</ul>
+</ol>
 
   <fieldset class="inputs">
   <%= link_to 'Editar', edit_congreso_path(@congreso) %> |
