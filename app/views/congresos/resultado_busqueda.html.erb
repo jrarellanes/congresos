@@ -1,0 +1,15 @@
+<% if @personas.respond_to? "each" %>
+  <% if @personas.size == 0 %>
+    <h1>No se encontro ningun elemento</h1>
+  <% else %>
+    <% @personas.each do |persona| %>
+      <div>
+        <%= link_to "Realizar pago para: #{persona.nombre_completo}", pagos_url(persona, "#{definir_precio(persona)}0", "n5312") %>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  
+  <%= link_to "Realizar pago para: #{@personas.nombre_completo}", pagos_url(@personas, "#{@personas.persona_tipo.precio.to_s}0", "n68") %>
+<% end %>
+<%= link_to "Regresar a la busqueda", busqueda_url(@id) %>

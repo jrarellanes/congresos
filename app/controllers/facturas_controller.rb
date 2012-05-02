@@ -25,11 +25,12 @@ class FacturasController < ApplicationController
         precio += taller.precio
       end
 
-      if @persona.congreso.pago
-        redirect_to pagos_url(@persona,"#{precio.to_s}0","n68")
-      else
+      #if @persona.congreso.pago
+        #redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
+        #redirect_to pagos_url(@persona,"#{precio.to_s}0","n68")
+      #else
         redirect_to agradecimiento_registro_url @persona
-      end
+      #end
     else
       @estados = Estado.all
       @paises = Pais.all

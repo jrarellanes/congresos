@@ -4,7 +4,8 @@
   <title>Congresos</title>
   
 
-<%= stylesheet_link_tag '../flutie' %>
+<%= stylesheet_link_tag '../flutie', "bootstrap" %>
+<%= javascript_include_tag 'application' %>
 
 
   <%= csrf_meta_tags %>
@@ -46,7 +47,7 @@
               <li><%= link_to "Configuracion", edit_user_path(current_user) %></li>
             <% end %>
             <% if current_user_session %>
-              <li><%= link_to "Cerrar sesion", logout_path, :method => :delete %></li>
+              <li><%= link_to "Cerrar sesion", logout_url, :method => :delete %></li>
              <% else %>
               <li><%= link_to "Iniciar sesion", new_user_session_path %></li>
             <% end %>

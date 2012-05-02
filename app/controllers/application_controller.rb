@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user_session, :current_user, :congreso_propio?, :taller_propio?
+  helper_method :current_user_session, :current_user, :congreso_propio?, :taller_propio?, :pagos_url
 
   protected
   def current_user_session
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pagos_url(persona,importe,concepto)
-    url = "#{Congresos::Application::config.servidor_pagos_uach}/pagos/index/?CuantasVariables=1&Facultad=4000&IdGrupoConcepto=3&ManejaProrroga=0&Origen=CON"
+    url = "#{Congresos::Application::config.servidor_pagos_uach}/pagos/index/?CuantasVariables=1&Facultad=1601&IdGrupoConcepto=3&ManejaProrroga=0&Origen=CON"
     url += "&ApellidoPaterno=#{persona.apellido_paterno}&ApellidoMaterno=#{persona.apellido_materno}&Nombre=#{persona.nombre}"
     url += "&ImporteTotal=#{importe}&IdConcepto=#{concepto}&CorreoElectronico=#{persona.email}&IdCliente=#{persona.id}"
     url

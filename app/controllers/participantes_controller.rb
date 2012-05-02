@@ -16,4 +16,5 @@ class ParticipantesController < ApplicationController
   def show
     @participante = Persona.find(params[:id])
   end
+
 end

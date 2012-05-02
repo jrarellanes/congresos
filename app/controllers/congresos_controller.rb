@@ -1,7 +1,7 @@
 #encoding: utf-8
 class CongresosController < ApplicationController
   include XlsxHelper
-  before_filter :authenticate, :except => [:registro, :registrar, :confirmar_pago, :agradecimiento]
+  before_filter :authenticate, :except => [:registro, :registrar, :confirmar_pago, :agradecimiento, :busqueda, :buscar]
   before_filter :verificar_origen, :only => :confirmar_pago
   before_filter :fecha_limite_registro, :only => :registro
 # before_filter {|edit|  edit.congreso_propio?(Congreso.find(params[:id]))}
@@ -9,7 +9,6 @@ class CongresosController < ApplicationController
   # GET /congresos.json
   def index
     @congresos = Congreso.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @congresos }
@@ -130,11 +129,11 @@ class CongresosController < ApplicationController
         #Confirmamos el pago siempre...
 
         #redirect_to @persona, :notice => "Participante registrado exitosamente"
-        if @congreso.pago
-          redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
-        else
-          redirect_to agradecimiento_registro_url @persona
-        end
+        #if @congreso.pago
+          #redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
+        #else
+        redirect_to agradecimiento_registro_url @persona
+        #end
       end
     else
       @estados = Estado.all
@@ -145,6 +144,8 @@ class CongresosController < ApplicationController
 
   def agradecimiento
     @participante = Persona.find params[:usuario_id]
+
+    
   end
   
   def buscar_constancia
@@ -197,7 +198,45 @@ class CongresosController < ApplicationController
     @persona.save
 
     flash[:notice] = "Participante registrado exitosamente"
-    redirect_to participante_url(@persona.id)
+  r redirect_to root_path
+  end
+
+  def busqueda
+    #@congresos = Congreso.order "id"
+    @id = params[:id]
+  end
+
+  def buscar
+    @id = params[:id]
+    to_render = "resultado_busqueda.html"
+    if params[:numero_registro] == 'true'
+      begin
+        @personas = Persona.where("id = ? AND congreso_id = ?", params[:numero], params[:id])
+      rescue => e
+        to_render = "elemento_no_encontrado.html"
+      end
+    else
+      @personas = []
+      personas_congreso = Persona.find_all_by_congreso_id params[:id]
+      personas_congreso.each do |persona|
+        unless @personas.include?(persona)
+          if persona.nombre == params[:nombre]
+            @personas << persona
+          end
+        end
+        unless @personas.include?(persona)
+          if persona.apellido_paterno == params[:apellido_paterno]
+            @personas << persona
+          end
+        end
+        unless @personas.include?(persona)
+          if persona.apellido_materno == params[:apellido_materno]
+            @personas << persona
+          end
+        end
+      end
+    end
+    render "#{to_render}"
   end
 
   private
@@ -216,4 +255,6 @@ class CongresosController < ApplicationController
       redirect_to  root_path
     end
   end
+
+  
 end

@@ -7,4 +7,13 @@ module CongresosHelper
         end
 
   end
+
+  def definir_precio(persona)
+    unless persona.persona_tipo.precio == nil
+      precio = persona.persona_tipo.precio
+    else
+      precio = persona.congreso.precio
+    end
+    precio
+  end
 end

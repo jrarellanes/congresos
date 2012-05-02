@@ -1,4 +1,8 @@
 Congresos::Application.routes.draw do
+  get "congresos/:id/busqueda" => "congresos#busqueda", :as => :busqueda
+
+  post "congresos/:id/buscar" => "congresos#buscar", :as => :buscar
+
   resources :grado_estudios
 
   get 'facturas/new/:id/participante' => "facturas#new", :as => :new_facturas
@@ -36,7 +40,7 @@ Congresos::Application.routes.draw do
   
   get "congresos/:id/constancia/:persona_id(.:format)" => "congresos#constancia", :as => :congreso_constancia
   
-  get "logout" => "user_sessions#destroy", :as => :logout
+  delete "logout" => "user_sessions#destroy", :as => :logout
   
   resource :user_session, :excep => :destroy
 
