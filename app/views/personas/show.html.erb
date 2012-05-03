@@ -20,28 +20,28 @@
 
 <% if @participante.factura != nil %>
   <p>
+    <b>Razón social:</b>
+    <%= @participante.factura.nombre %>
+  </p>
+
+  <p>
     <b>Calle:</b>
-    <%= @participante.calle %>
+    <%= @participante.factura.calle %>
   </p>
 
   <p>
     <b>numero:</b>
-    <%= @participante.numero %>
+    <%= @participante.factura.numero %>
   </p>
 
   <p>
     <b>RFC:</b>
-    <%= @participante.rfc %>
-  </p>
-
-  <p>
-    <b>CURP:</b>
-    <%= @participante.curp %>
+    <%= @participante.factura.rfc %>
   </p>
 
   <p>
     <b>Codigo Postal:</b>
-    <%= @participante.cp %>
+    <%= @participante.factura.cp %>
   </p>
 <% end %>
 <p>
