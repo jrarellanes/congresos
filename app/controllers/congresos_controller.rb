@@ -220,17 +220,17 @@ class CongresosController < ApplicationController
       personas_congreso = Persona.find_all_by_congreso_id params[:id]
       personas_congreso.each do |persona|
         unless @personas.include?(persona)
-          if persona.nombre == params[:nombre]
+          if persona.nombre.upcase == params[:nombre].upcase
             @personas << persona
           end
         end
         unless @personas.include?(persona)
-          if persona.apellido_paterno == params[:apellido_paterno]
+          if persona.apellido_paterno.upcase == params[:apellido_paterno].upcase
             @personas << persona
           end
         end
         unless @personas.include?(persona)
-          if persona.apellido_materno == params[:apellido_materno]
+          if persona.apellido_materno.upcase == params[:apellido_materno].upcase
             @personas << persona
           end
         end
