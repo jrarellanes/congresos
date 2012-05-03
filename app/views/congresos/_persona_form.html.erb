@@ -13,7 +13,7 @@
     </div>
   <% end %>
 <div>
-  <fieldset class="inputs">
+  <fieldset class="inputs" style="padding: 15px;">
   <div class="field">
     <%= f.label :persona_tipo,"Tipo de participante" %><br />
     <%=  f.collection_select :persona_tipo_id, @congreso.persona_tipos ,:id, :nombre, :prompt => false %>

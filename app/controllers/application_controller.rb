@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pagos_url(persona,importe,concepto)
-    url = "#{Congresos::Application::config.servidor_pagos_uach}/pagos/index/?CuantasVariables=1&Facultad=1601&IdGrupoConcepto=3&ManejaProrroga=0&Origen=CON"
+    url = "#{Congresos::Application::config.servidor_pagos_uach}/pagos/index/?CuantasVariables=19&Facultad=1601&IdGrupoConcepto=3&ManejaProrroga=0&Origen=CON"
     url += "&ApellidoPaterno=#{persona.apellido_paterno}&ApellidoMaterno=#{persona.apellido_materno}&Nombre=#{persona.nombre}"
     url += "&ImporteTotal=#{importe}&IdConcepto=#{concepto}&CorreoElectronico=#{persona.email}&IdCliente=#{persona.id}"
     url
