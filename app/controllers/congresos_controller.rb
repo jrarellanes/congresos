@@ -251,9 +251,16 @@ class CongresosController < ApplicationController
 
   def fecha_limite_registro
     @congreso = Congreso.find params[:id]
-    if @congreso.fecha_fin < Time.now.to_date
-      flash[:error] = "Este congreso ha terminado"
-      redirect_to  root_path
+    if @congreso.limite_registro != nil
+      if @congreso.limite_registro < Time.now.to_date
+        flash[:error] = "Este congreso ha terminado"
+        redirect_to  root_path
+      end
+    else
+      if @congreso.fecha_fin < Time.now.to_date
+        flash[:error] = "Este congreso ha terminado"
+        redirect_to  root_path
+      end
     end
   end
 
