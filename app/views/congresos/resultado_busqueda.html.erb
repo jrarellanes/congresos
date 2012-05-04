@@ -1,6 +1,6 @@
 <% if @personas.respond_to? "each" %>
   <% if @personas.size == 0 %>
-    <h1>No se encontro ningun elemento</h1>
+    <h1>No se encontró ningún elemento</h1>
   <% else %>
     <% @personas.each do |persona| %>
     <div class="espacio">
@@ -12,7 +12,7 @@
   
   <%= link_to "Realizar pago para: #{@personas.nombre_completo}", pagos_url(@personas, "#{@personas.persona_tipo.precio.to_s}0", "n68")%>
 <% end %>
-<%= link_to "Regresar a la busqueda", busqueda_url(@id), :class => "btn btn-warning" %>
+<%= link_to "Regresar a la búsqueda", busqueda_url(@id), :class => "btn btn-warning" %>
     
     <style>
       .espacio{

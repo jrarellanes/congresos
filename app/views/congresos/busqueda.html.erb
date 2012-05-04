@@ -6,11 +6,11 @@
 </script>
 <%= form_tag(buscar_url(@id), :method => :post) do  %>
 <div class="page-header">
-  <h1>Busqueda de participantes</h1>
+  <h1>Búsqueda de participantes</h1>
 </div>
 
   <div>
-    <h3>Metodo de busqueda</h3>
+    <h3>Método de búsqueda</h3>
     <div >
       <div><input id ="num"type="radio" name="tipo_busqueda" onChange="$('#busqueda_datos_participante').hide(); $('#busqueda_numero_registro').show(); $('#numero_registro').val(true);" checked>Por numero de registro</input></div>
       <div><input id="dp" type="radio" name="tipo_busqueda" onchange="$('#busqueda_numero_registro').hide();$('#busqueda_datos_participante').show(); $('#numero_registro').val(false);">Con mis datos personales</input></div>
@@ -21,7 +21,7 @@
   </div>
 <div class="container" style="">
   <div id="busqueda_numero_registro" style="margin: 15px;">
-    <label class="control-label">Numero de registro</label><%= text_field_tag :numero, nil, :class => "input-small search-query" %>
+    <label class="control-label">Número de registro</label><%= text_field_tag :numero, nil, :class => "input-small search-query" %>
   </div>
   </div>
 <div id="busqueda_datos_participante" style="margin: 15px;" >

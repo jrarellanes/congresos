@@ -198,7 +198,7 @@ class CongresosController < ApplicationController
     @persona.save
 
     flash[:notice] = "Participante registrado exitosamente"
-  r redirect_to root_path
+    redirect_to root_path
   end
 
   def busqueda
@@ -211,8 +211,9 @@ class CongresosController < ApplicationController
     to_render = "resultado_busqueda.html"
     if params[:numero_registro] == 'true'
       begin
+        params[:numero_registro].is_numeric?
         @personas = Persona.where("id = ? AND congreso_id = ?", params[:numero], params[:id])
-      rescue => e
+      rescue  => e
         to_render = "elemento_no_encontrado.html"
       end
     else
@@ -256,5 +257,8 @@ class CongresosController < ApplicationController
     end
   end
 
+  def is_numeric?
+    true if Float(self) rescue false
+  end
   
 end
