@@ -1,3 +1,9 @@
+<script>
+  $(function() {
+      $( ".datepickerfield" ).datepicker({ dateFormat: "dd-mm-yy" });
+   });
+</script>
+
 <%= form_for(@taller) do |f| %>
   <% if @taller.errors.any? %>
     <div id="error_explanation" class="error">
@@ -28,10 +34,10 @@
     <%= f.text_field :precio %>
   </div>
   <div class="field">
-    Fecha de inicio: <br /><%= date_select :taller, :fecha_inicio %><br />
+    Fecha de inicio: <br /><%= f.text_field :fecha_inicio, :class => "datepickerfield" %><br />
   </div>
    <div class="field">
-    Fecha fin curso: <br /><%= date_select :taller, :fecha_fin %><br />
+    Fecha fin curso: <br /><%= f.text_field :fecha_fin, :class => "datepickerfield" %><br />
   </div>
     <div class="field">
     <%= f.label :lugar %><br />

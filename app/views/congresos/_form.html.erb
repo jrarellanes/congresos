@@ -1,3 +1,9 @@
+<script>
+  $(function() {
+      $( ".datepickerfield" ).datepicker({ dateFormat: "dd-mm-yy" });
+   });
+</script>
+
 <%= form_for(@congreso, :multipart => true) do |f| %>
   <% if @congreso.errors.any? %>
     <div id="error_explanation" class="error">
@@ -28,13 +34,13 @@
     <%= f.text_field :precio_descuento %>
   </div>
   <div class="field">
-    Fecha de inicio: <br /><%= date_select :congreso, :fecha_inicio %><br />
+    Fecha de inicio: <br /><%= f.text_field :fecha_inicio, :class => "datepickerfield" %><br />
   </div>
    <div class="field">
-    Fecha fin curso: <br /><%= date_select :congreso, :fecha_fin %><br />
+    Fecha fin curso: <br /><%= f.text_field  :fecha_fin, :class => "datepickerfield" %><br />
   </div>
   <div class="field">
-    Fecha límite de registro: <br /><%= date_select :congreso, :limite_registro %><br />
+    Fecha límite de registro: <br /><%= f.text_field :limite_registro, :class => "datepickerfield" %><br />
   </div>
    <div class="field">
     <%= f.label :lugar %><br />

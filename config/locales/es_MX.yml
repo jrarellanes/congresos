@@ -32,7 +32,6 @@ es_MX:
         delimiter: ","
 
   date:
-    order: [:day, :month, :year]
     abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
     abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
     day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
@@ -90,13 +89,6 @@ es_MX:
       second: 'Segundo'
 
   activerecord:
-    attributes:
-        documento:
-            nombre: Código
-            descripcion: Nombre
-            documento_revision:
-                num_rev: Número de Revisión
-                fecha_rev: Fecha de Revisión
     errors:
       template:
         header:

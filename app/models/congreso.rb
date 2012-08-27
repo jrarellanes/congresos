@@ -2,6 +2,8 @@
 class Congreso < ActiveRecord::Base
   validates :nombre, :presence => true
   validates :precio, :presence => true
+  validates :fecha_inicio, :presence => true
+  validates :fecha_fin, :presence => true
   validate :precio_mayor_cero
   validate :fecha_inicio_mayor_fecha_fin
   validate :validacion_fecha_limite_registro
@@ -34,8 +36,10 @@ class Congreso < ActiveRecord::Base
   end
 
   def fecha_inicio_mayor_fecha_fin
-    if fecha_fin < fecha_inicio
-      errors.add(:fecha_fin_menor, "La fecha final del curso debe ser mayor que la de inicio")
+    unless fecha_fin.nil? || fecha_inicio.nil?
+      if fecha_fin < fecha_inicio
+        errors.add(:fecha_fin_menor, "La fecha final del curso debe ser mayor que la de inicio")
+      end
     end
   end
 
@@ -50,11 +54,15 @@ class Congreso < ActiveRecord::Base
   end
 
   def validacion_fecha_limite_registro
-    if limite_registro < fecha_inicio
-      errors.add(:limite_registro, "La fecha límite de registro al curso debe ser mayor que la de inicio")
+    unless limite_registro.nil? 
+      if limite_registro < fecha_inicio
+        errors.add(:limite_registro, "La fecha límite de registro al curso debe ser mayor que la de inicio")
+      end
     end
-    if limite_registro > fecha_fin
-      errors.add(:limite_registro, "La fecha límite de registro al curso debe ser menor que la de fin")
+    unless limite_registro.nil?
+      if limite_registro > fecha_fin
+        errors.add(:limite_registro, "La fecha límite de registro al curso debe ser menor que la de fin")
+      end
     end
 
   end

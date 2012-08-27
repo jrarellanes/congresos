@@ -1,0 +1,107 @@
+<% if @congreso.imagen != nil %>
+<div id="imagen_congreso"style="float: right;">
+
+    <%= image_tag @congreso.imagen.url(:presentacion) %>
+  </div>
+<% end %>
+<div id="detalles_congreso" style=" margin-right: 100px; height: auto;">
+<p>
+  <b>Nombre:</b>
+  <%= @congreso.nombre %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @congreso.descripcion %>
+</p>
+
+<p>
+  <b>Precio:</b>
+    <%= number_to_currency(@congreso.precio,:unit => "$") %>
+</p>
+
+<p>
+  <b>Precio con Descuento:</b>
+    <%= number_to_currency(@congreso.precio_descuento,:unit => "$") %>
+</p>
+
+<p>
+  <b>Fecha de inicio:</b>
+  <%= l @congreso.fecha_inicio %>
+</p>
+
+<p>
+  <b>Fecha clausura:</b>
+  <%= l @congreso.fecha_fin, :format => :medium %>
+</p>
+
+<p>
+  <b>Lugar:</b>
+  <%= @congreso.lugar %>
+</p>
+<% unless @congreso.talleres == nil or @congreso.talleres == [] %>
+<div id="talleres" style="margin: 12px;">
+    <h3 >Talleres</h3>
+    <ul>
+      <% @congreso.talleres.each do |taller| %>
+          <li><%= link_to taller.nombre, taller_path(taller) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+
+<div id="participantes" >
+<h2>Participantes</h2>
+<table>
+  <tr>
+    <th>Número</th>
+    <th>Nombre</th>
+    <th>Tipo de Participante</th>    
+    <% if current_user_session and current_user.is_admin? %>
+      <th>Editar</th>
+      <th>Detalles</th>
+    <% end %>
+  </tr>
+<% i = 1 %>    
+<% @congreso.personas_confirmadas.order(:created_at).each do |persona| %>
+  <tr>
+    <td><%= i %></td>
+    <td><%= persona.nombre_completo %></td>
+    <td><%= persona.persona_tipo.nombre %> </td>
+    <% if current_user_session and current_user.is_admin? %>
+      <td><%= link_to 'Editar',edit_persona_url(persona) %></td>
+      <td><%= link_to 'Ver', persona_url(persona) %></td>
+    <% end%>
+    <% i += 1 %>
+  </tr>
+<% end %>
+</table>
+
+
+<h2>Participantes sin Confirmar Pago</h2>
+<ol>
+<% @congreso.personas_sin_confirmar.each do |persona| %>
+  <li style="margin-right: 10px; width: 600px;"><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona, @congreso), :style => 'float: right; margin-left:4px;'  %><%= link_to 'Ver detalles', persona_url(persona), :style => 'float: right; margin-right:5px; '  %></li>
+<% end %>
+</ol>
+
+  <fieldset class="inputs espacio">
+  <%= link_to 'Editar', edit_congreso_path(@congreso) %> |
+  <%= link_to 'Lista de Congresos', congresos_path %> |
+  <%= link_to 'Registro de Participantes', congreso_registro_path(@congreso.id) %>  |
+  <%= link_to 'Exportar participantes a Excel', congreso_participantes_path(@congreso,:xlsx) %>
+  </fieldset>
+
+</div>
+
+<%= link_to 'Registrar taller', new_taller_url %>
+
+
+    <style>
+      .espacio{
+    margin: 12px;
+}
+
+
+    </style>

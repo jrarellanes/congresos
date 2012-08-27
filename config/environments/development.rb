@@ -27,4 +27,7 @@ Congresos::Application.configure do
   #  compress assets
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = :scss
+
+
+  config.i18n.default_locale = :es_MX
 end
