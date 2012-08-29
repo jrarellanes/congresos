@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504192654) do
+ActiveRecord::Schema.define(:version => 20120829151238) do
 
   create_table "ciudades", :force => true do |t|
     t.string   "nombre"
@@ -136,6 +136,9 @@ ActiveRecord::Schema.define(:version => 20120504192654) do
     t.string   "comprobante_pago_content_type"
     t.integer  "comprobante_pago_file_size"
     t.datetime "comprobante_pago_updated_at"
+    t.string   "nombre_gafete"
+    t.string   "nombre_constancia"
+    t.string   "codigo_postal"
   end
 
   create_table "personas_talleres", :id => false, :force => true do |t|

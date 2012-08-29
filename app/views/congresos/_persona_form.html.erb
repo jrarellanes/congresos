@@ -18,10 +18,12 @@
     <%= f.label :persona_tipo,"Tipo de participante" %><br />
     <%=  f.collection_select :persona_tipo_id, @congreso.persona_tipos ,:id, :nombre, :prompt => false %>
   </div>
+
   <div class="field">
     <%= f.label :nombre %><br />
     <%= f.text_field :nombre %>
   </div>
+
   <div class="field">
     <%= f.label :apellido_paterno %><br />
     <%= f.text_field :apellido_paterno %>
@@ -30,7 +32,26 @@
     <%= f.label :apellido_materno %><br />
     <%= f.text_field :apellido_materno %>
   </div>
-     <div class="field">
+
+  <div class="field">
+    <p>
+      Escriba su nombre como desea que aparezca
+        en su Gafete:
+    </p>
+    <%= f.label :nombre_gafete %><br />
+    <%= f.text_field :nombre_gafete %>
+  </div>
+
+  <div class="field">
+    <p>
+      Escriba su nombre como desea que aparezca
+      en su Constancia de Participación:
+    </p>
+    <%= f.label :nombre_constancia %><br />
+    <%= f.text_field :nombre_constancia %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
