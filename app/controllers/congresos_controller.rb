@@ -47,9 +47,10 @@ class CongresosController < ApplicationController
   def create
     @congreso = Congreso.new(params[:congreso])
     @congreso.user_id = current_user.id
-
+    
     respond_to do |format|
       if @congreso.save
+        CongresosUser.create(:user_id => current_user.id, :congreso_id => @congreso.id)
         format.html { redirect_to @congreso, notice: 'Congreso registrado correctamente.' }
         format.json { render json: @congreso, status: :created, location: @congreso }
       else
