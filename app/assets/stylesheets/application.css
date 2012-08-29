@@ -1,6 +1,6 @@
 /*
  * FIXME: Introduce SCSS & Sprockets
- *= require_tree ../../../vendor/assets/stylesheets/flutie
+ *= require_tree .
  */
  #imagen_congreso{
      
