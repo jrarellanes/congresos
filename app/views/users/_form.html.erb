@@ -32,7 +32,15 @@
    <div class="field">
     <%= f.file_field :avatar %>
   </div>
-  
+
+  <% if caller == "new" %>
+    <div class="field">
+      Administrador
+      <%= check_box_tag(:admin) %><br />
+
+    </div>
+  <% end %>
+
 
   <div class="actions">
     <%= f.submit 'Guardar'%>
