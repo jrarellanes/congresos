@@ -74,6 +74,12 @@
     <%= f.label :ciudad %><br />
     <%= f.text_field :ciudad %>
   </div>
+
+   <div class="field">
+        <%= f.label :cp, 'Código Postal' %><br />
+        <%= f.text_field :cp %>
+   </div>
+    
    <div class="field">
         <%= f.label :estado %>
         <%= f.collection_select :estado_id, @estados,:id, :nombre, :prompt => false %>
@@ -113,44 +119,45 @@
     </ol>
   </fieldset>
   <% end %>
-  <input type="radio" onchange="$('#factura').val(true);" name="group1">Si requiero factura</input>
-  <input type="radio" onchange="$('#factura').val(false);" name="group1" checked>No requiero factura</input><br/>
-<!--
-  <div id="datos_factura">
 
-    
-    
-    <div id="facturacion">
-        <div class="field">
-        <%= f.label :rfc, "RFC" %><br />
-        <%= f.text_field :rfc %>
-      </div>
-        <div class="field">
-        <%= f.label :curp,"CURP" %><br />
-        <%= f.text_field :curp %>
-      </div>
-        <b>Direccion:</b>
-        <div class="field">
-        <%= f.label :calle %><br />
-        <%= f.text_field :calle %><br/>
-        <%= f.label :numero %><br />
-        <%= f.text_field :numero %>
-      </div>
-        <div class="field">
-        <%= f.label :cp, 'Codigo Postal' %><br />
-        <%= f.text_field :cp %>
+
+  <% if @datos_lucrativos %>
+    <input type="radio" onchange="$('#factura').val(true);" name="group1">Si requiero factura</input>
+    <input type="radio" onchange="$('#factura').val(false);" name="group1" checked>No requiero factura</input><br/>
+
+    <!--
+    <div id="datos_factura">
+
+
+
+      <div id="facturacion">
+          <div class="field">
+          <%= f.label :rfc, "RFC" %><br />
+          <%= f.text_field :rfc %>
+        </div>
+          <div class="field">
+          <%= f.label :curp,"CURP" %><br />
+          <%= f.text_field :curp %>
+        </div>
+          <b>Direccion:</b>
+          <div class="field">
+          <%= f.label :calle %><br />
+          <%= f.text_field :calle %><br/>
+          <%= f.label :numero %><br />
+          <%= f.text_field :numero %>
+        </div>
+
+
       </div>
 
     </div>
-    
-  </div>
-  -->
+    -->
 
-  <div style="margin: 10px; margin-left: 0px;">
-    <%= f.label :comprobante_pago, "Comprobante de pago" %>
-    <%= f.file_field :comprobante_pago, :style => "margin: 8px;" %>
-  </div>
-
+    <div style="margin: 10px; margin-left: 0px;">
+      <%= f.label :comprobante_pago, "Comprobante de pago" %>
+      <%= f.file_field :comprobante_pago, :style => "margin: 8px;" %>
+    </div>
+  <% end %>
 
   <br/>
   <div class="actions">

@@ -97,6 +97,8 @@ class CongresosController < ApplicationController
     @persona = Persona.new
     @congreso = Congreso.find(params[:id])
     @estados = Estado.all
+    @datos_lucrativos = false
+    @datos_lucrativos = true if @congreso.talleres.where("precio > 0").count > 0 || @congreso.precio > 0
   end    
 
   def registrar
