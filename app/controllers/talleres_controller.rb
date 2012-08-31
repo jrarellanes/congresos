@@ -1,5 +1,5 @@
 class TalleresController < ApplicationController
-  
+  before_filter :authenticate
   # GET /talleres
   # GET /talleres.json
   def index
