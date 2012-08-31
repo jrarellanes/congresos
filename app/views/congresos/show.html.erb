@@ -51,15 +51,17 @@
   </div>
 </div>
 <% end %>
+
 <div class="row btn-toolbar" style="margin-bottom: 25px; float: right;">
-<div class="btn-group">
+	<div class="btn-group">
+<input type=button onClick="location.href='<%= busqueda_url(@congreso.id)%>'" value='Buscar Participante' class="btn btn-warning">
 	
-  <%= link_to "Buscar participante", busqueda_url(@congreso.id), :class => "btn btn-info active"  %>
+  
+
 </div>
 
-
     <div class="btn-group">
-    	<button  class="btn btn-info dropdown-toggle active" data-toggle="dropdown" onclick="this.dropdown();">
+    	<button  class="btn btn-warning dropdown-toggle " data-toggle="dropdown" onclick="this.dropdown();">
     		Tipos de Participantes
     		<span class="caret"></span>
     	</button>
