@@ -19,7 +19,8 @@ class CongresosController < ApplicationController
   # GET /congresos/1.json
   def show
     @congreso = Congreso.find(params[:id])
-
+    @datos_lucrativos = false
+    @datos_lucrativos = true if @congreso.talleres.where("precio > 0").count > 0 || @congreso.precio > 0
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @congreso }
@@ -64,6 +65,18 @@ class CongresosController < ApplicationController
   # PUT /congresos/1.json
   def update
     @congreso = Congreso.find(params[:id])
+    @datos_lucrativos = false
+    @datos_lucrativos = true if @congreso.talleres.where("precio > 0").count > 0 || @congreso.precio > 0
+
+    if params[:congreso][:pago] == "1" or @datos_lucrativos
+      @congreso.personas_confirmadas.each do |persona|
+        persona.update_attribute("pago", false)
+      end
+    else
+      @congreso.personas_sin_confirmar.each do |persona|
+        persona.update_attribute("pago", true) 
+      end
+    end
 
     respond_to do |format|
       if @congreso.update_attributes(params[:congreso])
@@ -116,6 +129,7 @@ class CongresosController < ApplicationController
 
     if estatus && @persona.save
       precio = @congreso.precio
+      @persona.update_attribute("pago", true) unless @congreso.pago
       @persona.talleres.each do |taller|
         precio += taller.precio
       end
@@ -209,8 +223,7 @@ class CongresosController < ApplicationController
     to_render = "resultado_busqueda.html"
     if params[:numero_registro] == 'true'
       begin
-        params[:numero_registro].is_numeric?
-        @personas = Persona.where("id = ? AND congreso_id = ?", params[:numero], params[:id])
+          @personas = Persona.where("id = ? AND congreso_id = ?", params[:numero].to_i, params[:id])
       rescue  => e
         to_render = "elemento_no_encontrado.html"
       end

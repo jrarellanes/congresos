@@ -1,8 +1,8 @@
 
 <% if @congreso.imagen != nil %>
-<div id="imagen_congreso"style="float: right;">
+<div id="imagen_congreso" style="float: right; ">
 
-    <%= image_tag @congreso.imagen.url(:presentacion) %>
+    <%= image_tag @congreso.imagen.url(:presentacion), :style => "max-height: 165px;" %>
   </div>
 <% end %>
 <div id="detalles_congreso" style=" margin-right: 100px; height: auto;">
@@ -94,6 +94,7 @@
     <% if current_user_session and current_user.is_admin? %>
       <th>Editar</th>
       <th>Detalles</th>
+      <th>Eliminar</th>
     <% end %>
   </tr>
 <% i = 1 %>    
@@ -102,23 +103,24 @@
     <td><%= i %></td>
     <td><%= persona.nombre_completo %></td>
     <td><%= persona.persona_tipo.nombre %> </td>
-    <% if current_user_session and current_user.is_admin? %>
+    <% if current_user_session and (current_user.is_admin? or congreso_propio?(@congreso)) %>
       <td><%= link_to 'Editar',edit_persona_url(persona) %></td>
       <td><%= link_to 'Ver', persona_url(persona) %></td>
+      <td><%= link_to 'Eliminar', persona_url(persona), :method => :delete %></td>
     <% end%>
     <% i += 1 %>
   </tr>
 <% end %>
 </table>
 
-
+<% if @congreso.pago or @datos_lucrativos %>
 <h2>Participantes sin Confirmar Pago</h2>
 <ol>
 <% @congreso.personas_sin_confirmar.each do |persona| %>
-  <li style="margin-right: 10px; width: 600px;"><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona, @congreso), :style => 'float: right; margin-left:4px;'  %><%= link_to 'Ver detalles', persona_url(persona), :style => 'float: right; margin-right:5px; '  %></li>
+  <li style="margin-right: 10px; width: 600px;"><%= link_to "Eliminar", persona_url(), :method => :delete, :style =>  'float: right; margin-left:4px;' %><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona), :style => 'float: right; margin-left:4px;'  %><%= link_to 'Ver detalles', persona_url(persona), :style => 'float: right; margin-right:5px; '  %></li>
 <% end %>
 </ol>
-
+<% end %>
   <fieldset class="inputs espacio">
   <%= link_to 'Editar', edit_congreso_path(@congreso) %> |
   <%= link_to 'Lista de Congresos', congresos_path %> |

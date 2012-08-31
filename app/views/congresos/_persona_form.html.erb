@@ -93,6 +93,10 @@
     <%= f.label :telefono,"Teléfono (incluir clave lada)" %><br />
     <%= f.text_field :telefono %>
   </div>
+  <div class="field">
+    <%= f.label :pago, "Esta persona ha realizado su debido pago" %><br />
+    <%= f.check_box :pago %>
+  </div>
 
     <div class="field">
       <%= hidden_field_tag(:factura, false) %>
