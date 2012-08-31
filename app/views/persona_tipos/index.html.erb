@@ -10,15 +10,17 @@
   </tr>
 
 <% @persona_tipos.each do |persona_tipo| %>
-    <tr>
-      <td><%= persona_tipo.nombre %></td>
-      <td><%= persona_tipo.congreso.nombre %></td>
-      <td><%= link_to 'Ver Detalles', persona_tipo %></td>
-      <% if current_user_session %>
-        <td><%= link_to 'Editar', edit_persona_tipo_path(persona_tipo) %></td>
-        <td><%= button_to 'Eliminar', persona_tipo, confirm: '¿Está seguro?', method: :delete %></td>
-      <% end %>
-    </tr>
+  <% if current_user.is_admin? || @congresos.include?(persona_tipo.congreso) %>
+      <tr>
+        <td><%= persona_tipo.nombre %></td>
+        <td><%= persona_tipo.congreso.nombre %></td>
+        <td><%= link_to 'Ver Detalles', persona_tipo %></td>
+        <% if current_user_session %>
+          <td><%= link_to 'Editar', edit_persona_tipo_path(persona_tipo) %></td>
+          <td><%= button_to 'Eliminar', persona_tipo, confirm: '¿Está seguro?', method: :delete %></td>
+        <% end %>
+      </tr>
+  <% end %>
 <% end %>
 </table>
 

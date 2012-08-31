@@ -1,9 +1,11 @@
 class GradoEstudiosController < ApplicationController
   # GET /grado_estudios
   # GET /grado_estudios.json
+  before_filter :authenticate
+  
   def index
     @grado_estudios = GradoEstudio.all
-
+    @congresos = current_user.congresos(:order => "nombre")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @grado_estudios }
@@ -25,7 +27,11 @@ class GradoEstudiosController < ApplicationController
   # GET /grado_estudios/new.json
   def new
     @grado_estudio = GradoEstudio.new
-
+    if current_user.is_admin?
+      @congresos = Congreso.all(:order => "nombre")
+    else
+      @congresos = current_user.congresos(:order => "nombre")
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @grado_estudio }

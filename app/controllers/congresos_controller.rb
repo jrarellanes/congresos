@@ -115,12 +115,7 @@ class CongresosController < ApplicationController
     end
 
     if estatus && @persona.save
-      if @persona.persona_tipo.nombre == "Estudiante"
-        precio = @congreso.precio_descuento
-      else
-        precio = @congreso.precio
-      end
-
+      precio = @congreso.precio
       @persona.talleres.each do |taller|
         precio += taller.precio
       end

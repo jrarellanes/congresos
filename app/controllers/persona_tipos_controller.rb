@@ -3,7 +3,7 @@ class PersonaTiposController < ApplicationController
 
   def index
     @persona_tipos = PersonaTipo.all
-
+    @congresos = current_user.congresos(:order => "nombre")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @persona_tipos }

@@ -1,21 +1,27 @@
-<h1>Listing grado_estudios</h1>
+<h1>Lista de grados de estudio de mis congresos</h1>
 
 <table>
   <tr>
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
 <% @grado_estudios.each do |grado_estudio| %>
-  <tr>
-    <td><%= link_to 'Show', grado_estudio %></td>
-    <td><%= link_to 'Edit', edit_grado_estudio_path(grado_estudio) %></td>
-    <td><%= link_to 'Destroy', grado_estudio, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <% if current_user.is_admin? || @congresos.include?(grado_estudio.congreso) %>
+    <tr>
+      <td><%= grado_estudio.nombre %></td>
+      <td><%= grado_estudio.congreso.nombre %> </td>
+      <td><%= link_to 'Show', grado_estudio %></td>
+      <td><%= link_to 'Edit', edit_grado_estudio_path(grado_estudio) %></td>
+      <td><%= link_to 'Destroy', grado_estudio, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Grado estudio', new_grado_estudio_path %>
+<%= link_to 'Nuevo Grado de estudio', new_grado_estudio_path %>
