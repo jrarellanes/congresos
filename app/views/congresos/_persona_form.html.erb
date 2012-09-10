@@ -93,10 +93,7 @@
     <%= f.label :telefono,"Teléfono (incluir clave lada)" %><br />
     <%= f.text_field :telefono %>
   </div>
-  <div class="field">
-    <%= f.label :pago, "Esta persona ha realizado su debido pago" %><br />
-    <%= f.check_box :pago %>
-  </div>
+
 
     <div class="field">
       <%= hidden_field_tag(:factura, false) %>
@@ -104,8 +101,8 @@
   <br/>
   <% unless @congreso.talleres_con_cupo.empty? %>
   <fieldset>
-    <h5 class="legend"><span class="label">Talleres</span></h5>
-
+    <h5 class="legend"><span class="label"> Excursiónes </span></h5>
+<br/>
     <ol>
    
       <% @congreso.talleres_con_cupo.sort_by{|taller| taller.numero}.each do |taller| %>
@@ -115,7 +112,7 @@
         <br/>
         
           <% unless @congreso.id == 3 %>
-            Precio: <%= number_to_currency(taller.precio,:unit => "$") %>
+            Precio: <%= number_to_currency(taller.precio,:unit => " ")%> <%= " Dolares" %>
           <% end %>
        
       </li>
@@ -165,7 +162,7 @@
 
   <br/>
   <div class="actions">
-    <%= f.submit "Registrarse al Congreso" %>
+    <%= f.submit "Registrarse" %>
   </div>
   </fieldset>
 </div>
