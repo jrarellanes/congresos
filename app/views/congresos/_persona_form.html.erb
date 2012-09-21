@@ -112,7 +112,7 @@
         <br/>
         
           <% unless @congreso.id == 3 %>
-            Precio: <%= number_to_currency(taller.precio,:unit => " ")%> <%= " Dolares" %>
+            Cuota: <%= number_to_currency(taller.precio,:unit => " ")%> <%= " Dolares" %>
           <% end %>
        
       </li>
@@ -153,11 +153,12 @@
 
     </div>
     -->
-
-    <div style="margin: 10px; margin-left: 0px;">
-      <%= f.label :comprobante_pago, "Comprobante de pago" %>
-      <%= f.file_field :comprobante_pago, :style => "margin: 8px;" %>
-    </div>
+    <!--
+      <div style="margin: 10px; margin-left: 0px;">
+        <%  # f.label :comprobante_pago, "Comprobante de pago" %>
+        <% #f.file_field :comprobante_pago, :style => "margin: 8px;" %>
+      </div>
+    -->
   <% end %>
 
   <br/>

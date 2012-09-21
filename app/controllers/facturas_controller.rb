@@ -29,7 +29,7 @@ class FacturasController < ApplicationController
         #redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
         #redirect_to pagos_url(@persona,"#{precio.to_s}0","n68")
       #else
-        redirect_to agradecimiento_registro_url @persona
+        redirect_to paso_pago_url @persona.talleres.count
       #end
     else
       @estados = Estado.all

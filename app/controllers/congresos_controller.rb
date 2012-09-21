@@ -115,6 +115,10 @@ class CongresosController < ApplicationController
     @datos_lucrativos = true if @congreso.talleres.where("precio > 0").count > 0 || @congreso.precio > 0
   end    
 
+  def paso_pago
+    @no_items = params[:no_items]
+  end
+
   def registrar
     @congreso = Congreso.find(params[:id])
     @persona = Persona.new(params[:persona])
@@ -144,7 +148,12 @@ class CongresosController < ApplicationController
         #if @congreso.pago
           #redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
         #else
-        redirect_to agradecimiento_registro_url @persona
+        if precio> 0
+          redirect_to paso_pago_url @persona.talleres.count
+        else
+          redirect_to agradecimiento_registro_url @persona
+        end
+        
         #end
       end
     else
