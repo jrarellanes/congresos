@@ -117,7 +117,7 @@
 <h2>Participantes sin Confirmar Pago</h2>
 <ol>
 <% @congreso.personas_sin_confirmar.each do |persona| %>
-  <li style="margin-right: 10px; width: 600px;"><%= link_to "Eliminar", persona_url(), :method => :delete, :style =>  'float: right; margin-left:4px;' %><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona), :style => 'float: right; margin-left:4px;'  %><%= link_to 'Ver detalles', persona_url(persona), :style => 'float: right; margin-right:5px; '  %></li>
+  <li style="margin-right: 10px; width: 600px;"><%= link_to "Eliminar", persona_url(persona.id), :method => :delete, :style =>  'float: right; margin-left:4px;' %><%= persona.nombre_completo %><%= link_to 'Editar', edit_persona_url(persona), :style => 'float: right; margin-left:4px;'  %><%= link_to 'Ver detalles', persona_url(persona), :style => 'float: right; margin-right:5px; '  %></li>
 <% end %>
 </ol>
 <% end %>
