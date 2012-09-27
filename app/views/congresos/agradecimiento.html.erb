@@ -10,7 +10,7 @@
   </p>
 </div>
 <div>
-  <% if @participante.congreso.pago %>
-    <%= link_to "Realizar pago para: #{@participante.nombre_completo}", pagos_url(@participante, "#{definir_precio(@participante)}0", "n68") %>
-  <% end %>
+  <% #if @participante.congreso.pago and @datos_lucrativos%>
+    <% #link_to "Realizar pago para: #{@participante.nombre_completo}", pagos_url(@participante, "#{definir_precio(@participante)}0", "n68") %>
+  <% #end %>
 </div>
