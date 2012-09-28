@@ -2,7 +2,7 @@
 <% if @congreso.imagen != nil %>
 <div id="imagen_congreso" style="float: right; ">
 
-    <%= image_tag @congreso.imagen.url(:presentacion), :style => "max-height: 165px;" %>
+    <%= image_tag @congreso.imagen.url(:presentacion), :style => "max-height: 165px;" if @congreso.imagen_file_name != nil %>
   </div>
 <% end %>
 <div id="detalles_congreso" style=" margin-right: 100px; height: auto;">

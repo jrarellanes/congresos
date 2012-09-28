@@ -11,7 +11,7 @@
 <h1><%= @congreso.nombre %></h1><br/>
 <% if @congreso.imagen != nil %>
 <div style="float: right; margin-left: 20px; margin-top: 20px;">
-    <%= image_tag @congreso.imagen.url(:presentacion) %>
+    <%= image_tag @congreso.imagen.url(:presentacion) if @congreso.imagen_file_name != nil %>
   </div>
 <% end %>
 
