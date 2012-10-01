@@ -59,6 +59,14 @@
     <%= f.file_field :constancias_bg %>
   </div>
   <br/>
+  <div>
+    <% @campos.each do |campo| %>
+      <div>
+        <%=  "#{campo.nombre}" %>
+        <%= check_box_tag "#{campo.nombre}" %>
+      </div>
+    <% end %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

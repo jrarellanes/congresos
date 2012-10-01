@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120829151238) do
+ActiveRecord::Schema.define(:version => 20121001211520) do
+
+  create_table "campos", :force => true do |t|
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "campos_congresos", :id => false, :force => true do |t|
+    t.integer  "congreso_id"
+    t.integer  "campo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ciudades", :force => true do |t|
     t.string   "nombre"
@@ -129,7 +142,6 @@ ActiveRecord::Schema.define(:version => 20120829151238) do
     t.boolean  "descuento",                                    :default => false
     t.string   "informacion_pago"
     t.integer  "persona_tipo_id"
-    t.string   "extra_uno",                     :limit => 4
     t.string   "telefono"
     t.integer  "grado_estudio_id"
     t.string   "comprobante_pago_file_name"
@@ -139,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20120829151238) do
     t.string   "nombre_gafete"
     t.string   "nombre_constancia"
     t.string   "codigo_postal"
+    t.string   "anos_experiencia"
   end
 
   create_table "personas_talleres", :id => false, :force => true do |t|

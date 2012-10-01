@@ -8,6 +8,8 @@ class Congreso < ActiveRecord::Base
   validate :fecha_inicio_mayor_fecha_fin
   validate :validacion_fecha_limite_registro
 
+  has_and_belongs_to_many :campos
+
   has_many :grado_estudios
   has_many :talleres, :class_name => "Taller", :order => "nombre", :dependent => :delete_all
   has_many :personas, :dependent => :delete_all

@@ -10,25 +10,34 @@
       </ul>
     </div>
 <% end %>
-<div>
-  <%= f.label :nombre %>
-  <%= f.text_field :nombre %>
-</div>
 
-<div>
-  <%= f.label :apellido_paterno %>
-  <%= f.text_field :apellido_paterno %>
-</div>
+<% if @participante.congreso.campos.include?(Campo.find_by_nombre "Nombre") %>
+  <div>
+    <%= f.label :nombre %>
+    <%= f.text_field :nombre %>
+  </div>
+<% end %>
 
-<div>
-  <%= f.label :apellido_materno %>
-  <%= f.text_field  :apellido_materno %>
-</div>
+<% if @participante.congreso.campos.include?(Campo.find_by_nombre "Apellido Paterno") %>
+  <div>
+    <%= f.label :apellido_paterno %>
+    <%= f.text_field :apellido_paterno %>
+  </div>
+<% end %>
 
-<div>
-  <%= f.label :email %>
-  <%= f.text_field  :email %>
-</div>
+<% if @participante.congreso.campos.include?(Campo.find_by_nombre "Apellido Materno") %>
+  <div>
+    <%= f.label :apellido_materno %>
+    <%= f.text_field  :apellido_materno %>
+  </div>
+<% end %>
+
+<% if @participante.congreso.campos.include?(Campo.find_by_nombre "Email") %>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field  :email %>
+  </div>
+<% end %>
 
 <div>
   <%= f.label :pago %>

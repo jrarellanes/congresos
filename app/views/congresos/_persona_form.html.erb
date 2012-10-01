@@ -14,85 +14,121 @@
   <% end %>
 <div>
   <fieldset class="inputs" style="padding: 15px;">
-  <div class="field">
-    <%= f.label :persona_tipo,"Tipo de participante" %><br />
-    <%=  f.collection_select :persona_tipo_id, @congreso.persona_tipos ,:id, :nombre, :prompt => false %>
-  </div>
-
-  <div class="field">
-    <%= f.label :nombre %><br />
-    <%= f.text_field :nombre %>
-  </div>
-
-  <div class="field">
-    <%= f.label :apellido_paterno %><br />
-    <%= f.text_field :apellido_paterno %>
-  </div>
-  <div class="field">
-    <%= f.label :apellido_materno %><br />
-    <%= f.text_field :apellido_materno %>
-  </div>
-
-  <div class="field">
-    <p>
-      Escriba su nombre como desea que aparezca
-        en su Gafete:
-    </p>
-    <%= f.label :nombre_gafete %><br />
-    <%= f.text_field :nombre_gafete %>
-  </div>
-
-  <div class="field">
-    <p>
-      Escriba su nombre como desea que aparezca
-      en su Constancia de Participación:
-    </p>
-    <%= f.label :nombre_constancia %><br />
-    <%= f.text_field :nombre_constancia %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-   
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Tipo Participante") %>
     <div class="field">
-    <%= f.label :institucion,"Institución" %><br />
-    <%= f.text_field :institucion %>
-  </div>
-  <% if @congreso.id != 4 %>
-    <div class="field">
-      <%= f.label :extra_uno,"Años de experiencia" %><br />
-      <%= f.select :extra_uno, Array(1..50)%>
+      <%= f.label :persona_tipo,"Tipo de participante" %><br />
+      <%=  f.collection_select :persona_tipo_id, @congreso.persona_tipos ,:id, :nombre, :prompt => false %>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :grado_estudio,"Último grado de estudios" %><br />
-    <%= f.collection_select :grado_estudio_id, @congreso.grado_estudios, :id, :nombre %>
-  </div>
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Nombre") %>
     <div class="field">
-    <%= f.label :ciudad %><br />
-    <%= f.text_field :ciudad %>
-  </div>
+      <%= f.label :nombre %><br />
+      <%= f.text_field :nombre %>
+    </div>
+  <% end %>
 
-   <div class="field">
-        <%= f.label :cp, 'Código Postal' %><br />
-        <%= f.text_field :cp %>
-   </div>
-    
-   <div class="field">
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Apellido Paterno") %>
+    <div class="field">
+      <%= f.label :apellido_paterno %><br />
+      <%= f.text_field :apellido_paterno %>
+    </div>
+  <% end %>
+
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Apellido Materno") %>
+    <div class="field">
+      <%= f.label :apellido_materno %><br />
+      <%= f.text_field :apellido_materno %>
+    </div>
+  <% end %>
+
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Nombre Gafete") %>
+    <div class="field">
+      <p>
+        Escriba su nombre como desea que aparezca
+          en su Gafete:
+      </p>
+      <%= f.label :nombre_gafete %><br />
+      <%= f.text_field :nombre_gafete %>
+    </div>
+  <% end %>
+
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Nombre Constancia") %>
+    <div class="field">
+      <p>
+        Escriba su nombre como desea que aparezca
+        en su Constancia de Participación:
+      </p>
+      <%= f.label :nombre_constancia %><br />
+      <%= f.text_field :nombre_constancia %>
+    </div>
+  <% end %>
+
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Email") %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+    </div>
+  <% end %>
+
+
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Institución") %>
+    <div class="field">
+      <%= f.label :institucion,"Institución" %><br />
+      <%= f.text_field :institucion %>
+    </div>
+  <% end %>
+
+
+  <% if @congreso.id != 4 %>
+    <% if @congreso.campos.include?(Campo.find_by_nombre "Tiempo Experiencia") %>
+      <div class="field">
+        <%= f.label :anos_experiencia,"Años de experiencia" %><br />
+        <%= f.select :anos_experiencia, Array(1..50)%>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Grado Estudio") %>
+    <div class="field">
+      <%= f.label :grado_estudio,"Último grado de estudios" %><br />
+      <%= f.collection_select :grado_estudio_id, @congreso.grado_estudios, :id, :nombre %>
+    </div>
+  <% end %>
+
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Ciudad") %>
+    <div class="field">
+      <%= f.label :ciudad %><br />
+      <%= f.text_field :ciudad %>
+    </div>
+  <% end %>
+
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Código Postal") %>
+    <div class="field">
+          <%= f.label :cp, 'Código Postal' %><br />
+          <%= f.text_field :cp %>
+    </div>
+  <% end %>
+
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Estado") %>
+    <div class="field">
         <%= f.label :estado %>
         <%= f.collection_select :estado_id, @estados,:id, :nombre, :prompt => false %>
     </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :pais,"País" %><br />
-    <%= f.collection_select :pais_id, Pais.all, :id, :nombre %>
-  </div>
-  <div class="field">
-    <%= f.label :telefono,"Teléfono (incluir clave lada)" %><br />
-    <%= f.text_field :telefono %>
-  </div>
+  <% if @congreso.campos.include?(Campo.find_by_nombre "País") %>
+    <div class="field">
+      <%= f.label :pais,"País" %><br />
+      <%= f.collection_select :pais_id, Pais.all, :id, :nombre %>
+    </div>
+  <% end %>
+
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Telefono") %>
+    <div class="field">
+      <%= f.label :telefono,"Teléfono (incluir clave lada)" %><br />
+      <%= f.text_field :telefono %>
+    </div>
+  <% end %>
 
 
     <div class="field">

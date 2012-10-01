@@ -31,7 +31,7 @@ class CongresosController < ApplicationController
   # GET /congresos/new.json
   def new
     @congreso = Congreso.new
-
+    @campos = Campo.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @congreso }
@@ -41,6 +41,7 @@ class CongresosController < ApplicationController
   # GET /congresos/1/edit
   def edit
     @congreso = Congreso.find(params[:id])
+    @campos = Campo.all
   end
 
   # POST /congresos
@@ -51,10 +52,12 @@ class CongresosController < ApplicationController
     
     respond_to do |format|
       if @congreso.save
+        crear_campos_congreso(params, @congreso.id)
         CongresosUser.create(:user_id => current_user.id, :congreso_id => @congreso.id)
         format.html { redirect_to @congreso, notice: 'Congreso registrado correctamente.' }
         format.json { render json: @congreso, status: :created, location: @congreso }
       else
+        @campos = Campo.all
         format.html { render action: "new" }
         format.json { render json: @congreso.errors, status: :unprocessable_entity }
       end
@@ -80,7 +83,11 @@ class CongresosController < ApplicationController
 
     respond_to do |format|
       if @congreso.update_attributes(params[:congreso])
-        format.html { redirect_to @congreso, notice: 'Congreso actualizado correctamente.' }
+        format.html do 
+          eliminar_campos_anteriores(params[:id])
+          crear_campos_congreso(params, params[:id])
+          redirect_to @congreso, notice: 'Congreso actualizado correctamente.'
+        end
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -287,5 +294,21 @@ class CongresosController < ApplicationController
   def is_numeric?
     true if Float(self) rescue false
   end
-  
+
+  def crear_campos_congreso(params, congreso_id)
+    Campo.all.each do |campo|
+      if params.include? campo.nombre
+        CamposCongreso.create(:congreso_id => congreso_id, :campo_id => campo.id)
+      end
+    end
+  end
+
+  def eliminar_campos_anteriores(congreso_id)
+    puts congreso_id
+
+    campos = CamposCongreso.where("congreso_id = ?", 19)
+    campos.each do |campo|
+      
+    end
+  end
 end
