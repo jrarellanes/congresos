@@ -1,28 +1,28 @@
 <% if @participante.congreso.campos.include?(Campo.find_by_nombre "Nombre") %>
   <p>
     <b>Nombre:</b>
-    <%= @participante.nombre %>
+    <%= @participante.nombre unless @participante.nombre.nil? %>
   </p>
 <% end %>
 
 <% if @participante.congreso.campos.include?(Campo.find_by_nombre "Apellido Paterno") %>
   <p>
     <b>Apellido Paterno:</b>
-    <%= @participante.apellido_paterno %>
+    <%= @participante.apellido_paterno unless @participante.apellido_paterno.nil? %>
   </p>
 <% end %>
 
 <% if @participante.congreso.campos.include?(Campo.find_by_nombre "Apellido Materno") %>
   <p>
     <b>Apellido Materno:</b>
-    <%= @participante.apellido_materno %>
+    <%= @participante.apellido_materno unless @participante.apellido_materno.nil? %>
   </p>
 <% end %>
 
 <% if @participante.congreso.campos.include?(Campo.find_by_nombre "Email") %>
   <p>
     <b>Email:</b>
-    <%= @participante.email %>
+    <%= @participante.email unless @participante.email.nil? %>
   </p>
 <% end %>
 
@@ -56,28 +56,28 @@
 <% if @participante.congreso.campos.include?(Campo.find_by_nombre "Institución") %>
   <p>
     <b>Institución:</b>
-    <%= @participante.institucion %>
+    <%= @participante.institucion unless @participante.institucion.nil? %>
   </p>
 <% end %>
 
 <% if @participante.congreso.campos.include?(Campo.find_by_nombre "Ciudad") %>
   <p>
     <b>Ciudad:</b>
-    <%= @participante.ciudad %>
+    <%= @participante.ciudad unless @participante.ciudad.nil? %>
   </p>
 <% end %>
 
 <% if @participante.congreso.campos.include?(Campo.find_by_nombre "Estado") %>
   <p>
     <b>Estado:</b>
-    <%= @participante.estado.nombre %>
+    <%= @participante.estado.nombre unless @participante.estado.nil? %>
   </p>
 <% end %>
 
 <% if @participante.congreso.campos.include?(Campo.find_by_nombre "Tipo Participante") %>
   <p>
     <b>Tipo de asistente:</b>
-    <%= @participante.persona_tipo.nombre %>
+    <%= @participante.persona_tipo.nombre unless @participante.persona_tipo.nil? %>
   </p>
 <% end %>
 
