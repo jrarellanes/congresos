@@ -107,7 +107,7 @@
     <td><%= i %></td>
     <td><%= persona.nombre_completo %></td>
     <% if @congreso.campos.include?(Campo.find_by_nombre "Tipo Participante") %>
-      <td><%= persona.persona_tipo.nombre %> </td>
+      <td><%= persona.persona_tipo.nombre unless persona.persona_tipo.nil?%> </td>
     <% end %>
     <% if current_user_session and (current_user.is_admin? or congreso_propio?(@congreso)) %>
       <td><%= link_to 'Editar',edit_persona_url(persona) %></td>
