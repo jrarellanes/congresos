@@ -60,6 +60,13 @@
   </p>
 <% end %>
 
+<% if @participante.congreso.campos.include?(Campo.find_by_nombre "Puesto") %>
+  <p>
+    <b>Puesto:</b>
+    <%= @participante.puesto unless @participante.puesto.nil? %>
+  </p>
+<% end %>
+
 <% if @participante.congreso.campos.include?(Campo.find_by_nombre "Ciudad") %>
   <p>
     <b>Ciudad:</b>

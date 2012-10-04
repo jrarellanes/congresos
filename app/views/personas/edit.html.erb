@@ -39,6 +39,13 @@
   </div>
 <% end %>
 
+<% if @participante.congreso.campos.include?(Campo.find_by_nombre "Puesto") %>
+  <div>
+    <%= f.label :puesto %>
+    <%= f.text_field  :puesto %>
+  </div>
+<% end %>
+
 <div>
   <%= f.label :pago %>
   <%= f.check_box :pago %>
