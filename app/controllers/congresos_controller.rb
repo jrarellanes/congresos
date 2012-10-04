@@ -304,9 +304,7 @@ class CongresosController < ApplicationController
   end
 
   def eliminar_campos_anteriores(congreso_id)
-    campos = CamposCongreso.where("congreso_id = ?", congreso_id)
-    campos.each do |campo|
-      
-    end
+    sql = ActiveRecord::Base.connection();
+    sql.execute "delete from campos_congresos where congreso_id = #{congreso_id};";
   end
 end
