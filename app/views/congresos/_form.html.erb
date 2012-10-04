@@ -63,7 +63,7 @@
     <% @campos.each do |campo| %>
       <div>
         <%=  "#{campo.nombre}" %>
-        <%= check_box_tag "#{campo.nombre}" %>
+        <%= check_box_tag "#{campo.id}" %>
       </div>
     <% end %>
   </div>

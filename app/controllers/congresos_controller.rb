@@ -297,16 +297,14 @@ class CongresosController < ApplicationController
 
   def crear_campos_congreso(params, congreso_id)
     Campo.all.each do |campo|
-      if params.include? campo.nombre
+      if params.include? campo.id.to_s
         CamposCongreso.create(:congreso_id => congreso_id, :campo_id => campo.id)
       end
     end
   end
 
   def eliminar_campos_anteriores(congreso_id)
-    puts congreso_id
-
-    campos = CamposCongreso.where("congreso_id = ?", 19)
+    campos = CamposCongreso.where("congreso_id = ?", congreso_id)
     campos.each do |campo|
       
     end
