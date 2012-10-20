@@ -62,8 +62,13 @@
   <div>
     <% @campos.each do |campo| %>
       <div>
+        <%  if @congreso.campos.include? campo %>
+          <% checked = true %>
+        <% else %>
+          <% checked = false %>
+        <% end %>
         <%=  "#{campo.nombre}" %>
-        <%= check_box_tag "#{campo.id}" %>
+        <%= check_box_tag "#{campo.id}", {}, checked %>
       </div>
     <% end %>
   </div>

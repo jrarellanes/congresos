@@ -86,13 +86,11 @@
   <% end %>
 
 
-  <% if @congreso.id != 4 %>
-    <% if @congreso.campos.include?(Campo.find_by_nombre "Tiempo Experiencia") %>
-      <div class="field">
-        <%= f.label :anos_experiencia,"Años de experiencia" %><br />
-        <%= f.select :anos_experiencia, Array(1..50)%>
-      </div>
-    <% end %>
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Tiempo Experiencia") %>
+    <div class="field">
+      <%= f.label :anos_experiencia,"Años de experiencia" %><br />
+      <%= f.select :anos_experiencia, Array(1..50)%>
+    </div>
   <% end %>
 
   <% if @congreso.campos.include?(Campo.find_by_nombre "Grado Estudio") %>
