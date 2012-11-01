@@ -1,0 +1,4 @@
+<% if !@valido %>
+  alert("Se empalma horario de talleres");
+  $("#taller_<%= @selected_id %>").attr("checked",false);
+<% end %>

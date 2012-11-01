@@ -1,4 +1,14 @@
-
+<script type="text/javascript">
+  function validar_horario_talleres(selected){
+    //alert(seleccionado.value);
+    elements = $("#lista_de_talleres :checkbox:checked");
+    els=[];
+    for(var x = 0; x < elements.length; x++){
+      els[x] = elements[x].value
+    }
+    $.get("<%= validar_horario_taller_url %>" + ".js",{ elementos :els, selected_id : selected.value, selected_checked : selected.checked });
+  }
+</script>
 
 <%= form_for(@persona, :url => congreso_registrar_path(@congreso), :method => "post") do |f| %>
   <% if @persona.errors.any? %>
@@ -144,11 +154,11 @@
   <fieldset>
     <h5 class="legend"><span class="label"> Excursiónes </span></h5>
 <br/>
-    <ol>
+    <ol id="lista_de_talleres">
    
       <% @congreso.talleres_con_cupo.sort_by{|taller| taller.numero}.each do |taller| %>
       <li>
-        <%= check_box_tag "persona[taller_ids][]", taller.id, persona_inscrita_en_taller?(taller) -%>
+        <%= check_box_tag "persona[taller_ids][]", taller.id, persona_inscrita_en_taller?(taller),  :id => "taller_#{taller.id}", :onchange => "validar_horario_talleres(this);" -%>
         <%= raw("<span for='persona_taller_ids_' class='opt'>#{taller.nombre}</span>") -%>
         <br/>
         

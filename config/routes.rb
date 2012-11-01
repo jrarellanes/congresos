@@ -17,6 +17,8 @@ Congresos::Application.routes.draw do
 
   get "participantes/index"
 
+  get "talleres/validar_horario/" => "talleres#validar_horario_taller", :as => :validar_horario_taller
+
   resources :talleres
 
   resources :congresos

@@ -75,7 +75,7 @@ class TalleresController < ApplicationController
   # PUT /talleres/1.json
   def update
     @taller = Taller.find(params[:id])
-
+    @taller.hora = "#{params[:date][:hour]}:#{params[:date][:minute]}"
     respond_to do |format|
       if @taller.update_attributes(params[:taller])
         format.html { redirect_to @taller, notice: 'Taller actualizado correctamente.' }
@@ -101,7 +101,37 @@ class TalleresController < ApplicationController
       flash[:notice] = "Solo puedes eliminar tus propios talleres"
       redirect_to talleres_url
     end
-
     
+    
+  end
+
+  def validar_horario_taller
+    @valido = true
+    if params[:selected_checked]
+      @selected_id = params[:selected_id]
+      taller_actual = Taller.find params[:selected_id]
+      params[:elementos].each do |taller_id|
+        unless taller_id == params[:selected_id]
+          taller = Taller.find taller_id
+          if taller_actual.hora.split(":")[0] == taller.hora.split(":")[0]
+            @valido = false
+          else
+            if taller_actual.hora.split(":")[0] < taller.hora.split(":")[0]
+              if taller_actual.hora.split(":")[1] > taller.hora.split(":")[0]
+                @valido = false
+              end
+            else
+              if taller_actual.hora.split(":")[0] < taller.hora.split(":")[1]
+                @valido = false
+              end
+            end
+          end
+        end
+      end
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 end
