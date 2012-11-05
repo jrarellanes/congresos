@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001211520) do
+ActiveRecord::Schema.define(:version => 20121105183439) do
 
   create_table "campos", :force => true do |t|
     t.string   "nombre"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20121001211520) do
     t.datetime "constancias_bg_updated_at"
     t.boolean  "pago"
     t.datetime "limite_registro"
+    t.integer  "cupo"
   end
 
   create_table "congresos_users", :id => false, :force => true do |t|
@@ -157,6 +158,12 @@ ActiveRecord::Schema.define(:version => 20121001211520) do
   create_table "personas_talleres", :id => false, :force => true do |t|
     t.integer "persona_id"
     t.integer "taller_id"
+  end
+
+  create_table "registro_cl2s", :force => true do |t|
+    t.integer  "persona_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "talleres", :force => true do |t|

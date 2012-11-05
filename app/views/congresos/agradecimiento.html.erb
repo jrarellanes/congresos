@@ -3,14 +3,41 @@
 
 <h1> Muchas gracias por su participación. Su registro ha concluido con exito.</h1>
 
-<div>
-  <p>
-    <br>
-    <h3>Su numero de registro es el <%= @participante.id %></h3>
-  </p>
-</div>
-<div>
-  <% #if @participante.congreso.pago and @datos_lucrativos%>
-    <% #link_to "Realizar pago para: #{@participante.nombre_completo}", pagos_url(@participante, "#{definir_precio(@participante)}0", "n68") %>
-  <% #end %>
-</div>
+<% unless @participante.congreso.id == 14 || @participante.congreso.id == 15 || @participante.congreso.id == 16 %>
+
+
+
+    <div>
+      <p>
+        <br>
+        <h3>Su número de registro es el <%= @participante.id %></h3>
+      </p>
+    </div>
+    <div>
+      <% #if @participante.congreso.pago and @datos_lucrativos%>
+        <% #link_to "Realizar pago para: #{@participante.nombre_completo}", pagos_url(@participante, "#{definir_precio(@participante)}0", "n68") %>
+      <% #end %>
+    </div>
+
+
+
+    <% else %>
+
+
+
+    <div>
+      <p>
+        <br>
+        <h3>Su numero de registro es el <%= @participante.registro_cl2.id %></h3>
+      </p>
+    </div>
+    <div>
+      <% #if @participante.congreso.pago and @datos_lucrativos%>
+        <% #link_to "Realizar pago para: #{@participante.nombre_completo}", pagos_url(@participante, "#{definir_precio(@participante)}0", "n68") %>
+      <% #end %>
+    </div>
+
+
+
+
+<% end %>

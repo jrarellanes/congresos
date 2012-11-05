@@ -4,6 +4,7 @@ class CongresosController < ApplicationController
   before_filter :authenticate, :except => [:registro, :registrar, :confirmar_pago, :agradecimiento, :busqueda, :buscar, :paso_pago]
   before_filter :verificar_origen, :only => :confirmar_pago
   before_filter :fecha_limite_registro, :only => :registro
+  before_filter :validar_cupo, :only => [:registro, :registrar]
 # before_filter {|edit|  edit.congreso_propio?(Congreso.find(params[:id]))}
   # GET /congresos
   # GET /congresos.json
@@ -131,6 +132,7 @@ class CongresosController < ApplicationController
     @persona = Persona.new(params[:persona])
     @persona.congreso = @congreso
     estatus = true
+    
     unless params[:persona][:taller_ids] == nil
       if @congreso.id == 3 && params[:persona][:taller_ids].size > 1
         estatus = false
@@ -144,7 +146,10 @@ class CongresosController < ApplicationController
       @persona.talleres.each do |taller|
         precio += taller.precio
       end
-
+      #Son los 3 tracks de campus link 2.0
+      if @congreso.id == 14 || @congreso.id == 15 || @congreso.id == 16
+        RegistroCl2.create(:persona_id => @persona.id)
+      end
       if params[:factura] == "true"
         redirect_to new_facturas_url(@persona), :notice => "Por favor introduzca los datos de facturación"
       else
@@ -306,5 +311,15 @@ class CongresosController < ApplicationController
   def eliminar_campos_anteriores(congreso_id)
     sql = ActiveRecord::Base.connection();
     sql.execute "delete from campos_congresos where congreso_id = #{congreso_id};";
+  end
+
+  def validar_cupo
+    congreso = Congreso.find params[:id]
+    unless congreso.cupo.nil?
+      if Persona.where(:congreso_id => congreso.id).count >= congreso.cupo
+        flash[:notice] = "Cupo lleno"
+        redirect_to root_path
+      end
+    end
   end
 end

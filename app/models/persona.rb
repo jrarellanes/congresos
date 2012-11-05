@@ -18,6 +18,7 @@ class Persona < ActiveRecord::Base
   belongs_to :congreso
   belongs_to :estado
   has_one :factura
+  has_one :registro_cl2
   belongs_to :persona_tipo
   belongs_to :grado_estudio
   belongs_to :pais

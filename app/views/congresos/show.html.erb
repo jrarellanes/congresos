@@ -36,6 +36,12 @@
   <%= l @congreso.fecha_fin, :format => :medium %>
 </p>
 
+
+<p>
+  <b>Cupo:</b>
+  <%= @congreso.cupo.nil? ? "Ilimitado" : @congreso.cupo   %>
+</p>
+
 <p>
   <b>Lugar:</b>
   <%= @congreso.lugar %>
