@@ -34,6 +34,7 @@ module XlsxHelper
         campo_estado = true if congreso.campos.include?(Campo.find_by_nombre "estado")
         campo_pais = true if congreso.campos.include?(Campo.find_by_nombre "País")
         campo_telefono = true  if congreso.campos.include?(Campo.find_by_nombre "Telefono")
+        campo_carrera = true if congreso.campos.include?(Campo.find_by_nombre "Carrera")
         
         encabezado = []
         encabezado << 'Tipo de participante' if campo_tipo_participante
@@ -52,6 +53,7 @@ module XlsxHelper
         encabezado << 'Estado' if campo_estado
         encabezado << 'País' if campo_pais
         encabezado << 'Telefono' if campo_telefono
+        encabezado << 'Carrera' if campo_carrera
 
         sheet.add_row(encabezado)
 
@@ -75,6 +77,7 @@ module XlsxHelper
           persona << row_person.estado.nombre unless row_person.estado.nil? if campo_estado
           persona << row_person.pais.nombre unless row_person.pais.nil? if campo_pais
           persona << row_person.telefono if campo_telefono
+          persona << row_person.carrera if campo_carrera
           persona << row_person.talleres.join(",") unless row_person.talleres.size == 0
 
           sheet.add_row(persona)
@@ -101,6 +104,7 @@ module XlsxHelper
           persona << row_person.estado.nombre unless row_person.estado.nil? if campo_estado
           persona << row_person.pais.nombre unless row_person.pais.nil? if campo_pais
           persona << row_person.telefono if campo_telefono
+          persona << row_person.carrera if campo_carrera
           persona << row_person.talleres.join(",") unless row_person.talleres.size == 0
           sheet.add_row(persona)
 

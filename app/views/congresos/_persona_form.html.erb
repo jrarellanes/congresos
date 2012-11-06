@@ -88,6 +88,13 @@
     </div>
   <% end %>
 
+  <% if @congreso.campos.include?(Campo.find_by_nombre "Carrera") %>
+    <div class="field">
+      <%= f.label :institucion,"Institución" %><br />
+      <%= f.text_field :institucion %>
+    </div>
+  <% end %>
+
  <% if @congreso.campos.include?(Campo.find_by_nombre "Puesto") %>
     <div class="field">
       <%= f.label :puesto %><br />
