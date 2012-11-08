@@ -11,6 +11,7 @@ class Persona < ActiveRecord::Base
   #validates :cp, :presence => true
   validates_uniqueness_of :email, :scope => [:congreso_id], :if => Proc.new {|person| person.congreso.campos.include? Campo.find_by_nombre "Email"}
 
+  
   validates :institucion, :presence => true, :if => Proc.new {|person| person.congreso.campos.include? Campo.find_by_nombre "Institución"}
   validates :ciudad, :presence => true, :if => Proc.new {|person| person.congreso.campos.include? Campo.find_by_nombre "Ciudad"}
 
@@ -23,7 +24,29 @@ class Persona < ActiveRecord::Base
   belongs_to :grado_estudio
   belongs_to :pais
 
-   has_attached_file :comprobante_pago, :styles => { :medium => "300x300>"}
+  before_destroy :eliminar_rcl2
+
+   has_attached_file :comprobante_pago, :styles => { :medium => "300x300"}
+
+  validate :validar_nombre_completo
+
+  def eliminar_rcl2
+    p = RegistroCl2.find_by_persona_id self.id
+    p.destroy if p.respond_to? "destroy"
+  end
+
+  def validar_nombre_completo
+    if self.congreso.campos.include? (Campo.find_by_nombre "Apellido Paterno") and self.congreso.campos.include? (Campo.find_by_nombre "Apellido Materno") and self.congreso.campos.include? (Campo.find_by_nombre "Nombre") and self.congreso.campos.include? (Campo.find_by_nombre "Email")
+    persona = Persona.where("upper(nombre) = ? AND upper(apellido_paterno) = ? AND upper(apellido_materno) = ? AND (congreso_id = 14 OR congreso_id = 15 OR congreso_id = 16)", self.nombre.upcase, self.apellido_paterno.upcase, self.apellido_materno.upcase)
+    persona2 = Persona.where("upper(email) = ? AND (congreso_id = 16 OR congreso_id = 15 OR congreso_id = 14)", self.email.upcase)
+
+    if persona.size > 0 or persona2.size > 0
+      self.errors[:base] << "Este usuario ya ha sido registrado"
+    end
+
+    end
+
+  end
 
   def nombre_completo
     "#{nombre unless nombre.nil?} #{apellido_paterno unless apellido_paterno.nil?} #{apellido_materno unless apellido_materno.nil?}"
