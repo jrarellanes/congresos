@@ -147,7 +147,7 @@ class CongresosController < ApplicationController
         precio += taller.precio
       end
       #Son los 3 tracks de campus link 2.0
-      if @congreso.id == 31 || @congreso.id == 32 || @congreso.id == 33
+      if @congreso.id == 14 || @congreso.id == 15 || @congreso.id == 16
         RegistroCl2.create(:persona_id => @persona.id)
       end
       if params[:factura] == "true"
