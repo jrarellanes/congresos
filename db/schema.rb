@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121106013615) do
+ActiveRecord::Schema.define(:version => 20130303032216) do
 
   create_table "campos", :force => true do |t|
     t.string   "nombre"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20121106013615) do
     t.boolean  "pago"
     t.datetime "limite_registro"
     t.integer  "cupo"
+    t.boolean  "requiere_horario"
   end
 
   create_table "congresos_users", :id => false, :force => true do |t|
@@ -94,6 +95,15 @@ ActiveRecord::Schema.define(:version => 20121106013615) do
     t.datetime "updated_at"
     t.string   "nombre"
     t.integer  "congreso_id"
+  end
+
+  create_table "horarios", :force => true do |t|
+    t.string   "nombre"
+    t.string   "descripcion"
+    t.integer  "cupo"
+    t.integer  "congreso_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "municipios", :force => true do |t|

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nombre: MyString
+  descripcion: MyString
+  cupo: 1
+  congreso_id: 1
+
+two:
+  nombre: MyString
+  descripcion: MyString
+  cupo: 1
+  congreso_id: 1

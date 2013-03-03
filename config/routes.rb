@@ -1,4 +1,6 @@
 Congresos::Application.routes.draw do
+  resources :horarios
+
   get "congresos/:id/busqueda" => "congresos#busqueda", :as => :busqueda
 
   get "paso_pago/:no_items" => "congresos#paso_pago", :as => :paso_pago

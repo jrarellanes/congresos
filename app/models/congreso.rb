@@ -14,6 +14,7 @@ class Congreso < ActiveRecord::Base
   has_many :talleres, :class_name => "Taller", :order => "nombre", :dependent => :delete_all
   has_many :personas, :dependent => :delete_all
   has_many :persona_tipos, :order => "nombre", :dependent => :delete_all
+  has_many :horarios
 
   has_attached_file :imagen, :styles => { :presentacion => "400x300>"}
   

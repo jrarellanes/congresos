@@ -135,7 +135,7 @@ class CongresosController < ApplicationController
     estatus = true
     
     unless params[:persona][:taller_ids] == nil
-      if @congreso.id == 18 && params[:persona][:taller_ids].size > 1
+      if @congreso.id == 34 && params[:persona][:taller_ids].size > 1
         estatus = false
         @persona.errors.add("talleres", "No puede seleccionar mas de un taller")
       end
