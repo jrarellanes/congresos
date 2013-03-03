@@ -48,7 +48,7 @@
 </p>
 <% unless @congreso.talleres == nil or @congreso.talleres == [] %>
 <div id="talleres" style="margin: 12px;">
-    <h3 >Excursiónes</h3>
+    <h3 >Talleres o Visitas</h3>
     <ul>
       <% @congreso.talleres.each do |taller| %>
           <li><%= link_to taller.nombre, taller_path(taller) %></li>
@@ -142,7 +142,7 @@
 
 </div>
 
-<%= link_to 'Registrar excursión', new_taller_url %>
+<%= link_to 'Registrar Taller o Visita', new_taller_url %>
 
 
     <style>

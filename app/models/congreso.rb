@@ -57,15 +57,9 @@ class Congreso < ActiveRecord::Base
 
   def validacion_fecha_limite_registro
     unless limite_registro.nil? 
-      if limite_registro < fecha_inicio
-        errors.add(:limite_registro, "La fecha límite de registro al curso debe ser mayor que la de inicio")
-      end
-    end
-    unless limite_registro.nil?
       if limite_registro > fecha_fin
-        errors.add(:limite_registro, "La fecha límite de registro al curso debe ser menor que la de fin")
+        errors.add(:limite_registro, "La fecha límite de registro al curso debe ser menor que la fecha de fin.")
       end
     end
-
   end
 end

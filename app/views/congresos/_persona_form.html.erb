@@ -159,7 +159,7 @@
   <br/>
   <% unless @congreso.talleres_con_cupo.empty? %>
   <fieldset>
-    <h5 class="legend"><span class="label"> Excursiónes </span></h5>
+    <h5 class="legend"><span class="label"> Talleres o Visitas </span></h5>
 <br/>
     <ol id="lista_de_talleres">
    
@@ -170,7 +170,7 @@
         <br/>
         
           <% unless @congreso.id == 3 %>
-            Cuota: <%= number_to_currency(taller.precio,:unit => " ")%> <%= " Dolares" %>
+            Precio: <%= number_to_currency(taller.precio) %> <%#,:unit => "USD")%>
           <% end %>
        
       </li>

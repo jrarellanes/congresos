@@ -91,6 +91,7 @@ class CongresosController < ApplicationController
         end
         format.json { head :ok }
       else
+        @campos = Campo.all
         format.html { render action: "edit" }
         format.json { render json: @congreso.errors, status: :unprocessable_entity }
       end
@@ -134,7 +135,7 @@ class CongresosController < ApplicationController
     estatus = true
     
     unless params[:persona][:taller_ids] == nil
-      if @congreso.id == 3 && params[:persona][:taller_ids].size > 1
+      if @congreso.id == 18 && params[:persona][:taller_ids].size > 1
         estatus = false
         @persona.errors.add("talleres", "No puede seleccionar mas de un taller")
       end
@@ -143,13 +144,16 @@ class CongresosController < ApplicationController
     if estatus && @persona.save
       precio = @congreso.precio
       @persona.update_attribute("pago", true) unless @congreso.pago
-      @persona.talleres.each do |taller|
+      params[:persona][:taller_ids].each do |taller_id|
+        taller = Taller.find taller_id
         precio += taller.precio
       end
       #Son los 3 tracks de campus link 2.0
+=begin
       if @congreso.id == 14 || @congreso.id == 15 || @congreso.id == 16
         RegistroCl2.create(:persona_id => @persona.id)
       end
+=end
       if params[:factura] == "true"
         redirect_to new_facturas_url(@persona), :notice => "Por favor introduzca los datos de facturación"
       else
@@ -160,7 +164,7 @@ class CongresosController < ApplicationController
         #if @congreso.pago
           #redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
         #else
-        if precio> 0
+        if precio> 0 && @congreso.id != 17
           redirect_to paso_pago_url @persona.talleres.count
         else
           redirect_to agradecimiento_registro_url @persona
