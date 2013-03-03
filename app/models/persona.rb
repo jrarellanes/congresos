@@ -29,7 +29,7 @@ class Persona < ActiveRecord::Base
 
    has_attached_file :comprobante_pago, :styles => { :medium => "300x300"}
 
-  validate :validar_nombre_completo
+  #validate :validar_nombre_completo
 
   def eliminar_rcl2
     p = RegistroCl2.find_by_persona_id self.id

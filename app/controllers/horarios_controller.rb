@@ -39,6 +39,11 @@ class HorariosController < ApplicationController
   # GET /horarios/1/edit
   def edit
     @horario = Horario.find(params[:id])
+    if current_user.is_admin?
+      @congresos = Congreso.all(:order => "nombre")
+    else
+      @congresos = current_user.congresos(:order => "nombre")
+    end
   end
 
   # POST /horarios
@@ -51,6 +56,11 @@ class HorariosController < ApplicationController
         format.html { redirect_to @horario, notice: 'Horario was successfully created.' }
         format.json { render json: @horario, status: :created, location: @horario }
       else
+        if current_user.is_admin?
+          @congresos = Congreso.all(:order => "nombre")
+        else
+          @congresos = current_user.congresos(:order => "nombre")
+        end
         format.html { render action: "new" }
         format.json { render json: @horario.errors, status: :unprocessable_entity }
       end

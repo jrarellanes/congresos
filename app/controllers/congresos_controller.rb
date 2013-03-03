@@ -131,33 +131,39 @@ class CongresosController < ApplicationController
   def registrar
     @congreso = Congreso.find(params[:id])
     @persona = Persona.new(params[:persona])
-    if @congreso.id == 18 && params[:persona].include?(:comprobante_pago)
+    if @congreso.id == 34 && params[:persona].include?(:comprobante_pago)
       @persona.congreso = @congreso
       #esta variable se tiene que cambiar por estatus_talleres
       estatus = true
       estatus_horarios = true
+      estatus_sin_horario = true
 
       unless params[:persona][:horario_ids] == nil
-        if @congreso.id == 18 && params[:persona][:horario_ids].size > 1
+        if @congreso.id == 34 && params[:persona][:horario_ids].size > 1
           estatus_horarios = false
           @persona.errors[:base] << "Solo puede seleccionar un horario."
         end
+      else
+        estatus_sin_horario = false
+        @persona.errors[:base] << "Debe seleccionar un horario."
       end
 
 
       unless params[:persona][:taller_ids] == nil
-        if @congreso.id == 18 && params[:persona][:taller_ids].size > 1
+        if @congreso.id == 34 && params[:persona][:taller_ids].size > 1
           estatus = false
           @persona.errors[:base] << "No puede seleccionar más de un taller"
         end
       end
 
-      if estatus && @persona.save
+      if estatus && estatus_horarios && estatus_sin_horario && @persona.save
         precio = @congreso.precio
         @persona.update_attribute("pago", true) unless @congreso.pago
-        params[:persona][:taller_ids].each do |taller_id|
-          taller = Taller.find taller_id
-          precio += taller.precio
+        if params[:persona].include?(:taller_ids)
+          params[:persona][:taller_ids].each do |taller_id|
+            taller = Taller.find taller_id
+            precio += taller.precio
+          end
         end
         #Son los 3 tracks de campus link 2.0
 =begin
@@ -175,7 +181,7 @@ class CongresosController < ApplicationController
           #if @congreso.pago
             #redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
           #else
-          if precio> 0 && @congreso.id != 18
+          if precio> 0 && @congreso.id != 34
             redirect_to paso_pago_url @persona.talleres.count
           else
             redirect_to agradecimiento_registro_url @persona
@@ -190,6 +196,7 @@ class CongresosController < ApplicationController
         flash[:notice] = " "
         flash[:notice] += "No es posible seleccionar más de un taller. " unless estatus
         flash[:notice] += "No es posible agregar más de un horario." unless estatus_horarios
+        flash[:notice] = "Debe seleccionar un horario." unless estatus_sin_horario
         render :action => "registro"
       end
     else
