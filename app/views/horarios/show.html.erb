@@ -20,6 +20,41 @@
   <%= @horario.congreso_id %>
 </p>
 
+<div>
+  <h2>Personas inscritas en este horario.</h2>
+  <table>
+  <tr>
+    <th>Número</th>
+      <th>Nombre</th>
+    <% if @horario.congreso.campos.include?(Campo.find_by_nombre "Tipo Participante") %>
+      <th>Tipo de Participante</th>
+    <% end %>
+
+      <th>Editar</th>
+      <th>Detalles</th>
+      <th>Eliminar</th>
+
+  </tr>
+  <% i = 1 %>
+  <% @horario.personas.order(:created_at).each do |persona| %>
+    <tr>
+      <td><%= i %></td>
+      <td><%= persona.nombre_completo %></td>
+      <% if @horario.congreso.campos.include?(Campo.find_by_nombre "Tipo Participante") %>
+        <td><%= persona.persona_tipo.nombre unless persona.persona_tipo.nil?%> </td>
+      <% end %>
+
+        <td><%= link_to 'Editar',edit_persona_url(persona) %></td>
+        <td><%= link_to 'Ver', persona_url(persona) %></td>
+        <td><%= link_to 'Eliminar', persona_url(persona), :method => :delete %></td>
+
+    <% i += 1 %>
+  </tr>
+<% end %>
+</table>
+
+</div>
+
 
 <%= link_to 'Edit', edit_horario_path(@horario) %> |
 <%= link_to 'Back', horarios_path %>

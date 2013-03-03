@@ -16,6 +16,7 @@ class Persona < ActiveRecord::Base
   validates :ciudad, :presence => true, :if => Proc.new {|person| person.congreso.campos.include? Campo.find_by_nombre "Ciudad"}
 
   has_and_belongs_to_many :talleres, :class_name => "Taller", :order => "nombre"
+  has_and_belongs_to_many :horarios, :class_name => "Horario", :order => "nombre"
   belongs_to :congreso
   belongs_to :estado
   has_one :factura

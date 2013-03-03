@@ -131,51 +131,74 @@ class CongresosController < ApplicationController
   def registrar
     @congreso = Congreso.find(params[:id])
     @persona = Persona.new(params[:persona])
-    @persona.congreso = @congreso
-    estatus = true
-    
-    unless params[:persona][:taller_ids] == nil
-      if @congreso.id == 34 && params[:persona][:taller_ids].size > 1
-        estatus = false
-        @persona.errors.add("talleres", "No puede seleccionar mas de un taller")
-      end
-    end
+    if @congreso.id == 18 && params[:persona].include?(:comprobante_pago)
+      @persona.congreso = @congreso
+      #esta variable se tiene que cambiar por estatus_talleres
+      estatus = true
+      estatus_horarios = true
 
-    if estatus && @persona.save
-      precio = @congreso.precio
-      @persona.update_attribute("pago", true) unless @congreso.pago
-      params[:persona][:taller_ids].each do |taller_id|
-        taller = Taller.find taller_id
-        precio += taller.precio
-      end
-      #Son los 3 tracks de campus link 2.0
-=begin
-      if @congreso.id == 14 || @congreso.id == 15 || @congreso.id == 16
-        RegistroCl2.create(:persona_id => @persona.id)
-      end
-=end
-      if params[:factura] == "true"
-        redirect_to new_facturas_url(@persona), :notice => "Por favor introduzca los datos de facturación"
-      else
-        #redirect_to pagos_url(@persona,"#{precio.to_s}0","n208")
-        #Confirmamos el pago siempre...
-
-        #redirect_to @persona, :notice => "Participante registrado exitosamente"
-        #if @congreso.pago
-          #redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
-        #else
-        if precio> 0 && @congreso.id != 17
-          redirect_to paso_pago_url @persona.talleres.count
-        else
-          redirect_to agradecimiento_registro_url @persona
+      unless params[:persona][:horario_ids] == nil
+        if @congreso.id == 18 && params[:persona][:horario_ids].size > 1
+          estatus_horarios = false
+          @persona.errors[:base] << "Solo puede seleccionar un horario."
         end
-        
-        #end
+      end
+
+
+      unless params[:persona][:taller_ids] == nil
+        if @congreso.id == 18 && params[:persona][:taller_ids].size > 1
+          estatus = false
+          @persona.errors[:base] << "No puede seleccionar más de un taller"
+        end
+      end
+
+      if estatus && @persona.save
+        precio = @congreso.precio
+        @persona.update_attribute("pago", true) unless @congreso.pago
+        params[:persona][:taller_ids].each do |taller_id|
+          taller = Taller.find taller_id
+          precio += taller.precio
+        end
+        #Son los 3 tracks de campus link 2.0
+=begin
+        if @congreso.id == 14 || @congreso.id == 15 || @congreso.id == 16
+          RegistroCl2.create(:persona_id => @persona.id)
+        end
+=end
+        if params[:factura] == "true"
+          redirect_to new_facturas_url(@persona), :notice => "Por favor introduzca los datos de facturación"
+        else
+          #redirect_to pagos_url(@persona,"#{precio.to_s}0","n208")
+          #Confirmamos el pago siempre...
+
+          #redirect_to @persona, :notice => "Participante registrado exitosamente"
+          #if @congreso.pago
+            #redirect_to congreso_confirmar_pago_path(@congreso.id,@persona.id,'00000',"PAGOS"), :notice => "Participante registrado exitosamente"
+          #else
+          if precio> 0 && @congreso.id != 18
+            redirect_to paso_pago_url @persona.talleres.count
+          else
+            redirect_to agradecimiento_registro_url @persona
+          end
+
+          #end
+        end
+      else
+        @estados = Estado.all
+        @datos_lucrativos = false
+        @datos_lucrativos = true if @congreso.talleres.where("precio > 0").count > 0 || @congreso.precio > 0
+        flash[:notice] = " "
+        flash[:notice] += "No es posible seleccionar más de un taller. " unless estatus
+        flash[:notice] += "No es posible agregar más de un horario." unless estatus_horarios
+        render :action => "registro"
       end
     else
       @estados = Estado.all
-      flash[:notice] = "No es posible seleccionar más de un taller" unless estatus
-      render :action => "registro"
+      @datos_lucrativos = false
+      @datos_lucrativos = true if @congreso.talleres.where("precio > 0").count > 0 || @congreso.precio > 0
+      @persona.errors[:base] << "Debe adjuntar comprobante de pago."
+      flash[:notice] = "Debe adjuntar comprobante de pago."
+       render :action => "registro"
     end
   end
 

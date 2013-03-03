@@ -157,10 +157,25 @@
       <%= hidden_field_tag(:factura, false) %>
     </div>
   <br/>
+
+  <% unless @congreso.horarios_con_cupo.empty? %>
+  <fieldset>
+    <h5 class="legend"><span class="label"> Horarios </span></h5> <br />
+    <ol id="lista_de_horarios">
+      <% @congreso.horarios_con_cupo.each do |horario| %>
+        <li>
+          <%= check_box_tag "persona[horario_ids][]", horario.id, persona_en_horario?(horario),  :id => "horario_#{horario.id}" -%>
+          <%= raw("<span for='persona_horario_ids_' class='opt'>#{horario.nombre}</span>") -%>
+        </li>
+      <% end %>
+    </ol>
+  </fieldset>
+  <% end %>
+
   <% unless @congreso.talleres_con_cupo.empty? %>
   <fieldset>
     <h5 class="legend"><span class="label"> Talleres o Visitas </span></h5>
-<br/>
+    <br/>
     <ol id="lista_de_talleres">
    
       <% @congreso.talleres_con_cupo.sort_by{|taller| taller.numero}.each do |taller| %>
@@ -181,6 +196,7 @@
 
 
   <% if @datos_lucrativos %>
+   
     <!--
     <input type="radio" onchange="$('#factura').val(true);" name="group1">Si requiero factura</input>
     <input type="radio" onchange="$('#factura').val(false);" name="group1" checked>No requiero factura</input><br/>
@@ -212,12 +228,12 @@
 
     </div>
     -->
-    <!--
+    <% if @congreso.pago %>
       <div style="margin: 10px; margin-left: 0px;">
-        <%  # f.label :comprobante_pago, "Comprobante de pago" %>
-        <% #f.file_field :comprobante_pago, :style => "margin: 8px;" %>
+        <%= f.label :comprobante_pago, "Comprobante de pago" %>
+        <%= f.file_field :comprobante_pago, :style => "margin: 8px;" %>
       </div>
-    -->
+    <% end %>
   <% end %>
 
   <br/>

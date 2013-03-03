@@ -1,11 +1,19 @@
 module CongresosHelper
   def persona_inscrita_en_taller?(taller)
     if @persona && !@persona.nombre.nil?
-          @persona.talleres.include?(taller)
+      @persona.talleres.include?(taller)
+    else
+      false
+    end
+
+  end
+
+  def persona_en_horario?(horario)
+    if @persona && !@persona.nombre.nil?
+      @persona.horarios.include?(horario)
         else
           false
         end
-
   end
 
   def definir_precio(persona)

@@ -56,6 +56,16 @@ class Congreso < ActiveRecord::Base
     talleres_cupo
   end
 
+  def horarios_con_cupo
+    horarios_cupo = []
+    horarios.each do |horario|
+      if horario.cupo?
+        horarios_cupo << horario
+      end
+    end
+    horarios_cupo
+  end
+
   def validacion_fecha_limite_registro
     unless limite_registro.nil? 
       if limite_registro > fecha_fin

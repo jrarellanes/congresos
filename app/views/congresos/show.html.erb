@@ -55,9 +55,18 @@
       <% end %>
     </ul>
   </div>
-</div>
 <% end %>
-
+<% unless @congreso.horarios == nil or @congreso.horarios == [] %>
+<div id="talleres" style="margin: 12px;">
+    <h3 >Horarios o Tracks</h3>
+    <ul>
+      <% @congreso.horarios.each do |horario| %>
+          <li><%= link_to horario.nombre, horario_path(horario) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+</div>
 <div class="row btn-toolbar" style="margin-bottom: 25px; float: right;">
   <div class="btn-group">
     <input type=button onClick="location.href='<%= busqueda_url(@congreso.id)%>'" value='Buscar Participante' class="btn btn-warning" />
@@ -101,11 +110,11 @@
     <% if @congreso.campos.include?(Campo.find_by_nombre "Tipo Participante") %>
       <th>Tipo de Participante</th>
     <% end %>
-    <% if current_user_session and current_user.is_admin? %>
+    
       <th>Editar</th>
       <th>Detalles</th>
       <th>Eliminar</th>
-    <% end %>
+    
   </tr>
 <% i = 1 %>    
 <% @congreso.personas_confirmadas.order(:created_at).each do |persona| %>
@@ -141,9 +150,12 @@
   </fieldset>
 
 </div>
-
-<%= link_to 'Registrar Taller o Visita', new_taller_url %>
-
+<div>
+  <%= link_to 'Registrar Taller o Visita', new_taller_url %>
+</div>
+<div>
+  <%= link_to "Registrar Horario", new_horario_url if @congreso.requiere_horario %>
+</div>
 
     <style>
       .espacio{
